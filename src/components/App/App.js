@@ -1,25 +1,64 @@
-import logo from './logo.svg';
 import './App.css';
-import '../index.css';
+import '../../index.css';
+import { Routes, Route } from 'react-router-dom';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Main from '../Main/Main';
+import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import Profile from '../Profile/Profile';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="*" element={
+        // Route for 404 Not Found page
+        <>
+        </>
+      } />
+      <Route path="/" element={
+        <>
+          <Header />
+          <Main />
+          <Footer />
+        </>
+      } />
+      <Route path="/movies" element={
+        <>
+          <Header />
+          <Movies />
+          <Footer />
+        </>
+      } />
+      <Route path="/saved-movies" element={
+        <>
+          <Header />
+          <SavedMovies />
+          <Footer />
+        </>
+      } />
+      <Route path="/profile" element={
+        <>
+          <Header />
+          <Profile />
+          <Footer />
+        </>
+      } />
+      <Route path="/signin" element={
+        <>
+          <Header />
+          <Login />
+        </>
+      } />
+      <Route path="/signup" element={
+        <>
+          <Header />
+          <Register />
+        </>
+      } />
+    </Routes>
   );
 }
 
