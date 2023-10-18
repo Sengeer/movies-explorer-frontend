@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import './App.css';
 import '../../index.css';
 import { Routes, Route } from 'react-router-dom';
@@ -11,6 +12,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 
 function App() {
+
   return (
     <Routes>
       <Route path="*" element={

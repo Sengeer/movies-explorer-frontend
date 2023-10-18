@@ -1,0 +1,200 @@
+.header {
+  margin: 0 auto;
+  max-width: 1280px;
+  min-width: 320px;
+  min-height: 74px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #F3C1F8;
+}
+
+.header__logo {
+  margin: 0 0 0 14px;
+  align-self: center;
+  width: 38px;
+  height: 38px;
+}
+
+@media (min-width: 425px) {
+  .header__logo {
+    margin: 0 0 0 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__logo {
+    margin: 0 0 0 70px;
+  }
+}
+
+.header__container {
+  width: auto;
+  margin: 0 14px 0 0;
+  display: flex;
+  position: static;
+  flex-direction: row;
+}
+
+@media (min-width: 425px) {
+  .header__container {
+    margin: 0 30px 0 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__container {
+    margin: 0 70px 0 0;
+  }
+}
+
+.header__topbar-btn {
+  all: unset;
+  width: 40px;
+  height: 43px;
+  background-image: url(../../images/icons/topbar-btn.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: center;
+  cursor: pointer;
+  transition: opacity ease-in-out 0.2s;
+}
+
+@media (min-width: 425px) {
+  .header__topbar-btn {
+    width: 48px;
+    height: 50px;
+  }
+}
+
+.header__topbar-btn:hover {
+  opacity: 0.7;
+}
+
+.header__topbar-btn_inactive {
+  display: none;
+}
+
+.header__signup-btn {
+  all: unset;
+  margin:  0 14px 0 0;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 16px;
+  align-self: center;
+  cursor: pointer;
+  transition: opacity ease-in-out 0.2s;
+}
+
+@media (min-width: 425px) {
+  .header__signup-btn {
+    font-size: 12px;
+    margin:  0 30px 0 0;
+  }
+}
+
+.header__signup-btn:hover {
+  opacity: 0.7;
+}
+
+.header__signup-btn_inactive {
+  display: none;
+}
+
+.header__signin-btn {
+  margin: 0;
+  border: 0;
+  width: 54px;
+  height: 26px;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 16px;
+  align-self: center;
+  border-radius: 3px;
+  padding-bottom: 5px;
+  background-color: rgba(0, 0, 0, 1);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color ease-in-out 0.2s;
+}
+
+@media (min-width: 425px) {
+  .header__signin-btn {
+    width: 76px;
+    height: 32px;
+    font-size: 12px;
+  }
+}
+
+.header__signin-btn:hover {
+  background-color: rgba(0, 0, 0, .7);
+}
+
+.header__signin-btn_inactive {
+  display: none;
+}
+
+.header__movies-btn {
+  all: unset;
+  margin:  0 20px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  align-self: center;
+  cursor: pointer;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.header__movies-btn:hover {
+  opacity: 0.7;
+}
+
+.header__movies-btn_inactive {
+  display: none;
+}
+
+.header__saved-movies-btn {
+  all: unset;
+  margin:  0 50px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  align-self: center;
+  cursor: pointer;
+  transition: opacity ease-in-out 0.2s;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.header__saved-movies-btn:hover {
+  opacity: 0.7;
+}
+
+.header__saved-movies-btn_inactive {
+  display: none;
+}
+
+.header__profile-btn {
+  all: unset;
+  width: 100px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: center;
+  cursor: pointer;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.header__profile-btn:hover {
+  opacity: 0.7;
+}
+
+.header__profile-btn_inactive {
+  display: none;
+}
+
+.header__profile_style_dark {
+  background-image: url(../../images/icons/profile-btn-dark.svg);
+}
+
+.header__profile_style_light {
+  background-image: url(../../images/icons/profile-btn-light.svg);
+}
