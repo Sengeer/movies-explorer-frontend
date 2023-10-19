@@ -13,7 +13,7 @@ function Header() {
       <div
         className="header__container" >
         <button
-          className="header__topbar-btn header__topbar-btn_inactive"
+          className="header__topbar-btn"
           type="button"
           aria-label="Боковая панель" />
         <button
@@ -29,19 +29,19 @@ function Header() {
           Войти
         </button>
         <button
-          className="header__movies-btn"
+          className="header__movies-btn header__movies-btn_inactive"
           type="button"
           aria-label="Фильмы">
           Фильмы
         </button>
         <button
-          className="header__saved-movies-btn"
+          className="header__saved-movies-btn header__saved-movies-btn_inactive"
           type="button"
           aria-label="Сохранённые фильмы">
           Сохранённые фильмы
         </button>
         <button
-          className="header__profile-btn header__profile_style_dark"
+          className="header__profile-btn header__profile_style_dark header__profile-btn_inactive"
           type="button"
           aria-label="Аккаунт">
         </button>
