@@ -12,6 +12,22 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 
 function App() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleWindowWidth = (e) => {
+      if (e.target.innerWidth < 1024) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    window.addEventListener('resize', handleWindowWidth);
+    return () => {
+      window.addEventListener('resize', handleWindowWidth);
+    };
+  }, [])
 
   return (
     <Routes>
@@ -22,43 +38,49 @@ function App() {
       } />
       <Route path="/" element={
         <>
-          <Header />
+          <Header
+            isMobile={isMobile}
+            isPresentation={true}
+            isAuthorized={true} />
           <Main />
           <Footer />
         </>
       } />
       <Route path="/movies" element={
         <>
-          <Header />
+          <Header
+            isMobile={isMobile}
+            isPresentation={false}
+            isAuthorized={true} />
           <Movies />
           <Footer />
         </>
       } />
       <Route path="/saved-movies" element={
         <>
-          <Header />
+          <Header
+            isMobile={isMobile}
+            isPresentation={false}
+            isAuthorized={true} />
           <SavedMovies />
           <Footer />
         </>
       } />
       <Route path="/profile" element={
         <>
-          <Header />
+          <Header
+            isMobile={isMobile}
+            isPresentation={false}
+            isAuthorized={true} />
           <Profile />
           <Footer />
         </>
       } />
       <Route path="/signin" element={
-        <>
-          <Header />
-          <Login />
-        </>
+        <Login />
       } />
       <Route path="/signup" element={
-        <>
-          <Header />
-          <Register />
-        </>
+        <Register />
       } />
     </Routes>
   );
