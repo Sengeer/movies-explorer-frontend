@@ -7,3 +7,30 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.profile-btn {
+  all: unset;
+  width: 100px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: center;
+  cursor: pointer;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.profile-btn:hover {
+  opacity: 0.8;
+}
+
+.profile-btn_inactive {
+  display: none;
+}
+
+.profile-btn_style_dark {
+  background-image: url(../../images/icons/profile-btn-dark.svg);
+}
+
+.profile-btn_style_light {
+  background-image: url(../../images/icons/profile-btn-light.svg);
+}

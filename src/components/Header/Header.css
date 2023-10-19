@@ -68,16 +68,20 @@
   display: none;
 }
 
-.header__btn_type_topbar {
+.header__btn_active {
+  font-weight: 500;
+}
+
+.header__btn_type_navigation {
   width: 40px;
   height: 43px;
-  background-image: url(../../images/icons/topbar-btn.svg);
+  background-image: url(../../images/icons/navigation-btn.svg);
   background-size: auto;
   background-repeat: no-repeat;
 }
 
 @media (min-width: 425px) {
-  .header__btn_type_topbar {
+  .header__btn_type_navigation {
     width: 45px;
     height: 45px;
   }
@@ -133,29 +137,3 @@
   margin:  0 50px 0 0;
 }
 
-.header__profile-btn {
-  all: unset;
-  width: 100px;
-  height: 30px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  align-self: center;
-  cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
-}
-
-.header__profile-btn:hover {
-  opacity: 0.8;
-}
-
-.header__profile-btn_inactive {
-  display: none;
-}
-
-.header__profile-btn_style_dark {
-  background-image: url(../../images/icons/profile-btn-dark.svg);
-}
-
-.header__profile-btn_style_light {
-  background-image: url(../../images/icons/profile-btn-light.svg);
-}

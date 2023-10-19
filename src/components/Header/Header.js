@@ -23,11 +23,11 @@ function Header({
         <button
           className={
             isAuthorized && isMobile
-              ? 'header__btn header__btn_type_topbar'
-              : 'header__btn header__btn_type_topbar header__btn_inactive'
+              ? 'header__btn header__btn_type_navigation'
+              : 'header__btn header__btn_type_navigation header__btn_inactive'
           }
           type="button"
-          aria-label="Боковая панель" />
+          aria-label="Навигация" />
         <button
           className={
             isPresentation && !isAuthorized
@@ -51,7 +51,7 @@ function Header({
         <button
           className={
             isAuthorized && !isMobile
-              ? 'header__btn header__btn_type_movies'
+              ? 'header__btn header__btn_type_movies header__btn_active'
               : 'header__btn header__btn_type_movies header__btn_inactive'
           }
           type="button"
@@ -72,12 +72,12 @@ function Header({
           className={
             isAuthorized && !isMobile
               ? isPresentation
-                  ? 'header__profile-btn header__profile-btn_style_dark'
-                  : 'header__profile-btn header__profile-btn_style_light'
-              : 'header__profile-btn header__profile-btn_style_dark header__profile-btn_inactive'
+                  ? 'profile-btn profile-btn_style_dark'
+                  : 'profile-btn profile-btn_style_light'
+              : 'profile-btn profile-btn_style_dark profile-btn_inactive'
           }
           type="button"
-          aria-label="Аккаунт">
+          aria-label="Профиль">
         </button>
       </nav>
     </header>
