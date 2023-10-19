@@ -13,35 +13,35 @@ function Header() {
       <div
         className="header__container" >
         <button
-          className="header__topbar-btn"
+          className="header__btn header__btn_type_topbar"
           type="button"
           aria-label="Боковая панель" />
         <button
-          className="header__signup-btn header__signup-btn_inactive"
+          className="header__btn header__btn_type_signup header__btn_inactive"
           type="button"
           aria-label="Регистрация">
           Регистрация
         </button>
         <button
-          className="header__signin-btn header__signin-btn_inactive"
+          className="header__btn header__btn_type_signin header__btn_inactive"
           type="button"
           aria-label="Войти">
           Войти
         </button>
         <button
-          className="header__movies-btn header__movies-btn_inactive"
+          className="header__btn header__btn_type_movies header__btn_inactive"
           type="button"
           aria-label="Фильмы">
           Фильмы
         </button>
         <button
-          className="header__saved-movies-btn header__saved-movies-btn_inactive"
+          className="header__btn header__btn_type_saved-movies header__btn_inactive"
           type="button"
           aria-label="Сохранённые фильмы">
           Сохранённые фильмы
         </button>
         <button
-          className="header__profile-btn header__profile_style_dark header__profile-btn_inactive"
+          className="header__profile-btn header__profile-btn_style_dark header__profile-btn_inactive"
           type="button"
           aria-label="Аккаунт">
         </button>

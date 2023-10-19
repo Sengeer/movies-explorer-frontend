@@ -43,60 +43,55 @@
   }
 }
 
-.header__topbar-btn {
+.header__btn {
   all: unset;
-  width: 40px;
-  height: 43px;
-  background-image: url(../../images/icons/topbar-btn.svg);
-  background-size: auto auto;
-  background-repeat: no-repeat;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
   align-self: center;
   cursor: pointer;
   transition: opacity ease-in-out 0.2s;
 }
 
-@media (min-width: 425px) {
-  .header__topbar-btn {
-    width: 48px;
-    height: 50px;
-  }
-}
-
-.header__topbar-btn:hover {
+.header__btn:hover {
   opacity: 0.7;
 }
 
-.header__topbar-btn_inactive {
+.header__btn_inactive {
   display: none;
 }
 
-.header__signup-btn {
-  all: unset;
+.header__btn_type_topbar {
+  width: 40px;
+  height: 43px;
+  background-image: url(../../images/icons/topbar-btn.svg);
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 425px) {
+  .header__btn_type_topbar {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.header__btn_type_signup {
   margin: 0 14px 0 0;
   font-size: 10px;
   font-weight: 500;
   line-height: 16px;
   align-self: center;
-  cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
 }
 
 @media (min-width: 425px) {
-  .header__signup-btn {
+  .header__btn_type_signup {
     font-size: 12px;
     margin: 0 30px 0 0;
   }
 }
 
-.header__signup-btn:hover {
-  opacity: 0.7;
-}
-
-.header__signup-btn_inactive {
-  display: none;
-}
-
-.header__signin-btn {
+.header__btn_type_signin {
   margin: 0;
   border: 0;
   width: 54px;
@@ -104,68 +99,31 @@
   font-size: 10px;
   font-weight: 500;
   line-height: 16px;
-  align-self: center;
   border-radius: 3px;
   padding-bottom: 5px;
   background-color: rgba(0, 0, 0, 1);
   color: #fff;
-  cursor: pointer;
   transition: background-color ease-in-out 0.2s;
 }
 
 @media (min-width: 425px) {
-  .header__signin-btn {
+  .header__btn_type_signin {
     width: 76px;
     height: 32px;
     font-size: 12px;
   }
 }
 
-.header__signin-btn:hover {
+.header__btn_type_signin:hover {
   background-color: rgba(0, 0, 0, .7);
 }
 
-.header__signin-btn_inactive {
-  display: none;
-}
-
-.header__movies-btn {
-  all: unset;
+.header__btn_type_movies {
   margin:  0 20px 0 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 18px;
-  align-self: center;
-  cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
 }
 
-.header__movies-btn:hover {
-  opacity: 0.7;
-}
-
-.header__movies-btn_inactive {
-  display: none;
-}
-
-.header__saved-movies-btn {
-  all: unset;
+.header__btn_type_saved-movies {
   margin:  0 50px 0 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 18px;
-  align-self: center;
-  cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
-  transition: opacity ease-in-out 0.2s;
-}
-
-.header__saved-movies-btn:hover {
-  opacity: 0.7;
-}
-
-.header__saved-movies-btn_inactive {
-  display: none;
 }
 
 .header__profile-btn {
@@ -186,10 +144,10 @@
   display: none;
 }
 
-.header__profile_style_dark {
+.header__profile-btn_style_dark {
   background-image: url(../../images/icons/profile-btn-dark.svg);
 }
 
-.header__profile_style_light {
+.header__profile-btn_style_light {
   background-image: url(../../images/icons/profile-btn-light.svg);
 }
