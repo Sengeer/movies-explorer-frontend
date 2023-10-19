@@ -41,7 +41,7 @@ function App() {
           <Header
             isMobile={isMobile}
             isPresentation={true}
-            isAuthorized={true} />
+            isAuthorized={false} />
           <Main />
           <Footer />
         </>

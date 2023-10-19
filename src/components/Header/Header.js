@@ -18,7 +18,7 @@ function Header({
         src={logo}
         alt="Лого"
         className="header__logo" />
-      <div
+      <nav
         className="header__container" >
         <button
           className={
@@ -79,7 +79,7 @@ function Header({
           type="button"
           aria-label="Аккаунт">
         </button>
-      </div>
+      </nav>
     </header>
   );
 }
