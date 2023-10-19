@@ -5,7 +5,7 @@ import logo from '../../images/logo.svg';
 function Header() {
   return (
     <header
-      className="header" >
+      className="header header_color_pink" >
       <img
         src={logo}
         alt="Лого"
@@ -13,17 +13,17 @@ function Header() {
       <div
         className="header__container" >
         <button
-          className="header__btn header__btn_type_topbar"
+          className="header__btn header__btn_type_topbar header__btn_inactive"
           type="button"
           aria-label="Боковая панель" />
         <button
-          className="header__btn header__btn_type_signup header__btn_inactive"
+          className="header__btn header__btn_type_signup"
           type="button"
           aria-label="Регистрация">
           Регистрация
         </button>
         <button
-          className="header__btn header__btn_type_signin header__btn_inactive"
+          className="header__btn header__btn_type_signin"
           type="button"
           aria-label="Войти">
           Войти

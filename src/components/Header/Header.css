@@ -2,7 +2,14 @@
   min-height: 74px;
   display: flex;
   justify-content: space-between;
+}
+
+.header_color_pink {
   background-color: #F3C1F8;
+}
+
+.header_color_white {
+  background-color: #fff;
 }
 
 .header__logo {
@@ -96,11 +103,11 @@
   border: 0;
   width: 54px;
   height: 26px;
+  text-align: center;
   font-size: 10px;
   font-weight: 500;
   line-height: 16px;
   border-radius: 3px;
-  padding-bottom: 5px;
   background-color: rgba(0, 0, 0, 1);
   color: #fff;
   transition: background-color ease-in-out 0.2s;
