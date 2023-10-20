@@ -32,12 +32,12 @@ function App() {
 
   return (
     <Routes>
-      <Route path="*" element={
+      <Route path='*' element={
         // Route for 404 Not Found page
         <>
         </>
       } />
-      <Route path="/" element={
+      <Route path='/' element={
         <>
           <Header
             isMobile={isMobile}
@@ -48,7 +48,7 @@ function App() {
           <Footer />
         </>
       } />
-      <Route path="/movies" element={
+      <Route path='/movies' element={
         <>
           <Header
             isMobile={isMobile}
@@ -58,7 +58,7 @@ function App() {
           <Footer />
         </>
       } />
-      <Route path="/saved-movies" element={
+      <Route path='/saved-movies' element={
         <>
           <Header
             isMobile={isMobile}
@@ -68,7 +68,7 @@ function App() {
           <Footer />
         </>
       } />
-      <Route path="/profile" element={
+      <Route path='/profile' element={
         <>
           <Header
             isMobile={isMobile}
@@ -78,10 +78,10 @@ function App() {
           <Footer />
         </>
       } />
-      <Route path="/signin" element={
+      <Route path='/signin' element={
         <Login />
       } />
-      <Route path="/signup" element={
+      <Route path='/signup' element={
         <Register />
       } />
     </Routes>
