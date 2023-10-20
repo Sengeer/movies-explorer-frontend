@@ -1,5 +1,6 @@
 .promo {
-  min-height: 570px;
+  min-height: 532px;
+  padding-bottom: 38px;
   background-color: #F3C1F8;
   display: flex;
   position:relative;
@@ -7,19 +8,21 @@
 
 @media (min-width: 425px) {
   .promo {
-    min-height: 784px;
+    min-height: 764px;
+    padding-bottom: 20px;
   }
 }
 
 @media (min-width: 1024px) {
   .promo {
-    min-height: 524px;
+    min-height: 485px;
+    padding-bottom: 40px;
   }
 }
 
 .promo__background-logo {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 19px);
   left: 50%;
   transform: translate(-50%, -50%);
   width: 248px;
@@ -30,6 +33,13 @@
   .promo__background-logo {
     width: 320px;
     height: 320px;
+    top: calc(50% - 10px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .promo__background-logo {
+    top: calc(50% - 20px);
   }
 }
 
@@ -42,6 +52,7 @@
   letter-spacing: -1.24px;
   max-width: 300px;
   width: 100%;
+  z-index: 1;
 }
 
 @media (min-width: 425px) {
