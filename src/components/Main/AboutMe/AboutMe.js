@@ -5,6 +5,7 @@ import myPhoto from '../../../images/my-photo.jpg'
 function AboutMe() {
   return (
     <section
+      id='about-me'
       className='about-me' >
       <h2
         className='title title_section_about-me' >
@@ -26,7 +27,9 @@ function AboutMe() {
             С&nbsp;2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб&#8209;разработке, начал заниматься фриланс&#8209;заказами&nbsp;и ушёл с постоянной работы.
         </p>
         <a
-          href='#4'
+          href='https://github.com/Sengeer'
+          rel="noreferrer"
+          target='_blank'
           className='about-me__git-hub' >
             Github
         </a>

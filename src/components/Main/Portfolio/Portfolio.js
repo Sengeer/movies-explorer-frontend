@@ -1,6 +1,5 @@
 import React from 'react';
 import './Portfolio.css';
-import link from '../../../images/icons/portfolio-link.svg';
 
 function Portfolio() {
   return (
@@ -11,17 +10,23 @@ function Portfolio() {
           Портфолио
       </h2>
       <a
-        href='#5'
+        href='https://sengeer.github.io/how-to-learn/'
+        rel="noreferrer"
+        target='_blank'
         className='portfolio__link' >
           Статичный сайт
       </a>
       <a
-        href='#5'
+        href='https://sengeer.github.io/russian-travel/'
+        rel="noreferrer"
+        target='_blank'
         className='portfolio__link' >
           Адаптивный сайт
       </a>
       <a
-        href='#5'
+        href='https://sengeer.github.io/mesto/'
+        rel="noreferrer"
+        target='_blank'
         className='portfolio__link' >
           Одностраничное приложение
       </a>

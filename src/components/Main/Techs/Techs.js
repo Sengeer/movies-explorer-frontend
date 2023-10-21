@@ -4,6 +4,7 @@ import './Techs.css';
 function Techs() {
   return (
     <section
+      id='techs'
       className='techs' >
       <h2
         className='title title_section_techs' >

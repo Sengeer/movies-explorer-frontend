@@ -8,17 +8,17 @@ function NavTab() {
       <nav
         className='nav-tab__container' >
         <a
-          href='#1'
+          href='#about-project'
           className='nav-tab__link' >
             О проекте
         </a>
         <a
-          href='#2'
+          href='#techs'
           className='nav-tab__link' >
             Технологии
         </a>
         <a
-          href='#3'
+          href='#about-me'
           className='nav-tab__link' >
             Студент
         </a>

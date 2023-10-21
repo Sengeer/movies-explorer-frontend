@@ -4,6 +4,7 @@ import './AboutProject.css';
 function AboutProject() {
   return (
     <section
+      id='about-project'
       className='about-project' >
       <h2
         className='title title_section_about-project' >
