@@ -6,7 +6,7 @@ function NavTab() {
     <section
       className='nav-tab' >
       <nav
-        className='nav-tab__container'>
+        className='nav-tab__container' >
         <a
           href='#1'
           className='nav-tab__link' >

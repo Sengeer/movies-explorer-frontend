@@ -1,0 +1,148 @@
+.about-me {
+  padding: 70px 0 35px 0;
+  display: grid;
+  grid-template-columns: minmax(min-content, 100%);
+  grid-template-rows: repeat(3, minmax(min-content, 100%));
+  grid-template-areas:
+    'title'
+    'photo'
+    'student-column';
+}
+
+@media (min-width: 664px) {
+  .about-me {
+    padding: 90px 0 45px 0;
+    grid-template-columns: repeat(2, minmax(min-content, 100%));
+    grid-template-rows: repeat(2, minmax(min-content, 100%));
+    grid-template-areas:
+      'title title'
+      'student-column photo';
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-me {
+    padding: 110px 0 50px 0;
+  }
+}
+
+.about-me__column {
+  margin: 0 14px;
+  padding: 40px 0 0 0;
+  grid-area: student-column;
+}
+
+@media (min-width: 425px) {
+  .about-me__column {
+    margin: 0 0 0 50px;
+    padding: 66px 0 0 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-me__column {
+    margin: 0 0 0 70px;
+  }
+}
+
+.about-me__column-heanding {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -1.2px;
+}
+
+@media (min-width: 425px) {
+  .about-me__column-heanding {
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: -1.6px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-me__column-heanding {
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: -2px;
+  }
+}
+
+.paragraph_section_about-me {
+  padding: 20px 0;
+  letter-spacing: 0.08px;
+}
+
+.paragraph_section_about-me:nth-last-child(2) {
+  padding: 0 0 40px 0;
+}
+
+@media (min-width: 425px) {
+  .paragraph_section_about-me {
+    padding: 16px 0 20px 0;
+    min-width: 310px;
+    letter-spacing: 0.2px;
+  }
+  .paragraph_section_about-me:nth-last-child(2) {
+    padding: 0 0 87px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .paragraph_section_about-me {
+    padding: 16px 0 26px 0;
+    min-width: 320px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.2px;
+  }
+  .paragraph_section_about-me:nth-last-child(2) {
+    padding: 0 0 99px 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.08px;
+  }
+}
+
+.about-me__git-hub {
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.about-me__git-hub:hover {
+  opacity: 0.7;
+}
+
+.about-me__photo {
+  margin: 60px auto 0;
+  width: 292px;
+  height: 352px;
+  border-radius: 10px;
+  object-fit: cover;
+  grid-area: photo;
+}
+
+@media (min-width: 664px) {
+  .about-me__photo {
+    margin: 64px 50px 0 0;
+    justify-self: flex-end;
+    width: 255px;
+    height: 307px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-me__photo {
+    margin: 64px 70px 0 0;
+    width: 270px;
+    height: 327px;
+  }
+}

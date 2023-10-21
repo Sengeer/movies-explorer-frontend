@@ -35,7 +35,7 @@ function Header({
               : 'header__btn header__btn_type_signup header__btn_inactive'
           }
           type='button'
-          aria-label='Регистрация'>
+          aria-label='Регистрация' >
           Регистрация
         </button>
         <button
@@ -45,7 +45,7 @@ function Header({
               : 'header__btn header__btn_type_signin header__btn_inactive'
           }
           type='button'
-          aria-label='Войти'>
+          aria-label='Войти' >
           Войти
         </button>
         <button
@@ -55,7 +55,7 @@ function Header({
               : 'header__btn header__btn_type_movies header__btn_inactive'
           }
           type='button'
-          aria-label='Фильмы'>
+          aria-label='Фильмы' >
           Фильмы
         </button>
         <button
@@ -65,7 +65,7 @@ function Header({
               : 'header__btn header__btn_type_saved-movies header__btn_inactive'
           }
           type='button'
-          aria-label='Сохранённые фильмы'>
+          aria-label='Сохранённые фильмы' >
           Сохранённые фильмы
         </button>
         <button
@@ -77,7 +77,7 @@ function Header({
               : 'profile-btn profile-btn_style_dark profile-btn_inactive'
           }
           type='button'
-          aria-label='Профиль'>
+          aria-label='Профиль' >
         </button>
       </nav>
     </header>
