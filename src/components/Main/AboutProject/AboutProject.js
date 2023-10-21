@@ -6,7 +6,7 @@ function AboutProject() {
     <section
       className='about-project' >
       <h2
-        className='about-project__title' >
+        className='title title_section_about-project' >
           О проекте
       </h2>
       <div
@@ -16,7 +16,7 @@ function AboutProject() {
             Дипломный проект включал 5 этапов
         </h3>
         <p
-          className='about-project__column-paragraph'>
+          className='paragraph paragraph_section_about-project'>
             Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.
         </p>
       </div>
@@ -27,7 +27,7 @@ function AboutProject() {
             На выполнение диплома ушло 5 недель
         </h3>
         <p
-          className='about-project__column-paragraph'>
+          className='paragraph paragraph_section_about-project'>
             У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.
         </p>
       </div>

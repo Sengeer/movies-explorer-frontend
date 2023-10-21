@@ -34,3 +34,52 @@
 .profile-btn_style_light {
   background-image: url(../../images/icons/profile-btn-light.svg);
 }
+
+.title {
+  margin: 0 18px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.72px;
+  padding-bottom: 28px;
+  border-bottom: 2px solid #000;
+  grid-area: title;
+}
+
+@media (min-width: 425px) {
+  .title {
+    font-size: 22px;
+    letter-spacing: -0.88px;
+    margin: 0 50px;
+    padding-bottom: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .title {
+    margin: 0 70px;
+  }
+}
+
+.paragraph {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+@media (min-width: 425px) {
+  .paragraph {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .paragraph {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+  }
+}
