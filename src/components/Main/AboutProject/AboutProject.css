@@ -12,7 +12,7 @@
 
 @media (min-width: 425px) {
   .about-project {
-    padding: 90px 0;
+    padding: 90px 0 77px 0;
     grid-template-columns: repeat(2, minmax(min-content, 100%));
     grid-template-rows: repeat(3, minmax(min-content, 100%));
     grid-template-areas:
@@ -24,7 +24,7 @@
 
 @media (min-width: 1024px) {
   .about-project {
-    padding: 110px 0;
+    padding: 110px 0 95px 0;
   }
 }
 
@@ -50,7 +50,7 @@
     margin: 0 0 0 70px;
     padding: 69px 0 0 0;
   }
-  .about-project__column:-child(3) {
+  .about-project__column:nth-child(3) {
     margin: 0 70px 0 22px;
   }
 }

@@ -1,16 +1,18 @@
 .techs {
+  background-color: #fff;
   padding: 60px 0 70px 0;
 }
 
 @media (min-width: 425px) {
   .techs {
-    padding: 75px 0 90px 0;
+    background-color: #f5f5f5;
+    padding: 88px 0 90px 0;
   }
 }
 
 @media (min-width: 1024px) {
   .techs {
-    padding: 85px 0 100px 0;
+    padding: 100px 0;
   }
 }
 
