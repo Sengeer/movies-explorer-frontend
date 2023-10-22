@@ -1,0 +1,132 @@
+.search {
+  margin: 0 10px;
+  padding: 80px 0 0 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+@media (min-width: 425px) {
+  .search {
+    margin: 0 30px;
+  }
+}
+
+@media (min-width: 664px) {
+  .search {
+    margin: 0 30px;
+    padding: 80px 0 109px 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .search {
+    margin: 0 70px;
+    padding: 70px 0 69px 0;
+  }
+}
+
+.search__container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 664px) {
+  .search__container {
+    background-color: #fdfdfd;
+    border-radius: 9px;
+    box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.search__form {
+  padding: 19px;
+  background-color: #fdfdfd;
+  border-radius: 9px;
+  box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 664px) {
+  .search__form {
+    margin: 19px 0;
+    padding: 0 19px;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border-right: 1px solid #e5e5e5;
+    flex-direction: row;
+  }
+}
+
+.search__input {
+  margin: 0;
+  width: calc(100% - 80px);
+  border: 0;
+  height: 25px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  align-self: center;
+  box-sizing: border-box;
+  outline: none;
+}
+
+@media (min-width: 664px) {
+  .search__input {
+    height: 34px;
+    font-size: 18px;
+    background-image: url(../../../images/icons/search.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-left: 44px;
+  }
+}
+
+.serach__submit-btn {
+  border: 0;
+  width: 59px;
+  height: 34px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+  border-radius: 48px;
+  background-color: rgba(0, 0, 0, 1);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color ease-in-out 0.2s;
+}
+
+.search__filter-btn {
+  all: unset;
+  margin: 45px 0;
+  padding-left: 51px;
+  align-self: center;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 18px;
+  height: 20px;
+  background-image: url(../../../images/icons/filter-btn.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+@media (min-width: 664px) {
+  .search__filter-btn {
+    margin: 0 20px;
+    font-size: 13px;
+    letter-spacing: -0.3px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .search__filter-btn {
+    margin: 0 28px;
+  }
+}
+
+.search__filter-btn_active {
+  background-image: url(../../../images/icons/filter-btn-active.svg);
+}
