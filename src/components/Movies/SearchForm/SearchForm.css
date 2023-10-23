@@ -17,7 +17,7 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   .search {
     margin: 0 70px;
     padding: 70px 0 69px 0;
@@ -96,6 +96,10 @@
   color: #fff;
   cursor: pointer;
   transition: background-color ease-in-out 0.2s;
+}
+
+.serach__submit-btn:hover {
+  background-color: rgba(0, 0, 0, .8);
 }
 
 .search__filter-btn {
