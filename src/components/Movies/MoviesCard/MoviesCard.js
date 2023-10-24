@@ -5,6 +5,7 @@ function MoviesCard({
   imageUrl,
   nameRu,
   duration,
+  card
 }) {
   return (
     <li className='movies__card' >
@@ -20,9 +21,15 @@ function MoviesCard({
         </p>
       </div>
       <button
-        className='movies__card-btn'
+        className={
+          card.id === 2 || card.id === 4
+            ? 'movies__card-btn movies__card-btn_active movies__card-btn_type_saved'
+            : 'movies__card-btn movies__card-btn_active movies__card-btn_type_save'
+        }
         type='button'
-        aria-label='Удалить карточку' />
+        aria-label='Удалить карточку'>
+          Сохранить
+      </button>
     </li>
   );
 }
