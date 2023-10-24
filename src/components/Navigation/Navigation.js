@@ -29,6 +29,7 @@ function Navigation() {
           className='profile-btn profile-btn_style_light'
           type='button'
           aria-label='Профиль' >
+            Аккаунт
         </button>
       </nav>
       <button

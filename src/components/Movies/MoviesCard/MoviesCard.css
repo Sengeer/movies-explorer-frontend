@@ -1,9 +1,10 @@
-.movies__item {
+.movies__card {
   position: relative;
   list-style-type: none;
+  cursor: pointer;
 }
 
-.movies__item-image {
+.movies__card-image {
   width: 300px;
   height: 168px;
   font-weight: 900;
@@ -17,20 +18,20 @@
 }
 
 @media (min-width: 738px) {
-  .movies__item-image {
+  .movies__card-image {
     width: 339px;
     height: 190px;
   }
 }
 
 @media (min-width: 1200px) {
-  .movies__item-image {
+  .movies__card-image {
     width: 360px;
     height: 201px;
   }
 }
 
-.movies__item-info {
+.movies__card-info {
   width: 100%;
   height: 40px;
   background-color: #fff;
@@ -42,18 +43,18 @@
 }
 
 @media (min-width: 738px) {
-  .movies__item-info {
+  .movies__card-info {
     height: 58px;
   }
 }
 
 @media (min-width: 1200px) {
-  .movies__item-info {
+  .movies__card-info {
     height: 60px;
   }
 }
 
-.movies__item-title {
+.movies__card-title {
   margin: 0 0 10px 0;
   max-width: 248px;
   font-size: 12px;
@@ -66,7 +67,7 @@
 }
 
 @media (min-width: 738px) {
-  .movies__item-title {
+  .movies__card-title {
     margin: 0 0 17px 0;
     max-width: 287px;
     font-size: 13px;
@@ -74,12 +75,12 @@
 }
 
 @media (min-width: 1200px) {
-  .movies__item-title {
+  .movies__card-title {
     margin: 0 0 29px 7px;
   }
 }
 
-.movies__item-duration {
+.movies__card-duration {
   margin: 0 0 7px 0;
   padding: 4px 9px;
   max-width: 50px;
@@ -97,38 +98,34 @@
 }
 
 @media (min-width: 738px) {
-  .movies__item-duration {
+  .movies__card-duration {
     margin: 0 0 15px 0;
   }
 }
 
 @media (min-width: 1200px) {
-  .movies__item-duration {
+  .movies__card-duration {
     margin: 0 17px 28px 0;
   }
 }
 
-.movies__item-btn {
+.movies__card-btn {
   all: unset;
   visibility: hidden;
   opacity: 0;
-  width: 18px;
-  height: 19.3px;
+  width: 72px;
+  height: 21px;
   background-image: url(../../../images/icons/card-save-btn.svg);
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 14px;
+  right: 14px;
   cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
+  transition: all 0.3s linear;
 }
 
-.movies__item-btn:hover {
-  opacity: 0.6;
-}
-
-.movies__item-btn_active {
-  visibility: visible;
-  opacity: 1;
+.movies__card:hover .movies__card-btn {
+    visibility: visible;
+    opacity: 1;
 }

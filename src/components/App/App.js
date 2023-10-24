@@ -42,7 +42,7 @@ function App() {
           <Header
             isMobile={isMobile}
             isPresentation={true}
-            isAuthorized={false} />
+            isAuthorized={true} />
           <Navigation />
           <Main />
           <Footer />
@@ -54,6 +54,7 @@ function App() {
             isMobile={isMobile}
             isPresentation={false}
             isAuthorized={true} />
+          <Navigation />
           <Movies />
           <Footer />
         </>

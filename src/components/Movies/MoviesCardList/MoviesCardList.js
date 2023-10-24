@@ -6,7 +6,7 @@ import cards from '../../../utils/staticCardData'
 function MoviesCardList() {
   return (
     <section className='movies' >
-      <ul className='movies__items' >
+      <ul className='movies__cards' >
         {cards.map(card => (
           <MoviesCard
             key={card.id}

@@ -7,20 +7,20 @@ function MoviesCard({
   duration,
 }) {
   return (
-    <li className='movies__item' >
+    <li className='movies__card' >
       <div
-        className='movies__item-image'
+        className='movies__card-image'
         style={{ backgroundImage: `url(${imageUrl})` }} />
-      <div className='movies__item-info' >
-        <h2 className='movies__item-title'>
+      <div className='movies__card-info' >
+        <h2 className='movies__card-title'>
           {nameRu}
         </h2>
-        <p className='movies__item-duration' >
+        <p className='movies__card-duration' >
           1ч 17м
         </p>
       </div>
       <button
-        className='movies__item-btn'
+        className='movies__card-btn'
         type='button'
         aria-label='Удалить карточку' />
     </li>

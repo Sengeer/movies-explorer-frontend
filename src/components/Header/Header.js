@@ -36,7 +36,7 @@ function Header({
           }
           type='button'
           aria-label='Регистрация' >
-          Регистрация
+            Регистрация
         </button>
         <button
           className={
@@ -46,7 +46,7 @@ function Header({
           }
           type='button'
           aria-label='Войти' >
-          Войти
+            Войти
         </button>
         <button
           className={
@@ -56,7 +56,7 @@ function Header({
           }
           type='button'
           aria-label='Фильмы' >
-          Фильмы
+            Фильмы
         </button>
         <button
           className={
@@ -66,7 +66,7 @@ function Header({
           }
           type='button'
           aria-label='Сохранённые фильмы' >
-          Сохранённые фильмы
+            Сохранённые фильмы
         </button>
         <button
           className={
@@ -78,6 +78,7 @@ function Header({
           }
           type='button'
           aria-label='Профиль' >
+            Аккаунт
         </button>
       </nav>
     </header>

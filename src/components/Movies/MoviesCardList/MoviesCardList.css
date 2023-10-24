@@ -11,7 +11,7 @@
   }
 }
 
-.movies__items {
+.movies__cards {
   padding: 0;
   margin: 0 auto;
   max-width: 300px;
@@ -22,14 +22,14 @@
 }
 
 @media (min-width: 738px) {
-  .movies__items {
+  .movies__cards {
     grid-template-columns: repeat(2, 1fr);
     max-width: 708px;
   }
 }
 
 @media (min-width: 1200px) {
-  .movies__items {
+  .movies__cards {
     grid-template-columns: repeat(3, 1fr);
     max-width: 1140px;
   }
