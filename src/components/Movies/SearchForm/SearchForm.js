@@ -17,12 +17,13 @@ function SearchForm() {
             placeholder='Фильм'
             required />
           <button
-            className='serach__submit-btn'
-            type='submit' >
+            type='submit'
+            className='serach__submit-btn' >
               Найти
           </button>
         </form>
         <button
+          type='button'
           className='search__filter-btn search__filter-btn_active'>
             Короткометражки
         </button>

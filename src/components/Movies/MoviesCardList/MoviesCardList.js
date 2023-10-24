@@ -16,6 +16,11 @@ function MoviesCardList() {
             card={card} />
         ))}
       </ul>
+      <button
+        type='button'
+        className='search__more-btn'>
+          Ещё
+      </button>
     </section>
   );
 }
