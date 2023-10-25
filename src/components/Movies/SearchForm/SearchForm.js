@@ -6,7 +6,7 @@ function SearchForm() {
     <section
       className='search' >
       <div
-        className='search__container'>
+        className='search__container' >
         <form
           className='search__form'
           name='searchForm' >
@@ -24,7 +24,7 @@ function SearchForm() {
         </form>
         <button
           type='button'
-          className='search__filter-btn search__filter-btn_active'>
+          className='search__filter-btn search__filter-btn_active' >
             Короткометражки
         </button>
       </div>

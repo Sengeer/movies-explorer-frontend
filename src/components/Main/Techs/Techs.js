@@ -7,7 +7,7 @@ function Techs() {
       id='techs'
       className='techs' >
       <h2
-        className='title title_style_present' >
+        className='title title_place_present' >
           Технологии
       </h2>
       <h3

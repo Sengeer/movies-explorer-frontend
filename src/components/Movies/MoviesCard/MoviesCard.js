@@ -14,7 +14,7 @@ function MoviesCard({
         className='movies__card-image'
         style={{ backgroundImage: `url(${imageUrl})` }} />
       <div className='movies__card-info' >
-        <h2 className='movies__card-title'>
+        <h2 className='movies__card-title' >
           {nameRu}
         </h2>
         <p className='movies__card-duration' >
@@ -30,7 +30,7 @@ function MoviesCard({
             : 'movies__card-btn movies__card-btn_active movies__card-btn_type_save'
         }
         type='button'
-        aria-label='Удалить карточку'>
+        aria-label='Удалить карточку' >
           Сохранить
       </button>
     </li>

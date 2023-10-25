@@ -8,7 +8,7 @@ function AboutMe() {
       id='about-me'
       className='about-me' >
       <h2
-        className='title title_style_present' >
+        className='title title_place_present' >
           Студент
       </h2>
       <div
