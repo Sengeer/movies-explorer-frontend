@@ -76,7 +76,6 @@ function App() {
             isPresentation={false}
             isAuthorized={true} />
           <Profile />
-          <Footer />
         </>
       } />
       <Route path='/signin' element={
