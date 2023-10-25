@@ -26,7 +26,7 @@ function Navigation() {
             Сохранённые фильмы
         </button>
         <button
-          className='profile-btn profile-btn_style_light'
+          className='account-btn account-btn_style_light'
           type='button'
           aria-label='Профиль' >
             Аккаунт

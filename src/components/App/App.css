@@ -8,7 +8,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.profile-btn {
+.account-btn {
   all: unset;
   width: 100px;
   height: 30px;
@@ -23,20 +23,20 @@
   transition: opacity ease-in-out 0.2s;
 }
 
-.profile-btn:hover {
+.account-btn:hover {
   opacity: 0.8;
 }
 
-.profile-btn_inactive {
+.account-btn_inactive {
   display: none;
 }
 
-.profile-btn_style_dark {
-  background-image: url(../../images/icons/profile-btn-dark.svg);
+.account-btn_style_dark {
+  background-image: url(../../images/icons/account-btn-dark.svg);
 }
 
-.profile-btn_style_light {
-  background-image: url(../../images/icons/profile-btn-light.svg);
+.account-btn_style_light {
+  background-image: url(../../images/icons/account-btn-light.svg);
 }
 
 .title {
@@ -50,6 +50,7 @@
 
 .title_style_present {
   margin: 0 18px;
+  text-align: start;
   font-size: 18px;
   font-weight: 400;
   letter-spacing: -0.72px;

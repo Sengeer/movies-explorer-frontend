@@ -72,9 +72,9 @@ function Header({
           className={
             isAuthorized && !isMobile
               ? isPresentation
-                  ? 'profile-btn profile-btn_style_dark'
-                  : 'profile-btn profile-btn_style_light'
-              : 'profile-btn profile-btn_style_dark profile-btn_inactive'
+                  ? 'account-btn account-btn_style_dark'
+                  : 'account-btn account-btn_style_light'
+              : 'account-btn account-btn_style_dark account-btn_inactive'
           }
           type='button'
           aria-label='Профиль' >
