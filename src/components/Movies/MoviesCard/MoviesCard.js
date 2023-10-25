@@ -5,7 +5,8 @@ function MoviesCard({
   imageUrl,
   nameRu,
   duration,
-  card
+  card,
+  isSavedMovies
 }) {
   return (
     <li className='movies__card' >
@@ -23,7 +24,9 @@ function MoviesCard({
       <button
         className={
           card.id === 2 || card.id === 4
-            ? 'movies__card-btn movies__card-btn_active movies__card-btn_type_saved'
+            ? isSavedMovies
+              ? 'movies__card-btn movies__card-btn_active movies__card-btn_type_delete'
+              : 'movies__card-btn movies__card-btn_active movies__card-btn_type_saved'
             : 'movies__card-btn movies__card-btn_active movies__card-btn_type_save'
         }
         type='button'
