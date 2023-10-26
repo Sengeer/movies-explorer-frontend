@@ -7,7 +7,7 @@ function AboutProject() {
       id='about-project'
       className='about-project' >
       <h2
-        className='title title_place_present' >
+        className='title title_place_presentation' >
           О проекте
       </h2>
       <div

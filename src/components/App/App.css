@@ -88,7 +88,7 @@
   line-height: normal;
 }
 
-.title_place_present {
+.title_place_presentation {
   margin: 0 18px;
   text-align: start;
   font-size: 18px;
@@ -100,7 +100,7 @@
 }
 
 @media (min-width: 425px) {
-  .title_place_present {
+  .title_place_presentation {
     font-size: 22px;
     letter-spacing: -0.88px;
     margin: 0 50px;
@@ -109,7 +109,7 @@
 }
 
 @media (min-width: 1024px) {
-  .title_place_present {
+  .title_place_presentation {
     margin: 0 70px;
   }
 }
