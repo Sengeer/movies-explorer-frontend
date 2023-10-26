@@ -27,7 +27,7 @@ function MoviesCard({
             ? isSavedMovies
               ? 'movies__card-btn movies__card-btn_active movies__card-btn_type_delete'
               : 'movies__card-btn movies__card-btn_active movies__card-btn_type_saved'
-            : 'movies__card-btn movies__card-btn_active movies__card-btn_type_save'
+            : 'movies__card-btn movies__card-btn_type_save'
         }
         type='button'
         aria-label='Удалить карточку' >

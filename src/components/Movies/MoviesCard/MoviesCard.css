@@ -112,8 +112,8 @@
 .movies__card-btn {
   all: unset;
   display: none;
-  visibility: hidden;
-  opacity: 0;
+  visibility: visible;
+  opacity: 1;
   width: 21px;
   height: 21px;
   color: transparent;
@@ -128,6 +128,17 @@
   right: 10px;
   cursor: pointer;
   transition: all 0.3s linear;
+}
+
+@media (min-width: 738px) {
+  .movies__card-btn {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .movies__card:hover .movies__card-btn {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .movies__card-btn_type_save {
@@ -150,11 +161,6 @@
 
 .movies__card-btn_active {
   display: block;
-}
-
-.movies__card:hover .movies__card-btn {
-    visibility: visible;
-    opacity: 1;
 }
 
 @media (min-width: 738px) {
