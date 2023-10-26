@@ -52,7 +52,6 @@
   letter-spacing: -1.24px;
   max-width: 300px;
   width: 100%;
-  z-index: 1;
 }
 
 @media (min-width: 425px) {
