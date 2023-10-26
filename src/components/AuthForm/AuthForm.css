@@ -90,8 +90,8 @@
 }
 
 .auth__input {
-  margin: 13px 30px 10px;
-  padding: 10px 15px 20px 15px;
+  margin: 8px 30px 15px;
+  padding: 15px 15px 15px 15px;
   border: 0;
   border-radius: 8px;
   width: calc(100% - 60px);
@@ -106,7 +106,7 @@
 }
 
 .auth__input:last-of-type {
-  margin: 13px 30px 5px;
+  margin: 8px 30px 5px;
 }
 
 .auth__input_type_error {
@@ -125,22 +125,22 @@
 }
 
 .auth__text-error_type_sign-up {
-  padding: 0 0 145px 0;
+  padding: 5px 0 145px 0;
 }
 
 @media (min-width: 425px) {
   .auth__text-error_type_sign-up {
-    padding: 0 0 57px 0;
+    padding: 5px 0 57px 0;
   }
 }
 
 .auth__text-error_type_sign-in {
-  padding: 0 0 232px 0;
+  padding: 0 0 237px 0;
 }
 
 @media (min-width: 425px) {
   .auth__text-error_type_sign-in {
-    padding: 0 0 144px 0;
+    padding: 0 0 148px 0;
   }
 }
 

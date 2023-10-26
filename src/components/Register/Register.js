@@ -1,9 +1,9 @@
 import React from 'react';
-import AuthWithForm from '../AuthWithForm/AuthWithForm';
+import AuthForm from '../AuthForm/AuthForm';
 
 function Register() {
   return (
-    <AuthWithForm
+    <AuthForm
       title='Добро пожаловать!'
       name='sign-up'
       buttonText='Зарегистрироваться'
@@ -43,7 +43,7 @@ function Register() {
         id='password'
         name='password'
         required />
-    </AuthWithForm>
+    </AuthForm>
   );
 }
 

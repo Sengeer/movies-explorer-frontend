@@ -1,9 +1,9 @@
 import React from 'react';
-import AuthWithForm from '../AuthWithForm/AuthWithForm';
+import AuthForm from '../AuthForm/AuthForm';
 
 function Login() {
   return (
-    <AuthWithForm
+    <AuthForm
       title='Рады видеть!'
       name='sign-in'
       buttonText='Войти'
@@ -32,7 +32,7 @@ function Login() {
         id='password'
         name='password'
         required />
-    </AuthWithForm>
+    </AuthForm>
   );
 }
 
