@@ -1,8 +1,8 @@
 import React from 'react';
-import './AuthWithForm.css'
+import './AuthForm.css'
 import logo from '../../images/logo.svg';
 
-function AuthWithForm({
+function AuthForm({
   title,
   name,
   buttonText,
@@ -55,4 +55,4 @@ function AuthWithForm({
   );
 }
 
-export default AuthWithForm;
+export default AuthForm;
