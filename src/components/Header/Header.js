@@ -23,63 +23,58 @@ function Header({
         <button
           className={
             isAuthorized && isMobile
-              ? 'button header__btn header__btn_type_navigation'
-              : 'button header__btn header__btn_type_navigation header__btn_inactive'
+              ? 'button header__navigation-btn'
+              : 'button header__navigation-btn header__navigation-btn_inactive'
           }
           type='button'
           aria-label='Навигация' />
-        <button
+        <a
+          href='../signup'
           className={
             isPresentation && !isAuthorized
-              ? 'button header__btn header__btn_type_signup'
-              : 'button header__btn header__btn_type_signup header__btn_inactive'
-          }
-          type='button'
-          aria-label='Регистрация' >
+              ? 'link header__link header__link_type_signup'
+              : 'link header__link header__link_type_signup header__link_inactive'
+          } >
             Регистрация
-        </button>
-        <button
+        </a>
+        <a
+          href='../signin'
           className={
             isPresentation && !isAuthorized
-              ? 'button header__btn header__btn_type_signin'
-              : 'button header__btn header__btn_type_signin header__btn_inactive'
-          }
-          type='button'
-          aria-label='Войти' >
+              ? 'link header__link header__link_type_signin'
+              : 'link header__link header__link_type_signin header__link_inactive'
+          } >
             Войти
-        </button>
-        <button
+        </a>
+        <a
+          href='../movies'
           className={
             isAuthorized && !isMobile
-              ? 'button header__btn header__btn_type_movies header__btn_active'
-              : 'button header__btn header__btn_type_movies header__btn_inactive'
-          }
-          type='button'
-          aria-label='Фильмы' >
+              ? 'link header__link header__link_type_movies header__link_active'
+              : 'link header__link header__link_type_movies header__link_inactive'
+          } >
             Фильмы
-        </button>
-        <button
+        </a>
+        <a
+          href='../saved-movies'
           className={
             isAuthorized && !isMobile
-              ? 'button header__btn header__btn_type_saved-movies'
-              : 'button header__btn header__btn_type_saved-movies header__btn_inactive'
-          }
-          type='button'
-          aria-label='Сохранённые фильмы' >
+              ? 'link header__link header__link_type_saved-movies'
+              : 'link header__link header__link_type_saved-movies header__link_inactive'
+          } >
             Сохранённые фильмы
-        </button>
-        <button
+        </a>
+        <a
+          href='../profile'
           className={
             isAuthorized && !isMobile
               ? isPresentation
-                  ? 'account-btn account-btn_style_dark'
-                  : 'account-btn account-btn_style_light'
-              : 'account-btn account-btn_style_dark account-btn_inactive'
-          }
-          type='button'
-          aria-label='Профиль' >
+                  ? 'link account-link account-link_style_dark'
+                  : 'link account-link account-link_style_light'
+              : 'link account-link account-link_style_dark account-link_inactive'
+          } >
             Аккаунт
-        </button>
+        </a>
       </nav>
     </header>
   );

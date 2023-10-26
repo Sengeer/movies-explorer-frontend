@@ -13,10 +13,19 @@
   height: 38px;
 }
 
-.account-btn {
-  all: unset;
+.link {
+  text-decoration: none;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
+.account-link {
+  padding: 7px 0;
   width: 100px;
-  height: 30px;
+  color: #000;
   font-size: 14px;
   font-weight: 500;
   line-height: 16px;
@@ -25,24 +34,31 @@
   background-repeat: no-repeat;
   align-self: center;
   cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
 }
 
-.account-btn:hover {
-  opacity: 0.8;
-}
-
-.account-btn_inactive {
+.account-link_inactive {
   display: none;
 }
 
-.account-btn_style_dark {
-  background-image: url(../../images/icons/account-btn-dark.svg);
+.account-link_style_dark {
+  background-image: url(../../images/icons/account-link-dark.svg);
 }
 
-.account-btn_style_light {
-  background-image: url(../../images/icons/account-btn-light.svg);
+.account-link_style_light {
+  background-image: url(../../images/icons/account-link-light.svg);
 }
+
+.button {
+  all: unset;
+  opacity: 1;
+  cursor: pointer;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
 
 .title {
   margin: 0 auto;
@@ -100,24 +116,4 @@
     line-height: 20px;
     letter-spacing: -0.15px;
   }
-}
-
-.link {
-  text-decoration: none;
-  transition: opacity ease-in-out 0.2s;
-}
-
-.link:hover {
-  opacity: 0.7;
-}
-
-.button {
-  all: unset;
-  opacity: 1;
-  cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
-}
-
-.button:hover {
-  opacity: 0.8;
 }

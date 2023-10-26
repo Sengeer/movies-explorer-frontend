@@ -4,33 +4,29 @@ import './Navigation.css';
 function Navigation() {
   return (
     <div
-      className='navigation' >
+      className='navigation ' >
       <nav
         className='navigation__container' >
-        <button
-          className='button navigation__btn navigation__btn_type_presentation'
-          type='button'
-          aria-label='Главная' >
+        <a
+          href='../'
+          className='link navigation__link navigation__link_type_presentation' >
             Главная
-        </button>
-        <button
-          className='button navigation__btn navigation__btn_type_movies navigation__btn_active'
-          type='button'
-          aria-label='Фильмы' >
+        </a>
+        <a
+          href='../movies'
+          className='link navigation__link navigation__link_type_movies navigation__link_active' >
             Фильмы
-        </button>
-        <button
-          className='button navigation__btn navigation__btn_type_saved-movies'
-          type='button'
-          aria-label='Сохранённые фильмы' >
+        </a>
+        <a
+          href='../saved-movies'
+          className='link navigation__link navigation__link_type_saved-movies' >
             Сохранённые фильмы
-        </button>
-        <button
-          className='account-btn account-btn_style_light'
-          type='button'
-          aria-label='Профиль' >
+        </a>
+        <a
+          href='../profile'
+          className='link account-link account-link_style_light' >
             Аккаунт
-        </button>
+        </a>
       </nav>
       <button
         className='button navigation__close-btn'

@@ -61,7 +61,8 @@
   }
 }
 
-.navigation__btn {
+.navigation__link {
+  color: #000;
   margin: 0 0 17px 0;
   padding-bottom: 8px;
   font-size: 18px;
@@ -71,16 +72,16 @@
 }
 
 @media (min-width: 425px) {
-  .navigation__btn {
+  .navigation__link {
     margin: 0 0 21px 0;
   }
 }
 
-.navigation__btn_type_saved-movies {
+.navigation__link_type_saved-movies {
   margin: 0 0 auto 0;
 }
 
-.navigation__btn_active {
+.navigation__link_active {
   padding-bottom: 5px;
   border-bottom: 3px solid #000;
 }
