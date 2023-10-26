@@ -65,6 +65,7 @@ function App() {
             isMobile={isMobile}
             isPresentation={false}
             isAuthorized={true} />
+          <Navigation />
           <SavedMovies />
           <Footer />
         </>
@@ -75,6 +76,7 @@ function App() {
             isMobile={isMobile}
             isPresentation={false}
             isAuthorized={true} />
+          <Navigation />
           <Profile />
         </>
       } />

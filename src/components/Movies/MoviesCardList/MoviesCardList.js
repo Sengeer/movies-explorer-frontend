@@ -22,14 +22,14 @@ function MoviesCardList({
       <div
         className={
           isSavedMovies
-            ? 'movies__more movies__more_page_saved'
+            ? 'movies__more movies__more_page_saved-movies'
             : 'movies__more movies__more_page_movies'
         }>
         <button
           type='button'
           className={
             isSavedMovies
-              ? 'movies__more-btn movies__more-btn_page_saved'
+              ? 'movies__more-btn movies__more-btn_page_saved-movies'
               : 'movies__more-btn movies__more-btn_page_movies'
           } >
             Ещё

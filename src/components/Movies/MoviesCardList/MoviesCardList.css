@@ -39,18 +39,18 @@
   display: flex;
 }
 
-.movies__more_page_saved {
+.movies__more_page_saved-movies {
   padding: 65px 0 85px 0;
 }
 
 @media (min-width: 738px) {
-  .movies__more_page_saved {
+  .movies__more_page_saved-movies {
     padding: 75px 0 85px 0;
   }
 }
 
 @media (min-width: 1200px) {
-  .movies__more_page_saved {
+  .movies__more_page_saved-movies {
     padding: 125px 0 85px 0;
   }
 }
@@ -99,6 +99,6 @@
   }
 }
 
-.movies__more-btn_page_saved {
+.movies__more-btn_page_saved-movies {
   display: none;
 }
