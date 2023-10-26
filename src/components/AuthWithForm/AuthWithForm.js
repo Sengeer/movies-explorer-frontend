@@ -18,10 +18,10 @@ function AuthWithForm({
       <img
         src={logo}
         alt='Лого'
-        className='logo logo_place_auth'>
+        className='logo auth__logo'>
       </img>
       <h2
-        className='title title_place_auth' >
+        className='title auth__title' >
           {title}
       </h2>
       <form

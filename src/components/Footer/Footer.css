@@ -82,9 +82,6 @@
 @media (min-width: 1024px) {
   .footer__links {
     margin: 0 70px 0 0;
-    padding: 20px 0 0 0;
-    justify-self: flex-end;
-    flex-direction: row;
   }
 }
 

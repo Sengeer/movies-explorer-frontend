@@ -17,7 +17,7 @@ function AboutProject() {
             Дипломный проект включал 5 этапов
         </h3>
         <p
-          className='paragraph paragraph_section_about-project' >
+          className='paragraph about-project__paragraph' >
             Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.
         </p>
       </div>
@@ -28,7 +28,7 @@ function AboutProject() {
             На выполнение диплома ушло 5 недель
         </h3>
         <p
-          className='paragraph paragraph_section_about-project' >
+          className='paragraph about-project__paragraph' >
             У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.
         </p>
       </div>

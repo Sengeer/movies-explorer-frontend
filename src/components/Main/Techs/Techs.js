@@ -15,7 +15,7 @@ function Techs() {
           7 технологий
       </h3>
       <p
-        className='paragraph paragraph_section_techs' >
+        className='paragraph techs__paragraph' >
           На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.
       </p>
       <div

@@ -17,7 +17,7 @@ function Header({
       <img
         src={logo}
         alt='Лого'
-        className='logo logo_place_header' />
+        className='logo header__logo' />
       <nav
         className='header__container' >
         <button

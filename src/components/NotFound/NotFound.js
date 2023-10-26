@@ -6,7 +6,7 @@ function NotFound() {
     <section
       className='not-found' >
       <h2
-        className='title title_place_not-found' >
+        className='title not-found__title' >
           404
       </h2>
       <p

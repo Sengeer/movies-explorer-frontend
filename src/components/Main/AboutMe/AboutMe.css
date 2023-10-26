@@ -70,28 +70,28 @@
   }
 }
 
-.paragraph_section_about-me {
+.about-me__paragraph {
   padding: 20px 0;
   letter-spacing: 0.08px;
 }
 
-.paragraph_section_about-me:nth-last-child(2) {
+.about-me__paragraph:nth-last-child(2) {
   padding: 0 0 40px 0;
 }
 
 @media (min-width: 425px) {
-  .paragraph_section_about-me {
+  .about-me__paragraph {
     padding: 16px 0 20px 0;
     min-width: 310px;
     letter-spacing: 0.2px;
   }
-  .paragraph_section_about-me:nth-last-child(2) {
+  .about-me__paragraph:nth-last-child(2) {
     padding: 0 0 87px 0;
   }
 }
 
 @media (min-width: 1024px) {
-  .paragraph_section_about-me {
+  .about-me__paragraph {
     padding: 16px 0 26px 0;
     min-width: 320px;
     font-size: 18px;
@@ -99,7 +99,7 @@
     line-height: 20px;
     letter-spacing: -0.2px;
   }
-  .paragraph_section_about-me:nth-last-child(2) {
+  .about-me__paragraph:nth-last-child(2) {
     padding: 0 0 99px 0;
     font-size: 14px;
     font-weight: 400;

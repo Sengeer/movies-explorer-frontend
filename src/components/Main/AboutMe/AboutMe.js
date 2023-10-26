@@ -18,11 +18,11 @@ function AboutMe() {
             Виталий
         </h3>
         <p
-          className='paragraph paragraph_section_about-me' >
+          className='paragraph about-me__paragraph' >
             Фронтенд-разработчик, 30 лет
         </p>
         <p
-          className='paragraph paragraph_section_about-me' >
+          className='paragraph about-me__paragraph' >
             Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить.
             С&nbsp;2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб&#8209;разработке, начал заниматься фриланс&#8209;заказами&nbsp;и ушёл с постоянной работы.
         </p>

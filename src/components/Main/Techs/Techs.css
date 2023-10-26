@@ -45,14 +45,14 @@
   }
 }
 
-.paragraph_section_techs {
+.techs__paragraph {
   text-align: center;
   margin: 0 14px;
   letter-spacing: -0.44px;
 }
 
 @media (min-width: 425px) {
-  .paragraph_section_techs {
+  .techs__paragraph {
     margin: 0 auto;
     max-width: 460px;
     min-width: 425px;
@@ -62,7 +62,7 @@
 }
 
 @media (min-width: 1024px) {
-  .paragraph_section_techs {
+  .techs__paragraph {
     max-width: 480px;
     letter-spacing: -0.56px;
   }
