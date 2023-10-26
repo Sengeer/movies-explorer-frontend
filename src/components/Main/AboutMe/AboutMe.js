@@ -30,7 +30,7 @@ function AboutMe() {
           href='https://github.com/Sengeer'
           rel="noreferrer"
           target='_blank'
-          className='about-me__git-hub' >
+          className='link about-me__git-hub-link' >
             Github
         </a>
       </div>

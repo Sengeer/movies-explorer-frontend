@@ -108,17 +108,11 @@
   }
 }
 
-.about-me__git-hub {
+.about-me__git-hub-link {
   color: #000;
   font-size: 14px;
   font-weight: 500;
   line-height: normal;
-  text-decoration: none;
-  transition: opacity ease-in-out 0.2s;
-}
-
-.about-me__git-hub:hover {
-  opacity: 0.7;
 }
 
 .about-me__photo {

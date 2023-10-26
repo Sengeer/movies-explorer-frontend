@@ -148,3 +148,12 @@
     letter-spacing: -0.15px;
   }
 }
+
+.link {
+  text-decoration: none;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.link:hover {
+  opacity: 0.1;
+}

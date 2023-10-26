@@ -63,13 +63,8 @@
 
 .auth__link {
   color: #000;
-  text-decoration: none;
-  transition: opacity ease-in-out 0.2s;
 }
 
-.auth__link:hover {
-  opacity: 0.7;
-}
 .auth__input {
   margin: 13px 30px 10px;
   padding: 10px 15px 20px 15px;

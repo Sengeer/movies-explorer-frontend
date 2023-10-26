@@ -84,7 +84,6 @@
   font-size: 12px;
   font-weight: 500;
   line-height: normal;
-  transition: all 0.3s linear;
   cursor: pointer;
   transition: opacity ease-in-out 0.2s;
 }

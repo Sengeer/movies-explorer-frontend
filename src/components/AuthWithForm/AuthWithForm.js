@@ -47,7 +47,7 @@ function AuthWithForm({
           {linkText}
         <a
           href={`../${linkHref}`}
-          className={`auth__link auth__link_type_${name}`} >
+          className={`link auth__link auth__link_type_${name}`} >
             {link}
         </a>
       </p>
