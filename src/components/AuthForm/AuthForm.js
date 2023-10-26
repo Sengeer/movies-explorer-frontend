@@ -15,11 +15,13 @@ function AuthForm({
   return (
     <div
       className={`auth auth_type_${name}`} >
-      <img
-        src={logo}
-        alt='Лого'
-        className='logo auth__logo'>
-      </img>
+      <a
+        href='../'
+        className='logo auth__logo' >
+        <img
+          src={logo}
+          alt='Лого' />
+      </a>
       <h2
         className='title auth__title' >
           {title}

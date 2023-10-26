@@ -14,10 +14,13 @@ function Header({
           ? 'header header_color_pink'
           : 'header header_color_white'
       } >
-      <img
-        src={logo}
-        alt='Лого'
-        className='logo header__logo' />
+      <a
+        href='../'
+        className='logo header__logo' >
+        <img
+          src={logo}
+          alt='Лого' />
+      </a>
       <nav
         className='header__container' >
         <button
