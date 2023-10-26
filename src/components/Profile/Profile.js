@@ -29,12 +29,12 @@ function Profile() {
         </p>
       </div>
       <button
-        className='profile__btn profile__btn_type_edit'
+        className='button profile__btn profile__btn_type_edit'
         type='button' >
           Редактировать
       </button>
       <button
-        className='profile__btn profile__btn_type_exit'
+        className='button profile__btn profile__btn_type_exit'
         type='button' >
           Выйти из аккаунта
       </button>

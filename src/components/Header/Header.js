@@ -23,16 +23,16 @@ function Header({
         <button
           className={
             isAuthorized && isMobile
-              ? 'header__btn header__btn_type_navigation'
-              : 'header__btn header__btn_type_navigation header__btn_inactive'
+              ? 'button header__btn header__btn_type_navigation'
+              : 'button header__btn header__btn_type_navigation header__btn_inactive'
           }
           type='button'
           aria-label='Навигация' />
         <button
           className={
             isPresentation && !isAuthorized
-              ? 'header__btn header__btn_type_signup'
-              : 'header__btn header__btn_type_signup header__btn_inactive'
+              ? 'button header__btn header__btn_type_signup'
+              : 'button header__btn header__btn_type_signup header__btn_inactive'
           }
           type='button'
           aria-label='Регистрация' >
@@ -41,8 +41,8 @@ function Header({
         <button
           className={
             isPresentation && !isAuthorized
-              ? 'header__btn header__btn_type_signin'
-              : 'header__btn header__btn_type_signin header__btn_inactive'
+              ? 'button header__btn header__btn_type_signin'
+              : 'button header__btn header__btn_type_signin header__btn_inactive'
           }
           type='button'
           aria-label='Войти' >
@@ -51,8 +51,8 @@ function Header({
         <button
           className={
             isAuthorized && !isMobile
-              ? 'header__btn header__btn_type_movies header__btn_active'
-              : 'header__btn header__btn_type_movies header__btn_inactive'
+              ? 'button header__btn header__btn_type_movies header__btn_active'
+              : 'button header__btn header__btn_type_movies header__btn_inactive'
           }
           type='button'
           aria-label='Фильмы' >
@@ -61,8 +61,8 @@ function Header({
         <button
           className={
             isAuthorized && !isMobile
-              ? 'header__btn header__btn_type_saved-movies'
-              : 'header__btn header__btn_type_saved-movies header__btn_inactive'
+              ? 'button header__btn header__btn_type_saved-movies'
+              : 'button header__btn header__btn_type_saved-movies header__btn_inactive'
           }
           type='button'
           aria-label='Сохранённые фильмы' >

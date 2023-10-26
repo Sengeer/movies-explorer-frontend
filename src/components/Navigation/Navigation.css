@@ -44,7 +44,6 @@
 
 
 .navigation__close-btn {
-  all: unset;
   width: 30px;
   height: 30px;
   background-image: url(../../images/icons/navigation-close-btn.svg);
@@ -53,8 +52,6 @@
   position: absolute;
   top: +13.44px;
   right: +13.44px;
-  cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
 }
 
 @media (min-width: 425px) {
@@ -64,20 +61,13 @@
   }
 }
 
-.navigation__close-btn:hover {
-  opacity: 0.8;
-}
-
 .navigation__btn {
-  all: unset;
   margin: 0 0 17px 0;
   padding-bottom: 8px;
   font-size: 18px;
   font-weight: 500;
   line-height: normal;
   align-self: center;
-  cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
 }
 
 @media (min-width: 425px) {
@@ -85,11 +75,6 @@
     margin: 0 0 21px 0;
   }
 }
-
-.navigation__btn:hover {
-  opacity: 0.8;
-}
-
 
 .navigation__btn_type_saved-movies {
   margin: 0 0 auto 0;

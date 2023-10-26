@@ -15,7 +15,7 @@ function NotFound() {
       </p>
       <button
         type='button'
-        className='not-found__back-btn'>
+        className='button not-found__back-btn'>
           Назад
       </button>
     </section>

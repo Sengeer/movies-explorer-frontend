@@ -21,19 +21,11 @@
 }
 
 .not-found__back-btn {
-  all: unset;
   margin: 0 auto;
   text-align: center;
   font-size: 12px;
   font-weight: 400;
   line-height: normal;
-  opacity: 1;
-  cursor: pointer;
-  transition: all ease-in-out 0.2s;
-}
-
-.not-found__back-btn:hover {
-  opacity: 0.8;
 }
 
 @media (min-width: 425px) {

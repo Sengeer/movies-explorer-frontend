@@ -28,8 +28,6 @@
   line-height: normal;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 1);
-  cursor: pointer;
-  transition: background-color ease-in-out 0.2s;
 }
 
 @media (min-width: 425px) {
@@ -37,10 +35,6 @@
     font-size: 14px;
     letter-spacing: -0.25px;
   }
-}
-
-.auth__submit-btn:hover {
-  background-color: rgba(0, 0, 0, .8);
 }
 
 .auth__link-text {

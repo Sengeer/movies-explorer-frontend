@@ -37,7 +37,7 @@ function AuthWithForm({
             Что-то пошло не так...
         </p>
         <button
-          className={`auth__submit-btn auth__submit-btn_type_${name}`}
+          className={`button auth__submit-btn auth__submit-btn_type_${name}`}
           type='submit' >
             {buttonText}
         </button>

@@ -29,8 +29,8 @@ function MoviesCardList({
           type='button'
           className={
             isSavedMovies
-              ? 'movies__more-btn movies__more-btn_page_saved-movies'
-              : 'movies__more-btn movies__more-btn_page_movies'
+              ? 'button movies__more-btn movies__more-btn_page_saved-movies'
+              : 'button movies__more-btn movies__more-btn_page_movies'
           } >
             Ещё
         </button>

@@ -8,19 +8,19 @@ function Navigation() {
       <nav
         className='navigation__container' >
         <button
-          className='navigation__btn navigation__btn_type_main'
+          className='button navigation__btn navigation__btn_type_presentation'
           type='button'
           aria-label='Главная' >
             Главная
         </button>
         <button
-          className='navigation__btn navigation__btn_type_movies navigation__btn_active'
+          className='button navigation__btn navigation__btn_type_movies navigation__btn_active'
           type='button'
           aria-label='Фильмы' >
             Фильмы
         </button>
         <button
-          className='navigation__btn navigation__btn_type_saved-movies'
+          className='button navigation__btn navigation__btn_type_saved-movies'
           type='button'
           aria-label='Сохранённые фильмы' >
             Сохранённые фильмы
@@ -33,7 +33,7 @@ function Navigation() {
         </button>
       </nav>
       <button
-        className='navigation__close-btn'
+        className='button navigation__close-btn'
         type='button'
         aria-label='Закрыть' />
     </div>
