@@ -10,30 +10,36 @@ function Profile() {
           className='title title_place_profile' >
             Привет, Виталий!
         </h2>
-        <div
-          className='profile__container' >
-          <p
-            className='profile__info' >
+        <form
+          className='profile__form' >
+          <label
+            className='profile__label'
+            for='name'>
               Имя
-          </p>
-          <p
-            className='profile__info' >
-              Виталий
-          </p>
-          <p
-            className='profile__info' >
+          </label>
+          <input
+            type='text'
+            className='profile__input'
+            id='name'
+            name='name'
+            required />
+          <label
+            className='profile__label'
+            for='email'>
               E-mail
-          </p>
-          <p
-            className='profile__info' >
-              pochta@yandex.ru
-          </p>
-        </div>
-        <button
-          className='button profile__btn profile__btn_type_edit'
-          type='button' >
-            Редактировать
-        </button>
+          </label>
+          <input
+            type='email'
+            className='profile__input'
+            id='email'
+            name='email'
+            required />
+          <button
+            className='button profile__btn profile__btn_type_edit'
+            type='submit' >
+              Редактировать
+          </button>
+        </form>
         <button
           className='button profile__btn profile__btn_type_exit'
           type='button' >
