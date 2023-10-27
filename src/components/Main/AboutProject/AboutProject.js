@@ -22,9 +22,9 @@ function AboutProject() {
         </p>
       </div>
       <div
-        className='about-project__column' >
+        className='about-project__column about-project__column_content_weeks' >
         <h3
-          className='about-project__column-heanding about-project__column_content_weeks' >
+          className='about-project__column-heanding' >
             На выполнение диплома ушло 5 недель
         </h3>
         <p

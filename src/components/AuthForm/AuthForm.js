@@ -13,7 +13,7 @@ function AuthForm({
 })
 {
   return (
-    <div
+    <main
       className={`auth auth_type_${name}`} >
       <a
         href='../'
@@ -53,7 +53,7 @@ function AuthForm({
             {link}
         </a>
       </p>
-    </div>
+    </main>
   );
 }
 

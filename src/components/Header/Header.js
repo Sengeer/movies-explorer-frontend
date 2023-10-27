@@ -1,6 +1,7 @@
 import React from 'react';
 import './Header.css';
 import logo from '../../images/logo.svg';
+import Navigation from '../Navigation/Navigation';
 
 function Header({
   isMobile,
@@ -79,6 +80,7 @@ function Header({
             Аккаунт
         </a>
       </nav>
+      <Navigation />
     </header>
   );
 }

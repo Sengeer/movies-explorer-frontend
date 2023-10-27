@@ -3,7 +3,6 @@ import './App.css';
 import '../../index.css';
 import { Routes, Route } from 'react-router-dom';
 import Header from '../Header/Header';
-import Navigation from '../Navigation/Navigation';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -42,7 +41,6 @@ function App() {
             isMobile={isMobile}
             isPresentation={true}
             isAuthorized={false} />
-          <Navigation />
           <Main />
           <Footer />
         </>
@@ -53,7 +51,6 @@ function App() {
             isMobile={isMobile}
             isPresentation={false}
             isAuthorized={true} />
-          <Navigation />
           <Movies />
           <Footer />
         </>
@@ -64,7 +61,6 @@ function App() {
             isMobile={isMobile}
             isPresentation={false}
             isAuthorized={true} />
-          <Navigation />
           <SavedMovies />
           <Footer />
         </>
@@ -75,7 +71,6 @@ function App() {
             isMobile={isMobile}
             isPresentation={false}
             isAuthorized={true} />
-          <Navigation />
           <Profile />
         </>
       } />

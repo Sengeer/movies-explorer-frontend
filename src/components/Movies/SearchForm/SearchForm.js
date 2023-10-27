@@ -18,7 +18,7 @@ function SearchForm() {
             required />
           <button
             type='submit'
-            className='button serach__submit-btn' >
+            className='button search__submit-btn' >
               Найти
           </button>
         </form>
