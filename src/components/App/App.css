@@ -1,0 +1,118 @@
+.root {
+  max-width: 1280px;
+  min-width: 320px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.logo {
+  width: 38px;
+  height: 38px;
+}
+
+.link {
+  text-decoration: none;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
+.account-link {
+  padding: 7px 0;
+  width: 100px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  background-position: 70px 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: center;
+  cursor: pointer;
+}
+
+.account-link_inactive {
+  display: none;
+}
+
+.account-link_style_dark {
+  background-image: url(../../images/icons/account-link-dark.svg);
+}
+
+.account-link_style_light {
+  background-image: url(../../images/icons/account-link-light.svg);
+}
+
+.button {
+  all: unset;
+  opacity: 1;
+  cursor: pointer;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.title {
+  margin: 0 auto;
+  color: #000;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.title_place_presentation {
+  margin: 0 18px;
+  text-align: start;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  padding-bottom: 28px;
+  border-bottom: 2px solid #000;
+  grid-area: title;
+}
+
+@media (min-width: 425px) {
+  .title_place_presentation {
+    font-size: 22px;
+    letter-spacing: -0.88px;
+    margin: 0 50px;
+    padding-bottom: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .title_place_presentation {
+    margin: 0 70px;
+  }
+}
+
+.paragraph {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+@media (min-width: 425px) {
+  .paragraph {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .paragraph {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+  }
+}

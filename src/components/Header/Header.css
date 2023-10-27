@@ -1,0 +1,132 @@
+.header {
+  min-height: 74px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header_color_pink {
+  background-color: #f3c1f8;
+}
+
+.header_color_white {
+  background-color: #fff;
+}
+
+.header__logo {
+  margin: 0 0 0 14px;
+  align-self: center;
+}
+
+@media (min-width: 425px) {
+  .header__logo {
+    margin: 0 0 0 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__logo {
+    margin: 0 0 0 70px;
+  }
+}
+
+.header__container {
+  width: auto;
+  margin: 0 14px 0 0;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (min-width: 425px) {
+  .header__container {
+    margin: 0 30px 0 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__container {
+    margin: 0 70px 0 0;
+  }
+}
+
+.header__navigation-btn {
+  width: 40px;
+  height: 43px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  align-self: center;
+  background-image: url(../../images/icons/navigation-btn.svg);
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 425px) {
+  .header__navigation-btn {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.header__navigation-btn_inactive {
+  display: none;
+}
+
+.header__link {
+  color: #000;
+  align-self: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.15px;
+}
+
+.header__link_inactive {
+  display: none;
+}
+
+.header__link_active {
+  font-weight: 500;
+}
+
+
+.header__link_type_signup {
+  margin: 0 14px 0 0;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+@media (min-width: 425px) {
+  .header__link_type_signup {
+    font-size: 12px;
+    margin: 0 30px 0 0;
+  }
+}
+
+.header__link_type_signin {
+  padding: 5px 0;
+  width: 54px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+@media (min-width: 425px) {
+  .header__link_type_signin {
+    width: 76px;
+    padding: 8px 0;
+    font-size: 12px;
+  }
+}
+
+.header__link_type_movies {
+  margin: 0 20px 0 0;
+}
+
+.header__link_type_saved-movies {
+  margin: 0 50px 0 0;
+}
