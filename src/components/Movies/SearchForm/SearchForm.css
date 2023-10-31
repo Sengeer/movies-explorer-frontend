@@ -83,6 +83,10 @@
   }
 }
 
+.search__input_error::placeholder {
+  color: #ff4062;
+}
+
 .search__submit-btn {
   border: 0;
   width: 59px;

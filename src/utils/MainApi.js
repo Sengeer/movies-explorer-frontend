@@ -18,7 +18,7 @@ const checkResponse = (res) => {
 }
 
 export const request = (url, options) => {
-  fetch(url, options).then(checkResponse);
+  return fetch(url, options).then(checkResponse);
 }
 
 export function createUser(registerData) {

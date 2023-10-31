@@ -1,7 +1,33 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import './SearchForm.css'
+import { useFormAndValidation } from '../../../hooks/useFormAndValidation';
 
-function SearchForm() {
+function SearchForm({ onSearch }) {
+  const {
+    values,
+    handleChange,
+    isValid,
+    setValues,
+    resetForm,
+  } = useFormAndValidation()
+
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsSubmit(true);
+
+    if (isValid) {
+      onSearch(values.searchInput);
+      setIsSubmit(false);
+    }
+  }
+
+  useEffect(() => {
+    resetForm();
+    setValues({ searchInput: '' });
+  }, [resetForm, setValues])
+
   return (
     <section
       className='search' >
@@ -9,13 +35,25 @@ function SearchForm() {
         className='search__container' >
         <form
           className='search__form'
-          name='searchForm' >
+          name='searchForm'
+          onSubmit={handleSubmit}
+          noValidate >
           <input
             type='search'
-            className='search__input'
+            className={
+              !isValid && isSubmit
+                ? 'search__input search__input_error'
+                : 'search__input'
+            }
             name='searchInput'
-            placeholder='Фильм'
-            required />
+            placeholder={
+              !isValid && isSubmit
+                ? 'Нужно ввести ключевое слово'
+                : 'Фильм'
+            }
+            required
+            value={values.searchInput || ''}
+            onChange={handleChange} />
           <button
             type='submit'
             className='button search__submit-btn' >

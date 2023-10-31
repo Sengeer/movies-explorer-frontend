@@ -11,9 +11,17 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
+import { getAllMovies } from '../../utils/MoviesApi'
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
+
+  function handleSearch() {
+    getAllMovies().then(moviesData => {
+        console.log(moviesData)
+      })
+      .catch(console.error);
+  }
 
   useEffect(() => {
     const handleWindowWidth = (e) => {
@@ -51,7 +59,8 @@ function App() {
             isMobile={isMobile}
             isPresentation={false}
             isAuthorized={true} />
-          <Movies />
+          <Movies
+            onSearch={handleSearch} />
           <Footer />
         </>
       } />
