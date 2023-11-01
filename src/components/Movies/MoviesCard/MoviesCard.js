@@ -12,7 +12,7 @@ function MoviesCard({
     <li className='movies__card' >
       <div
         className='movies__card-image'
-        style={{ backgroundImage: `url(${imageUrl})` }} />
+        style={{ backgroundImage: `url(https://api.nomoreparties.co/${imageUrl})` }} />
       <div className='movies__card-info' >
         <h2 className='movies__card-title' >
           {nameRu}
@@ -23,11 +23,11 @@ function MoviesCard({
       </div>
       <button
         className={
-          card.id === 2 || card.id === 4
+          !card
             ? isSavedMovies
               ? 'movies__card-btn movies__card-btn_active movies__card-btn_type_delete'
               : 'movies__card-btn movies__card-btn_active movies__card-btn_type_saved'
-            : 'movies__card-btn movies__card-btn_type_save'
+            : 'movies__card-btn movies__card-btn_active movies__card-btn_type_save'
         }
         type='button'
         aria-label='Удалить карточку' >

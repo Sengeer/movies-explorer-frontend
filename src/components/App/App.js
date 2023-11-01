@@ -11,16 +11,22 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
-import { getAllMovies } from '../../utils/MoviesApi'
+import { getAllMovies } from '../../utils/MoviesApi';
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
+  const [foundCards, setFoundCards] = useState([]);
+  const [isPreloader, setIsPreloader] = useState(false);
 
-  function handleSearch() {
-    getAllMovies().then(moviesData => {
-        console.log(moviesData)
+  function handleSearch(query) {
+    setIsPreloader(true);
+
+    getAllMovies()
+      .then(moviesData => {
+        setFoundCards(moviesData.filter(i => i.nameRU.indexOf(query) !== -1));
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsPreloader(false));
   }
 
   useEffect(() => {
@@ -60,7 +66,9 @@ function App() {
             isPresentation={false}
             isAuthorized={true} />
           <Movies
-            onSearch={handleSearch} />
+            onSearch={handleSearch}
+            foundCards={foundCards}
+            isPreloader={isPreloader} />
           <Footer />
         </>
       } />

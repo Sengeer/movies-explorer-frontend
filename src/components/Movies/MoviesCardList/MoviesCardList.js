@@ -1,15 +1,15 @@
 import React from 'react';
 import './MoviesCardList.css'
 import MoviesCard from '../MoviesCard/MoviesCard';
-import cards from '../../../utils/staticCardData'
 
 function MoviesCardList({
-  isSavedMovies
+  isSavedMovies,
+  foundCards
 }) {
   return (
-    <section className='movies' >
+    <section className='movies__place' >
       <ul className='movies__cards' >
-        {cards.map(card => (
+        {foundCards.map(card => (
           <MoviesCard
             key={card.id}
             imageUrl={card.image.url}

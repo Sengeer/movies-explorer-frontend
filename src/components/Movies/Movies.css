@@ -1,0 +1,13 @@
+.movies__message {
+  display: none;
+  text-align: center;
+  justify-self: center;
+}
+
+.movies__message_active {
+  display: block;
+}
+
+.movies__message_type_error {
+  color: #ff4062;
+}
