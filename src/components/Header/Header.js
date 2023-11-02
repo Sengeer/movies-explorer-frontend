@@ -4,7 +4,7 @@ import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
 function Header({
-  isMobile,
+  isTablet,
   isPresentation,
   isAuthorized,
 }) {
@@ -26,7 +26,7 @@ function Header({
         className='header__container' >
         <button
           className={
-            isAuthorized && isMobile
+            isAuthorized && isTablet
               ? 'button header__navigation-btn'
               : 'button header__navigation-btn header__navigation-btn_inactive'
           }
@@ -53,7 +53,7 @@ function Header({
         <a
           href='../movies'
           className={
-            isAuthorized && !isMobile
+            isAuthorized && !isTablet
               ? 'link header__link header__link_type_movies header__link_active'
               : 'link header__link header__link_type_movies header__link_inactive'
           } >
@@ -62,7 +62,7 @@ function Header({
         <a
           href='../saved-movies'
           className={
-            isAuthorized && !isMobile
+            isAuthorized && !isTablet
               ? 'link header__link header__link_type_saved-movies'
               : 'link header__link header__link_type_saved-movies header__link_inactive'
           } >
@@ -71,7 +71,7 @@ function Header({
         <a
           href='../profile'
           className={
-            isAuthorized && !isMobile
+            isAuthorized && !isTablet
               ? isPresentation
                   ? 'link account-link account-link_style_dark'
                   : 'link account-link account-link_style_light'

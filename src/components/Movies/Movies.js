@@ -8,8 +8,10 @@ function Movies({
   onSubmit,
   isSearch,
   isSearchErr,
-  foundCards,
-  isPreloader
+  initialCards,
+  isPreloader,
+  onMore,
+  isCompletedMore
 }) {
   return (
     <main
@@ -18,7 +20,7 @@ function Movies({
           onSubmit={onSubmit} />
       <p
         className={
-          !isPreloader && (!Array.isArray(foundCards) || !foundCards.length) && isSearch
+          !isPreloader && (!Array.isArray(initialCards) || !initialCards.length) && isSearch
             ? isSearchErr
               ? 'movies__message movies__message_active movies__message_type_error'
               : 'movies__message movies__message_active'
@@ -31,10 +33,12 @@ function Movies({
         }
       </p>
       {
-        !isPreloader && foundCards.length
+        !isPreloader && initialCards.length
           ? (
             <MoviesCardList
-              foundCards={foundCards} />
+              initialCards={initialCards}
+              onMore={onMore}
+              isCompletedMore={isCompletedMore} />
           ) : null
       }
       <Preloader

@@ -14,11 +14,23 @@ import NotFound from '../NotFound/NotFound';
 import { getAllMovies } from '../../utils/MoviesApi';
 
 function App() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const [appSize, setAppSize] = useState('');
   const [isSearch, setIsSearch] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
-  const [foundCards, setFoundCards] = useState([]);
+  const [allCards, setAllCards] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
+  const [index, setIndex] = useState(12);
+  const [isCompletedMore, setIsCompletedMore] = useState(false);
+  const initialCards = allCards.slice(0, index);
+
+  function handleMore() {
+    if (appSize === 'desktop') {
+      setIndex(index + 3);
+    } else {
+      setIndex(index + 2);
+    };
+  }
 
   function handleSearch(query) {
     setIsPreloader(true);
@@ -26,27 +38,61 @@ function App() {
 
     getAllMovies()
       .then(moviesData => {
-        setFoundCards(moviesData.filter(i => i.nameRU.indexOf(query) !== -1));
+        setAllCards(moviesData.filter(i => i.nameRU.indexOf(query) !== -1));
         setIsSearchErr(false);
       })
       .catch(() => setIsSearchErr(true))
-      .finally(() => setIsPreloader(false));
+      .finally(() => {
+        checkSize();
+        setIsPreloader(false);
+      });
+  }
+
+  function checkSize() {
+    if (appSize === 'mobile') {
+      setIndex(5);
+    };
+    if (appSize === 'tablet') {
+      setIndex(8);
+    };
+    if (appSize === 'desktop') {
+      setIndex(12);
+    };
   }
 
   useEffect(() => {
-    const handleWindowWidth = (e) => {
-      if (e.target.innerWidth < 1024) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
+    const handleAppWidth = (e) => {
+      setTimeout(function () {
+        if (e.target.innerWidth < 738) {
+          setAppSize('mobile');
+        };
+        if (e.target.innerWidth >= 738) {
+          setAppSize('tablet');
+        };
+        if (e.target.innerWidth < 1024) {
+          setIsTablet(true);
+        } else {
+          setIsTablet(false);
+        };
+        if (e.target.innerWidth >= 1200) {
+          setAppSize('desktop');
+        };
+      }, 1000);
     };
 
-    window.addEventListener('resize', handleWindowWidth);
+    window.addEventListener('resize', handleAppWidth);
     return () => {
-      window.addEventListener('resize', handleWindowWidth);
+      window.addEventListener('resize', handleAppWidth);
     };
   }, [])
+
+  useEffect(() => {
+    if (index >= allCards.length) {
+      setIsCompletedMore(true);
+    } else {
+      setIsCompletedMore(false);
+    };
+  }, [index, allCards])
 
   return (
     <Routes>
@@ -56,7 +102,7 @@ function App() {
       <Route path='/' element={
         <>
           <Header
-            isMobile={isMobile}
+            isTablet={isTablet}
             isPresentation={true}
             isAuthorized={false} />
           <Main />
@@ -66,22 +112,24 @@ function App() {
       <Route path='/movies' element={
         <>
           <Header
-            isMobile={isMobile}
+            isTablet={isTablet}
             isPresentation={false}
             isAuthorized={true} />
           <Movies
             onSubmit={handleSearch}
             isSearch={isSearch}
             isSearchErr={isSearchErr}
-            foundCards={foundCards}
-            isPreloader={isPreloader} />
+            initialCards={initialCards}
+            isPreloader={isPreloader}
+            onMore={handleMore}
+            isCompletedMore={isCompletedMore} />
           <Footer />
         </>
       } />
       <Route path='/saved-movies' element={
         <>
           <Header
-            isMobile={isMobile}
+            isTablet={isTablet}
             isPresentation={false}
             isAuthorized={true} />
           <SavedMovies />
@@ -91,7 +139,7 @@ function App() {
       <Route path='/profile' element={
         <>
           <Header
-            isMobile={isMobile}
+            isTablet={isTablet}
             isPresentation={false}
             isAuthorized={true} />
           <Profile />

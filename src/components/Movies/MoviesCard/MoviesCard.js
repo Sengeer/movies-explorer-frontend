@@ -6,7 +6,6 @@ function MoviesCard({
   nameRu,
   duration,
   card,
-  isSavedMovies
 }) {
   return (
     <li className='movies__card' >
@@ -23,8 +22,8 @@ function MoviesCard({
       </div>
       <button
         className={
-          !card
-            ? isSavedMovies
+          false
+            ? false
               ? 'movies__card-btn movies__card-btn_active movies__card-btn_type_delete'
               : 'movies__card-btn movies__card-btn_active movies__card-btn_type_saved'
             : 'movies__card-btn movies__card-btn_active movies__card-btn_type_save'
