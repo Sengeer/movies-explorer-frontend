@@ -15,11 +15,13 @@ import { getAllMovies } from '../../utils/MoviesApi';
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
   const [foundCards, setFoundCards] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
 
   function handleSearch(query) {
     setIsPreloader(true);
+    setIsSearch(true);
 
     getAllMovies()
       .then(moviesData => {
@@ -66,7 +68,8 @@ function App() {
             isPresentation={false}
             isAuthorized={true} />
           <Movies
-            onSearch={handleSearch}
+            onSubmit={handleSearch}
+            isSearch={isSearch}
             foundCards={foundCards}
             isPreloader={isPreloader} />
           <Footer />

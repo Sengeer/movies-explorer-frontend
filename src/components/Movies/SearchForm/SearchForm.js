@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './SearchForm.css'
 import { useFormAndValidation } from '../../../hooks/useFormAndValidation';
 
-function SearchForm({ onSearch }) {
+function SearchForm({ onSubmit }) {
   const {
     values,
     handleChange,
@@ -18,7 +18,7 @@ function SearchForm({ onSearch }) {
     setIsSubmit(true);
 
     if (isValid) {
-      onSearch(values.searchInput);
+      onSubmit(values.searchInput);
       setIsSubmit(false);
     }
   }
@@ -52,6 +52,7 @@ function SearchForm({ onSearch }) {
                 : 'Фильм'
             }
             required
+            autoComplete='off'
             value={values.searchInput || ''}
             onChange={handleChange} />
           <button

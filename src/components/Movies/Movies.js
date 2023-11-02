@@ -5,20 +5,19 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 import './Movies.css';
 
 function Movies({
-  onSearch,
+  onSubmit,
+  isSearch,
   foundCards,
   isPreloader
 }) {
-
-  console.log(foundCards);
   return (
     <main
       className='movies' >
       <SearchForm
-        onSearch={onSearch} />
+          onSubmit={onSubmit} />
       <p
         className={
-          !isPreloader && (!Array.isArray(foundCards) || !foundCards.length)
+          !isPreloader && (!Array.isArray(foundCards) || !foundCards.length) && isSearch
             ? 'movies__message movies__message_active'
             : 'movies__message'
         } >
