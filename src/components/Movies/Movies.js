@@ -7,6 +7,7 @@ import './Movies.css';
 function Movies({
   onSubmit,
   isSearch,
+  isSearchErr,
   foundCards,
   isPreloader
 }) {
@@ -18,10 +19,16 @@ function Movies({
       <p
         className={
           !isPreloader && (!Array.isArray(foundCards) || !foundCards.length) && isSearch
-            ? 'movies__message movies__message_active'
+            ? isSearchErr
+              ? 'movies__message movies__message_active movies__message_type_error'
+              : 'movies__message movies__message_active'
             : 'movies__message'
         } >
-          Ничего не найдено
+        {
+          isSearchErr
+            ? 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.'
+            : 'Ничего не найдено'
+        }
       </p>
       {
         !isPreloader && foundCards.length

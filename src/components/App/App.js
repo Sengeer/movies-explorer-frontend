@@ -16,6 +16,7 @@ import { getAllMovies } from '../../utils/MoviesApi';
 function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
+  const [isSearchErr, setIsSearchErr] = useState(false);
   const [foundCards, setFoundCards] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
 
@@ -26,8 +27,9 @@ function App() {
     getAllMovies()
       .then(moviesData => {
         setFoundCards(moviesData.filter(i => i.nameRU.indexOf(query) !== -1));
+        setIsSearchErr(false);
       })
-      .catch(console.error)
+      .catch(() => setIsSearchErr(true))
       .finally(() => setIsPreloader(false));
   }
 
@@ -70,6 +72,7 @@ function App() {
           <Movies
             onSubmit={handleSearch}
             isSearch={isSearch}
+            isSearchErr={isSearchErr}
             foundCards={foundCards}
             isPreloader={isPreloader} />
           <Footer />
