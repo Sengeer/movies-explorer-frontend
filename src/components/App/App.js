@@ -14,7 +14,6 @@ import NotFound from '../NotFound/NotFound';
 import { getAllMovies } from '../../utils/MoviesApi';
 
 function App() {
-  const [isTablet, setIsTablet] = useState(false);
   const [appSize, setAppSize] = useState('');
   const [isSearch, setIsSearch] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
@@ -69,11 +68,6 @@ function App() {
         if (e.target.innerWidth >= 738) {
           setAppSize('tablet');
         };
-        if (e.target.innerWidth < 1024) {
-          setIsTablet(true);
-        } else {
-          setIsTablet(false);
-        };
         if (e.target.innerWidth >= 1200) {
           setAppSize('desktop');
         };
@@ -102,7 +96,7 @@ function App() {
       <Route path='/' element={
         <>
           <Header
-            isTablet={isTablet}
+            appSize={appSize}
             isPresentation={true}
             isAuthorized={false} />
           <Main />
@@ -112,7 +106,7 @@ function App() {
       <Route path='/movies' element={
         <>
           <Header
-            isTablet={isTablet}
+            appSize={appSize}
             isPresentation={false}
             isAuthorized={true} />
           <Movies
@@ -129,7 +123,7 @@ function App() {
       <Route path='/saved-movies' element={
         <>
           <Header
-            isTablet={isTablet}
+            appSize={appSize}
             isPresentation={false}
             isAuthorized={true} />
           <SavedMovies />
@@ -139,7 +133,7 @@ function App() {
       <Route path='/profile' element={
         <>
           <Header
-            isTablet={isTablet}
+            appSize={appSize}
             isPresentation={false}
             isAuthorized={true} />
           <Profile />
