@@ -25,9 +25,13 @@ function App() {
   const [index, setIndex] = useState(12);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
   const initialCards = foundCards.slice(0, index);
+  const searchKeys = ['nameRU', 'nameEN'];
 
   function handleFindAndSavedQuery(movieData) {
-    const foundMovies = movieData.filter(i => i.nameRU.indexOf(searchQuery) !== -1);
+    const foundMovies = movieData.filter(i => {
+      const isFound = searchKeys.map(n => i[n].toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)
+      return isFound.some(b => b);
+    });
     if (foundMovies.length) {
       setQuery({
         query: searchQuery,
@@ -46,7 +50,7 @@ function App() {
     };
   }
 
-  function handleSearch(query) {
+  function handleSearch() {
     setIsPreloader(true);
     setIsSearchRunning(true);
 
