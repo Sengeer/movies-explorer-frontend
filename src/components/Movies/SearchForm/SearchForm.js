@@ -1,32 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './SearchForm.css'
-import { useFormAndValidation } from '../../../hooks/useFormAndValidation';
 
-function SearchForm({ onSubmit }) {
-  const {
-    values,
-    handleChange,
-    isValid,
-    setValues,
-    resetForm,
-  } = useFormAndValidation()
-
+function SearchForm({
+  handleSubmit,
+  onChange,
+  searchValue
+}) {
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
-  function handleSubmit(e) {
+  function onSubmit(e) {
     e.preventDefault();
     setIsSubmit(true);
 
     if (isValid) {
-      onSubmit(values.searchInput);
+      handleSubmit(searchValue);
       setIsSubmit(false);
-    }
+    };
   }
-
-  useEffect(() => {
-    resetForm();
-    setValues({ searchInput: '' });
-  }, [resetForm, setValues])
 
   return (
     <section
@@ -36,7 +27,7 @@ function SearchForm({ onSubmit }) {
         <form
           className='search__form'
           name='searchForm'
-          onSubmit={handleSubmit}
+          onSubmit={onSubmit}
           noValidate >
           <input
             type='search'
@@ -53,8 +44,11 @@ function SearchForm({ onSubmit }) {
             }
             required
             autoComplete='off'
-            value={values.searchInput || ''}
-            onChange={handleChange} />
+            value={searchValue}
+            onChange={e => {
+              onChange(e.target.value);
+              setIsValid(e.target.checkValidity());
+            }} />
           <button
             type='submit'
             className='button search__submit-btn' >

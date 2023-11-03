@@ -12,16 +12,31 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
 import { getAllMovies } from '../../utils/MoviesApi';
+import { setQuery, getQuery } from '../../utils/SaveQuery';
 
 function App() {
-  const [appSize, setAppSize] = useState('');
-  const [isSearch, setIsSearch] = useState(false);
+  const [appSize, setAppSize] = useState('desktop');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchRunning, setIsSearchRunning] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
-  const [allCards, setAllCards] = useState([]);
+  const [foundCards, setFoundCards] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
+  const [isShortMovies, setIsShortMovies] = useState(false);
   const [index, setIndex] = useState(12);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
-  const initialCards = allCards.slice(0, index);
+  const initialCards = foundCards.slice(0, index);
+
+  function handleFindAndSavedQuery(movieData) {
+    const foundMovies = movieData.filter(i => i.nameRU.indexOf(searchQuery) !== -1);
+    if (foundMovies.length) {
+      setQuery({
+        query: searchQuery,
+        short: isShortMovies,
+        cards: foundMovies
+      });
+    };
+    return foundMovies;
+  }
 
   function handleMore() {
     if (appSize === 'desktop') {
@@ -33,11 +48,11 @@ function App() {
 
   function handleSearch(query) {
     setIsPreloader(true);
-    setIsSearch(true);
+    setIsSearchRunning(true);
 
     getAllMovies()
-      .then(moviesData => {
-        setAllCards(moviesData.filter(i => i.nameRU.indexOf(query) !== -1));
+      .then(movieData => {
+        setFoundCards(handleFindAndSavedQuery(movieData));
         setIsSearchErr(false);
       })
       .catch(() => setIsSearchErr(true))
@@ -56,6 +71,15 @@ function App() {
     };
     if (appSize === 'desktop') {
       setIndex(12);
+    };
+  }
+
+  function сheckUserSearch() {
+    const userQuery = getQuery();
+    if (userQuery) {
+      setSearchQuery(userQuery.query);
+      setIsShortMovies(userQuery.short);
+      setFoundCards(userQuery.cards);
     };
   }
 
@@ -81,12 +105,16 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (index >= allCards.length) {
+    if (index >= foundCards.length) {
       setIsCompletedMore(true);
     } else {
       setIsCompletedMore(false);
     };
-  }, [index, allCards])
+  }, [index, foundCards])
+
+  useEffect(() => {
+    сheckUserSearch();
+  }, [])
 
   return (
     <Routes>
@@ -110,8 +138,10 @@ function App() {
             isPresentation={false}
             isAuthorized={true} />
           <Movies
-            onSubmit={handleSearch}
-            isSearch={isSearch}
+            handleSubmit={handleSearch}
+            onChange={setSearchQuery}
+            searchValue={searchQuery}
+            isSearchRunning={isSearchRunning}
             isSearchErr={isSearchErr}
             initialCards={initialCards}
             isPreloader={isPreloader}

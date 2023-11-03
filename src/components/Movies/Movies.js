@@ -5,8 +5,10 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 import './Movies.css';
 
 function Movies({
-  onSubmit,
-  isSearch,
+  handleSubmit,
+  onChange,
+  searchValue,
+  isSearchRunning,
   isSearchErr,
   initialCards,
   isPreloader,
@@ -17,10 +19,12 @@ function Movies({
     <main
       className='movies' >
       <SearchForm
-          onSubmit={onSubmit} />
+        handleSubmit={handleSubmit}
+        onChange={onChange}
+        searchValue={searchValue} />
       <p
         className={
-          !isPreloader && (!Array.isArray(initialCards) || !initialCards.length) && isSearch
+          !isPreloader && (!Array.isArray(initialCards) || !initialCards.length) && isSearchRunning
             ? isSearchErr
               ? 'movies__message movies__message_active movies__message_type_error'
               : 'movies__message movies__message_active'
