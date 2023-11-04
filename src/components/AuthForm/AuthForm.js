@@ -9,6 +9,10 @@ function AuthForm({
   link,
   linkHref,
   linkText,
+  isValid,
+  isBtnEnabled,
+  onSubmit,
+  isErr,
   children
 })
 {
@@ -28,19 +32,25 @@ function AuthForm({
       </h2>
       <form
         className={`auth__form auth__form_type_${name}`}
-        name={`${name}-form`} >
+        name={`${name}-form`}
+        onSubmit={onSubmit} >
           {children}
         <p
           className={
-            name === 'sign-up'
+            isErr && name === 'sign-up'
               ? `auth__text-error auth__text-error_type_${name} auth__text-error_active`
               : `auth__text-error auth__text-error_type_${name}`
           } >
             Что-то пошло не так...
         </p>
         <button
-          className={`button auth__submit-btn auth__submit-btn_type_${name}`}
-          type='submit' >
+          className={
+            isValid && isBtnEnabled
+              ? `button auth__submit-btn auth__submit-btn_type_${name}`
+              : `button auth__submit-btn auth__submit-btn_type_${name} auth__submit-btn_inactive`
+          }
+          type='submit'
+          disabled={!isBtnEnabled} >
             {buttonText}
         </button>
       </form>

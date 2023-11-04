@@ -7,7 +7,7 @@ export const header = {
 
 const baseUrl = MODE === 'production'
   ? BASE_URL
-  : 'http://localhost:3002'
+  : 'http://localhost:3000'
 
 const checkResponse = (res) => {
   if (res.ok) {
