@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import '../../index.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { Routes, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -11,6 +12,7 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
+import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import { getAllMovies } from '../../utils/MoviesApi';
 import { setQuery, getQuery } from '../../utils/SaveQuery';
 
@@ -24,12 +26,14 @@ function App() {
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [index, setIndex] = useState(12);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [currentUser, setCurrentUser] = useState({ name: '', about: '' });
   const initialCards = foundCards.slice(0, index);
   const searchKeys = ['nameRU', 'nameEN'];
 
   function handleFindAndSavedQuery(movieData) {
     const foundMovies = movieData.filter(i => {
-      const isFound = searchKeys.map(n => i[n].toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)
+      const isFound = searchKeys.map(n => i[n].toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1);
       return isFound.some(b => b);
     });
     if (foundMovies.length) {
@@ -136,12 +140,13 @@ function App() {
         </>
       } />
       <Route path='/movies' element={
-        <>
-          <Header
+        <CurrentUserContext.Provider value={currentUser}>
+          <ProtectedRouteElement element={Header}
             appSize={appSize}
             isPresentation={false}
-            isAuthorized={true} />
-          <Movies
+            isAuthorized={true}
+            loggedIn={loggedIn} />
+          <ProtectedRouteElement element={Movies}
             handleSubmit={handleSearch}
             onChange={setSearchQuery}
             searchValue={searchQuery}
@@ -150,28 +155,35 @@ function App() {
             initialCards={initialCards}
             isPreloader={isPreloader}
             onMore={handleMore}
-            isCompletedMore={isCompletedMore} />
-          <Footer />
-        </>
+            isCompletedMore={isCompletedMore}
+            loggedIn={loggedIn} />
+          <ProtectedRouteElement element={Footer}
+            loggedIn={loggedIn} />
+        </CurrentUserContext.Provider>
       } />
       <Route path='/saved-movies' element={
-        <>
-          <Header
+        <CurrentUserContext.Provider value={currentUser}>
+          <ProtectedRouteElement element={Header}
             appSize={appSize}
             isPresentation={false}
-            isAuthorized={true} />
-          <SavedMovies />
-          <Footer />
-        </>
+            isAuthorized={true}
+            loggedIn={loggedIn} />
+          <ProtectedRouteElement element={SavedMovies}
+            loggedIn={loggedIn} />
+          <ProtectedRouteElement element={Footer}
+            loggedIn={loggedIn} />
+        </CurrentUserContext.Provider>
       } />
       <Route path='/profile' element={
-        <>
-          <Header
+        <CurrentUserContext.Provider value={currentUser}>
+          <ProtectedRouteElement element={Header}
             appSize={appSize}
             isPresentation={false}
-            isAuthorized={true} />
-          <Profile />
-        </>
+            isAuthorized={true}
+            loggedIn={loggedIn} />
+          <ProtectedRouteElement element={Profile}
+            loggedIn={loggedIn} />
+        </CurrentUserContext.Provider>
       } />
       <Route path='/signin' element={
         <Login />
