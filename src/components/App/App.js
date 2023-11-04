@@ -1,8 +1,16 @@
-import { useState, useEffect } from 'react';
+import {
+  useState,
+  useEffect
+} from 'react';
 import './App.css';
 import '../../index.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { Routes, Route,  Navigate, useNavigate } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate
+} from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
@@ -14,8 +22,15 @@ import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import { getAllMovies } from '../../utils/MoviesApi';
-import { createUser } from '../../utils/MainApi';
-import { setQuery, getQuery } from '../../utils/SaveQuery';
+import {
+  createUser,
+  authorizeUser,
+  identification
+} from '../../utils/MainApi';
+import {
+  setQuery,
+  getQuery
+} from '../../utils/SaveQuery';
 
 function App() {
   const [appSize, setAppSize] = useState('desktop');
@@ -23,30 +38,62 @@ function App() {
   const [isSearchRunning, setIsSearchRunning] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
   const [isRegisterErr, setIsRegisterErr] = useState(false);
+  const [isLoginErr, setIsLoginErr] = useState(false);
   const [foundCards, setFoundCards] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [index, setIndex] = useState(12);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({ name: '', about: '' });
+  const [loggedIn, setLoggedIn] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState({ _id: '', email: '', name: '' });
   const initialCards = foundCards.slice(0, index);
   const searchKeys = ['nameRU', 'nameEN'];
 
   const navigate = useNavigate();
 
-  function handleRegisterSubmit(registerData) {
+  function handleUserIdentification() {
+    identification()
+      .then(userData => {
+        setLoggedIn(true);
+        setCurrentUser(userData);
+      })
+      .catch(e => {
+        setLoggedIn(false);
+        console.error(e);
+      });
+  };
+
+  function handleLogin(authData) {
+    authorizeUser({
+      email: authData.email,
+      password: authData.password
+    })
+      .then(res => {
+        if ((res.statusCode !== 400) && (res.statusCode !== 401)) {
+          handleUserIdentification();
+          setLoggedIn(true);
+          navigate('/movies', { replace: true });
+          setIsLoginErr(false);
+        } else {
+          setIsLoginErr(true);
+        };
+      })
+      .catch(e => {
+        setIsLoginErr(true);
+        console.error(e);
+      });
+  }
+
+  function handleRegister(registerData) {
     createUser(registerData)
       .then(res => {
         if (res.statusCode !== 400) {
-          navigate('/signin', { replace: true });
+          handleLogin(registerData);
         } else {
           setIsRegisterErr(true);
         };
       })
-      .catch(e => {
-        setIsRegisterErr(true);
-      });
+      .catch(setIsRegisterErr(true));
   }
 
   function handleFindAndSavedQuery(movieData) {
@@ -139,8 +186,13 @@ function App() {
   }, [index, foundCards])
 
   useEffect(() => {
+    handleUserIdentification();
     сheckUserSearch();
   }, [])
+
+  if ((currentUser.name === '') && ((loggedIn === undefined) || loggedIn)) {
+    return
+  }
 
   return (
     <Routes>
@@ -204,11 +256,13 @@ function App() {
         </CurrentUserContext.Provider>
       } />
       <Route path='/signin' element={
-        <Login />
+        <Login
+          handleLogin={handleLogin}
+          isLoginErr={isLoginErr} />
       } />
       <Route path='/signup' element={
         <Register
-          handleRegister={handleRegisterSubmit}
+          handleRegister={handleRegister}
           isRegisterErr={isRegisterErr} />
       } />
     </Routes>

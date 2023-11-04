@@ -29,11 +29,11 @@ export function createUser(registerData) {
   });
 }
 
-export function authorizeUser(requestBody) {
+export function authorizeUser(authData) {
   return request(`${baseUrl}/signin`, {
     method: 'POST',
     headers: header,
-    body: JSON.stringify(requestBody),
+    body: JSON.stringify(authData),
     credentials: 'include'
   });
 }
@@ -46,7 +46,7 @@ export function deauthorizeUser() {
   });
 }
 
-export function getUserData() {
+export function identification() {
   return request(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: header,

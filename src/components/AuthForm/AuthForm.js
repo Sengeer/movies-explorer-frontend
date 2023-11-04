@@ -37,11 +37,15 @@ function AuthForm({
           {children}
         <p
           className={
-            isErr && name === 'sign-up'
+            isErr
               ? `auth__text-error auth__text-error_type_${name} auth__text-error_active`
               : `auth__text-error auth__text-error_type_${name}`
           } >
-            Что-то пошло не так...
+          {
+            name === 'sign-up'
+              ? 'При регистрации пользователя произошла ошибка.'
+              : 'Вы ввели неправильный логин или пароль.'
+          }
         </p>
         <button
           className={

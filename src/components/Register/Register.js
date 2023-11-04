@@ -46,7 +46,7 @@ function Register({
       isErr={isRegisterErr} >
       <label
         className='auth__label auth__label_type_name'
-        for='nameInput'>
+        htmlFor='nameInput'>
           Имя
       </label>
       <input
@@ -60,7 +60,7 @@ function Register({
         onChange={handleChange} />
       <label
         className='auth__label auth__label_type_email'
-        for='emailInput'>
+        htmlFor='emailInput'>
           E-mail
       </label>
       <input
@@ -73,7 +73,7 @@ function Register({
         onChange={handleChange} />
       <label
         className='auth__label auth__label_type_password'
-        for='passwordInput'>
+        htmlFor='passwordInput'>
           Пароль
       </label>
       <input

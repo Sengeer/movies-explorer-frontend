@@ -14,7 +14,7 @@ function Profile() {
           className='profile__form' >
           <label
             className='profile__label'
-            for='name'>
+            htmlFor='name'>
               Имя
           </label>
           <input
@@ -25,7 +25,7 @@ function Profile() {
             required />
           <label
             className='profile__label'
-            for='email'>
+            htmlFor='email'>
               E-mail
           </label>
           <input
