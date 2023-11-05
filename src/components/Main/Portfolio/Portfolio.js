@@ -11,21 +11,21 @@ function Portfolio() {
       </h2>
       <a
         href='https://sengeer.github.io/how-to-learn/'
-        rel="noreferrer"
+        rel='noreferrer'
         target='_blank'
         className='link portfolio__link' >
           Статичный сайт
       </a>
       <a
         href='https://sengeer.github.io/russian-travel/'
-        rel="noreferrer"
+        rel='noreferrer'
         target='_blank'
         className='link portfolio__link' >
           Адаптивный сайт
       </a>
       <a
         href='https://sengeer.github.io/mesto/'
-        rel="noreferrer"
+        rel='noreferrer'
         target='_blank'
         className='link portfolio__link' >
           Одностраничное приложение

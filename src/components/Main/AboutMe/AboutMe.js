@@ -28,7 +28,7 @@ function AboutMe() {
         </p>
         <a
           href='https://github.com/Sengeer'
-          rel="noreferrer"
+          rel='noreferrer'
           target='_blank'
           className='link about-me__git-hub-link' >
             Github

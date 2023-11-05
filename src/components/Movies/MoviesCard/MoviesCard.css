@@ -57,6 +57,7 @@
 .movies__card-title {
   margin: 0 0 10px 0;
   max-width: 248px;
+  color: #000;
   font-size: 12px;
   font-weight: 500;
   line-height: normal;

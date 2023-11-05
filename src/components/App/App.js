@@ -8,7 +8,6 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import {
   Routes,
   Route,
-  Navigate,
   useNavigate
 } from 'react-router-dom';
 import Header from '../Header/Header';
@@ -93,7 +92,10 @@ function App() {
           setIsRegisterErr(true);
         };
       })
-      .catch(setIsRegisterErr(true));
+      .catch(e => {
+        setIsRegisterErr(true);
+        console.error(e);
+      });
   }
 
   function handleFindAndSavedQuery(movieData) {
