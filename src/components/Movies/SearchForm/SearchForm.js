@@ -36,7 +36,6 @@ function SearchForm({
                 ? 'search__input search__input_error'
                 : 'search__input'
             }
-            name='searchInput'
             placeholder={
               !isValid && isSubmit
                 ? 'Нужно ввести ключевое слово'

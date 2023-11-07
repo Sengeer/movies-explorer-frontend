@@ -32,7 +32,7 @@ function AuthForm({
       </h2>
       <form
         className={`auth__form auth__form_type_${name}`}
-        name={`${name}-form`}
+        name={`${name}Form`}
         onSubmit={onSubmit} >
           {children}
         <p
@@ -50,8 +50,8 @@ function AuthForm({
         <button
           className={
             isValid && isBtnEnabled
-              ? `button auth__submit-btn auth__submit-btn_type_${name}`
-              : `button auth__submit-btn auth__submit-btn_type_${name} auth__submit-btn_inactive`
+              ? `submit-btn auth__submit-btn auth__submit-btn_type_${name}`
+              : `submit-btn submit-btn_inactive auth__submit-btn auth__submit-btn_type_${name}`
           }
           type='submit'
           disabled={!isBtnEnabled} >

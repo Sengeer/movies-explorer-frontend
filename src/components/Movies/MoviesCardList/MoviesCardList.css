@@ -91,6 +91,6 @@
   }
 }
 
-.movies__more-btn_inactive {
+.movies__more-btn_hidden {
   display: none;
 }

@@ -1,48 +1,135 @@
-import React from 'react';
+import {
+  useEffect,
+  useContext,
+  useState
+} from 'react';
 import './Profile.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
-function Profile() {
+function Profile({
+  handleSubmit,
+  isEditErr,
+  handleExit
+}) {
+  const {
+    values,
+    handleChange,
+    isValid,
+    setValues,
+    resetForm,
+    isBtnEnabled,
+    setIsBtnEnabled
+  } = useFormAndValidation()
+  const [isDisableEdit, setIsDisableEdit] = useState(true);
+
+  const currentUser = useContext(CurrentUserContext);
+
+  function onSubmit(e) {
+    e.preventDefault();
+    handleSubmit({
+      email: values.emailInput,
+      name: values.nameInput
+    });
+    setValues({
+      nameInput: currentUser.name,
+      emailInput: currentUser.email
+    });
+  }
+
+  function onClick() {
+      setIsDisableEdit(false);
+  }
+
+  useEffect(() => {
+    resetForm();
+    setIsBtnEnabled(true);
+    setValues({
+      nameInput: currentUser.name,
+      emailInput: currentUser.email
+    });
+  }, [currentUser, resetForm, setValues, setIsBtnEnabled])
+
   return (
     <main>
       <section
         className='profile' >
         <h2
           className='title title_place_profile' >
-            Привет, Виталий!
+            {`Привет, ${currentUser.name}`}
         </h2>
         <form
-          className='profile__form' >
+          className='profile__form'
+          name='editForm'
+          onSubmit={onSubmit} >
           <label
             className='profile__label'
-            htmlFor='name'>
+            htmlFor='nameInput' >
               Имя
           </label>
           <input
             type='text'
             className='profile__input'
-            id='name'
-            name='name'
-            required />
+            id='nameInput'
+            name='nameInput'
+            minLength='2'
+            maxLength='30'
+            required
+            disabled={isDisableEdit}
+            value={values.nameInput || ''}
+            onChange={handleChange} />
           <label
             className='profile__label'
-            htmlFor='email'>
+            htmlFor='emailInput'>
               E-mail
           </label>
           <input
             type='email'
             className='profile__input'
-            id='email'
-            name='email'
-            required />
+            id='emailInput'
+            name='emailInput'
+            required
+            disabled={isDisableEdit}
+            value={values.emailInput || ''}
+            onChange={handleChange} />
+          <p
+            className={
+              isEditErr
+                ? 'profile__text-error'
+                : 'profile__text-error profile__text-error_hidden'
+            } >
+              При обновлении профиля произошла ошибка.
+          </p>
           <button
-            className='button profile__btn profile__btn_type_edit'
+            className={
+              isDisableEdit
+                ? 'submit-btn profile__submit-btn profile__submit-btn_hidden'
+                : isValid && isBtnEnabled
+                  ? 'submit-btn profile__submit-btn'
+                  : 'submit-btn submit-btn_inactive profile__submit-btn'
+            }
             type='submit' >
-              Редактировать
+              Сохранить
           </button>
         </form>
         <button
-          className='button profile__btn profile__btn_type_exit'
-          type='button' >
+          className={
+            isDisableEdit
+              ? 'button profile__btn profile__btn_type_edit'
+              : 'button profile__btn profile__btn_hidden profile__btn_type_edit'
+          }
+          type='button'
+          onClick={onClick} >
+            Редактировать
+        </button>
+        <button
+          className={
+            isDisableEdit
+              ? 'button profile__btn profile__btn_type_exit'
+              : 'button profile__btn profile__btn_hidden profile__btn_type_exit'
+          }
+          type='button'
+          onClick={handleExit}>
             Выйти из аккаунта
         </button>
       </section>

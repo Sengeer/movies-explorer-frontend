@@ -28,7 +28,7 @@ function MoviesCardList({
           type='button'
           className={
             isCompletedMore
-              ? 'button movies__more-btn movies__more-btn_inactive'
+              ? 'button movies__more-btn movies__more-btn_hidden'
               : 'button movies__more-btn'
           }
           aria-label='Загрузить ещё'

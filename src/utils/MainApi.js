@@ -58,7 +58,7 @@ export function changeUserInfo(userData) {
   return request(`${baseUrl}/users/me`, {
     method: 'PATCH',
     headers: header,
-    body: userData,
+    body: JSON.stringify(userData),
     credentials: 'include'
   });
 }

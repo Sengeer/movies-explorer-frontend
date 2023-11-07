@@ -28,7 +28,7 @@ function Header({
           className={
             isAuthorized && (appSize === 'tablet' || appSize === 'mobile')
               ? 'button header__navigation-btn'
-              : 'button header__navigation-btn header__navigation-btn_inactive'
+              : 'button header__navigation-btn header__navigation-btn_hidden'
           }
           type='button'
           aria-label='Навигация' />
@@ -37,7 +37,7 @@ function Header({
           className={
             isPresentation && !isAuthorized
               ? 'link header__link header__link_type_signup'
-              : 'link header__link header__link_type_signup header__link_inactive'
+              : 'link header__link header__link_type_signup header__link_hidden'
           } >
             Регистрация
         </a>
@@ -46,7 +46,7 @@ function Header({
           className={
             isPresentation && !isAuthorized
               ? 'link header__link header__link_type_signin'
-              : 'link header__link header__link_type_signin header__link_inactive'
+              : 'link header__link header__link_type_signin header__link_hidden'
           } >
             Войти
         </a>
@@ -55,7 +55,7 @@ function Header({
           className={
             isAuthorized && !(appSize === 'tablet' || appSize === 'mobile')
               ? 'link header__link header__link_type_movies header__link_active'
-              : 'link header__link header__link_type_movies header__link_inactive'
+              : 'link header__link header__link_type_movies header__link_hidden'
           } >
             Фильмы
         </a>
@@ -64,7 +64,7 @@ function Header({
           className={
             isAuthorized && !(appSize === 'tablet' || appSize === 'mobile')
               ? 'link header__link header__link_type_saved-movies'
-              : 'link header__link header__link_type_saved-movies header__link_inactive'
+              : 'link header__link header__link_type_saved-movies header__link_hidden'
           } >
             Сохранённые фильмы
         </a>
@@ -75,7 +75,7 @@ function Header({
               ? isPresentation
                   ? 'link account-link account-link_style_dark'
                   : 'link account-link account-link_style_light'
-              : 'link account-link account-link_style_dark account-link_inactive'
+              : 'link account-link account-link_style_dark account-link_hidden'
           } >
             Аккаунт
         </a>

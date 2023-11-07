@@ -24,14 +24,17 @@ import { getAllMovies } from '../../utils/MoviesApi';
 import {
   createUser,
   authorizeUser,
+  deauthorizeUser,
   identification,
   addUserMovie,
   getUserMovies,
-  removeUserMovie
+  removeUserMovie,
+  changeUserInfo
 } from '../../utils/MainApi';
 import {
   setWrite,
-  getWrite
+  getWrite,
+  removeWrite
 } from '../../utils/ControlLocalStorage';
 
 function App() {
@@ -41,12 +44,13 @@ function App() {
   const [isSearchErr, setIsSearchErr] = useState(false);
   const [isRegisterErr, setIsRegisterErr] = useState(false);
   const [isLoginErr, setIsLoginErr] = useState(false);
+  const [isEditErr, setIsEditErr] = useState(false);
   const [foundMovies, setFoundMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [index, setIndex] = useState(12);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
-  const [loggedIn] = useState(getWrite('loggedIn'));
+  const [loggedIn, setLoggedIn] = useState(getWrite('loggedIn'));
   const [currentUser, setCurrentUser] = useState({ _id: '', email: '', name: '' });
   const initialCards = foundMovies.slice(0, index);
   const searchKeys = ['nameRU', 'nameEN'];
@@ -57,10 +61,29 @@ function App() {
     navigate(0);
   }
 
+  function handleExit() {
+    deauthorizeUser().catch(console.error);
+    removeWrite('loggedIn');
+    removeWrite('search');
+    navigate('/', { replace: true });
+    refreshPage();
+  }
+
+  function handleChangeUserInfo(newUserData) {
+    changeUserInfo(newUserData)
+      .then(userData => {
+        setCurrentUser(userData);
+        setIsEditErr(false);
+      })
+      .catch(e => {
+        setIsEditErr(true);
+        console.error(e);
+      });
+  }
+
   function handleRemoveMovie(movie) {
     getUserMovies()
       .then(savedMovies => {
-        setWrite('savedMovies', savedMovies);
         savedMovies.forEach(item => {
           if (item.movieId === movie.id) {
             return removeUserMovie(item._id);
@@ -146,6 +169,7 @@ function App() {
       .then(res => {
         if (res.statusCode !== 400) {
           handleLogin(registerData);
+          setLoggedIn(true);
         } else {
           setIsRegisterErr(true);
         };
@@ -158,18 +182,6 @@ function App() {
 
   function handleFindAndSavedQuery(allMovies, savedMovies) {
     if (savedMovies.length) {
-      // allMovies.map(item => {
-      //   return savedMovies.map(itemSaved => {
-      //     if (itemSaved.movieId === item.id) {
-      //       item._id = itemSaved._id;
-      //       item.isLiked = true;
-      //       return item;
-      //     } else {
-      //       item.isLiked = false;
-      //       return item;
-      //     }
-      //   });
-      // });
       allMovies.map(item => {
         if (savedMovies.some(itemSaved => itemSaved.movieId === item.id)) {
           item.isLiked = true;
@@ -179,7 +191,6 @@ function App() {
           return item;
         }
       });
-      setWrite('savedMovies', savedMovies);
     };
     const foundMovies = allMovies.filter(i => {
       const isFound = searchKeys.map(n => i[n].toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1);
@@ -339,6 +350,9 @@ function App() {
             isAuthorized={true}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Profile}
+            handleSubmit={handleChangeUserInfo}
+            isEditErr={isEditErr}
+            handleExit={handleExit}
             loggedIn={loggedIn} />
         </CurrentUserContext.Provider>
       } />

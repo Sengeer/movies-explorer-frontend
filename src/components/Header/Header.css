@@ -67,7 +67,7 @@
   }
 }
 
-.header__navigation-btn_inactive {
+.header__navigation-btn_hidden {
   display: none;
 }
 
@@ -80,7 +80,7 @@
   letter-spacing: -0.15px;
 }
 
-.header__link_inactive {
+.header__link_hidden {
   display: none;
 }
 
