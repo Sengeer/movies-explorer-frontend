@@ -3,8 +3,8 @@ import './MoviesCard.css'
 
 function MoviesCard({
   card,
+  handleClick
 }) {
-  const [isLiked, setIsLiked] = React.useState();
 
   function toHoursAndMinutes(totalMinutes) {
     const minutes = totalMinutes % 60;
@@ -14,10 +14,12 @@ function MoviesCard({
   }
 
   function onClick() {
-    if (isLiked) {
-      setIsLiked(false);
+    if (!card.isLiked) {
+      card.isLiked = true;
+      handleClick(card);
     } else {
-      setIsLiked(true);
+      card.isLiked = false;
+      handleClick(card);
     };
   }
 
@@ -42,14 +44,14 @@ function MoviesCard({
       </a>
       <button
         className={
-          isLiked
+          card.isLiked
             ? false
               ? 'movies__card-btn movies__card-btn_active movies__card-btn_type_delete'
               : 'movies__card-btn movies__card-btn_active movies__card-btn_type_saved'
             : 'movies__card-btn movies__card-btn_active movies__card-btn_type_save'
         }
         type='button'
-        aria-label='Добавить фильм'
+        aria-label='Добавить или удалить фильм'
         onClick={onClick} >
           Сохранить
       </button>

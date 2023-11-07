@@ -5,7 +5,8 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 function MoviesCardList({
   initialCards,
   onMore,
-  isCompletedMore
+  isCompletedMore,
+  handleClick
 }) {
   return (
     <section className='movies__place' >
@@ -13,7 +14,8 @@ function MoviesCardList({
         {initialCards.map(card => (
           <MoviesCard
             key={card.id}
-            card={card} />
+            card={card}
+            handleClick={handleClick} />
         ))}
       </ul>
       <div

@@ -24,12 +24,15 @@ import { getAllMovies } from '../../utils/MoviesApi';
 import {
   createUser,
   authorizeUser,
-  identification
+  identification,
+  addUserMovie,
+  getUserMovies,
+  removeUserMovie
 } from '../../utils/MainApi';
 import {
-  setQuery,
-  getQuery
-} from '../../utils/SaveQuery';
+  setWrite,
+  getWrite
+} from '../../utils/ControlLocalStorage';
 
 function App() {
   const [appSize, setAppSize] = useState('desktop');
@@ -38,28 +41,82 @@ function App() {
   const [isSearchErr, setIsSearchErr] = useState(false);
   const [isRegisterErr, setIsRegisterErr] = useState(false);
   const [isLoginErr, setIsLoginErr] = useState(false);
-  const [foundCards, setFoundCards] = useState([]);
+  const [foundMovies, setFoundMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [index, setIndex] = useState(12);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(undefined);
+  const [loggedIn] = useState(getWrite('loggedIn'));
   const [currentUser, setCurrentUser] = useState({ _id: '', email: '', name: '' });
-  const initialCards = foundCards.slice(0, index);
+  const initialCards = foundMovies.slice(0, index);
   const searchKeys = ['nameRU', 'nameEN'];
 
   const navigate = useNavigate();
 
-  function handleUserIdentification() {
-    identification()
-      .then(userData => {
-        setLoggedIn(true);
-        setCurrentUser(userData);
+  function refreshPage() {
+    navigate(0);
+  }
+
+  function handleRemoveMovie(movie) {
+    getUserMovies()
+      .then(savedMovies => {
+        setWrite('savedMovies', savedMovies);
+        savedMovies.forEach(item => {
+          if (item.movieId === movie.id) {
+            return removeUserMovie(item._id);
+          };
+        });
       })
-      .catch(e => {
-        setLoggedIn(false);
-        console.error(e);
-      });
+      .catch(console.error);
+  }
+
+  function handleAddMovie(movie) {
+    addUserMovie({
+      country: movie.country,
+      director: movie.director,
+      duration: movie.duration,
+      year: movie.year,
+      description: movie.description,
+      image: `https://api.nomoreparties.co${movie.image.url}`,
+      trailerLink: movie.trailerLink,
+      thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+      movieId: movie.id,
+      nameRU: movie.nameRU,
+      nameEN: movie.nameEN
+    })
+      .then()
+      .catch(console.error);
+  }
+
+  function handleCardClick(movie) {
+    if (movie.isLiked) {
+      handleAddMovie(movie);
+    } else {
+      handleRemoveMovie(movie);
+    };
+    const nextMovies = foundMovies.map((item, index) => {
+      if (index++ === movie._id) {
+        return movie;
+      } else {
+        return item;
+      }
+    });
+    setFoundMovies(nextMovies);
+    setWrite('search', {
+      query: searchQuery,
+      isShort: isShortMovies,
+      foundMovies: nextMovies
+    });
+  }
+
+  function handleUserIdentification() {
+    if (loggedIn) {
+      identification()
+        .then(userData => {
+          setCurrentUser(userData);
+        })
+        .catch(console.error);
+    };
   };
 
   function handleLogin(authData) {
@@ -70,8 +127,9 @@ function App() {
       .then(res => {
         if ((res.statusCode !== 400) && (res.statusCode !== 401)) {
           handleUserIdentification();
-          setLoggedIn(true);
+          setWrite('loggedIn', true);
           navigate('/movies', { replace: true });
+          refreshPage();
           setIsLoginErr(false);
         } else {
           setIsLoginErr(true);
@@ -98,16 +156,40 @@ function App() {
       });
   }
 
-  function handleFindAndSavedQuery(movieData) {
-    const foundMovies = movieData.filter(i => {
+  function handleFindAndSavedQuery(allMovies, savedMovies) {
+    if (savedMovies.length) {
+      // allMovies.map(item => {
+      //   return savedMovies.map(itemSaved => {
+      //     if (itemSaved.movieId === item.id) {
+      //       item._id = itemSaved._id;
+      //       item.isLiked = true;
+      //       return item;
+      //     } else {
+      //       item.isLiked = false;
+      //       return item;
+      //     }
+      //   });
+      // });
+      allMovies.map(item => {
+        if (savedMovies.some(itemSaved => itemSaved.movieId === item.id)) {
+          item.isLiked = true;
+          return item;
+        } else {
+          item.isLiked = false;
+          return item;
+        }
+      });
+      setWrite('savedMovies', savedMovies);
+    };
+    const foundMovies = allMovies.filter(i => {
       const isFound = searchKeys.map(n => i[n].toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1);
       return isFound.some(b => b);
     });
     if (foundMovies.length) {
-      setQuery({
+      setWrite('search', {
         query: searchQuery,
-        short: isShortMovies,
-        cards: foundMovies
+        isShort: isShortMovies,
+        foundMovies: foundMovies
       });
     };
     return foundMovies;
@@ -124,10 +206,12 @@ function App() {
   function handleSearch() {
     setIsPreloader(true);
     setIsSearchRunning(true);
-
-    getAllMovies()
-      .then(movieData => {
-        setFoundCards(handleFindAndSavedQuery(movieData));
+    Promise.all([
+      getAllMovies(),
+      getUserMovies()
+    ])
+      .then(([allMovies, savedMovies]) => {
+        setFoundMovies(handleFindAndSavedQuery(allMovies, savedMovies));
         setIsSearchErr(false);
       })
       .catch(() => setIsSearchErr(true))
@@ -150,11 +234,11 @@ function App() {
   }
 
   function сheckUserSearch() {
-    const userQuery = getQuery();
-    if (userQuery) {
-      setSearchQuery(userQuery.query);
-      setIsShortMovies(userQuery.short);
-      setFoundCards(userQuery.cards);
+    const userSearch = getWrite('search');
+    if (userSearch) {
+      setSearchQuery(userSearch.query);
+      setIsShortMovies(userSearch.iSshort);
+      setFoundMovies(userSearch.foundMovies);
     };
   }
 
@@ -180,12 +264,12 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (index >= foundCards.length) {
+    if (index >= foundMovies.length) {
       setIsCompletedMore(true);
     } else {
       setIsCompletedMore(false);
     };
-  }, [index, foundCards])
+  }, [index, foundMovies])
 
   useEffect(() => {
     handleUserIdentification();
@@ -227,6 +311,7 @@ function App() {
             initialCards={initialCards}
             isPreloader={isPreloader}
             onMore={handleMore}
+            handleClick={handleCardClick}
             isCompletedMore={isCompletedMore}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Footer}

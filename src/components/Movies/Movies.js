@@ -13,7 +13,8 @@ function Movies({
   initialCards,
   isPreloader,
   onMore,
-  isCompletedMore
+  isCompletedMore,
+  handleClick
 }) {
   return (
     <main
@@ -42,7 +43,8 @@ function Movies({
             <MoviesCardList
               initialCards={initialCards}
               onMore={onMore}
-              isCompletedMore={isCompletedMore} />
+              isCompletedMore={isCompletedMore}
+              handleClick={handleClick} />
           ) : null
       }
       <Preloader

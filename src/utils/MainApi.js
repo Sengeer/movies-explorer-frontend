@@ -75,7 +75,7 @@ export function addUserMovie(movieData) {
   return request(`${baseUrl}/movies`, {
     method: 'POST',
     headers: header,
-    body: movieData,
+    body: JSON.stringify(movieData),
     credentials: 'include'
   });
 }
