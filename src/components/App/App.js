@@ -63,6 +63,7 @@ function App() {
 
   function handleExit() {
     deauthorizeUser().catch(console.error);
+    setLoggedIn(false);
     removeWrite('loggedIn');
     removeWrite('search');
     navigate('/', { replace: true });
@@ -264,7 +265,7 @@ function App() {
         if (e.target.innerWidth >= 1200) {
           setAppSize('desktop');
         };
-      }, 1000);
+      }, 500);
     };
 
     window.addEventListener('resize', handleAppWidth);
@@ -300,7 +301,7 @@ function App() {
           <Header
             appSize={appSize}
             isPresentation={true}
-            isAuthorized={false} />
+            isAuthorized={loggedIn} />
           <Main />
           <Footer />
         </>
@@ -310,7 +311,7 @@ function App() {
           <ProtectedRouteElement element={Header}
             appSize={appSize}
             isPresentation={false}
-            isAuthorized={true}
+            isAuthorized={loggedIn}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Movies}
             handleSubmit={handleSearch}
@@ -333,7 +334,7 @@ function App() {
           <ProtectedRouteElement element={Header}
             appSize={appSize}
             isPresentation={false}
-            isAuthorized={true}
+            isAuthorized={loggedIn}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={SavedMovies}
             loggedIn={loggedIn} />
@@ -346,7 +347,7 @@ function App() {
           <ProtectedRouteElement element={Header}
             appSize={appSize}
             isPresentation={false}
-            isAuthorized={true}
+            isAuthorized={loggedIn}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Profile}
             handleSubmit={handleChangeUserInfo}
