@@ -66,7 +66,6 @@ function App() {
     removeWrite('loggedIn');
     removeWrite('search');
     navigate('/', { replace: true });
-    refreshPage();
   }
 
   function handleChangeUserInfo(newUserData) {

@@ -61,7 +61,7 @@
 
 .submit-btn {
   all: unset;
-  display: block;
+  visibility: visible;
   margin: 0 30px;
   padding: 0;
   border: 0;
@@ -76,7 +76,7 @@
   background-color: rgba(0, 0, 0, 1);
   opacity: 1;
   cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
 }
 
 .submit-btn:hover {

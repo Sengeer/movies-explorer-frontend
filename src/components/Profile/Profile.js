@@ -35,6 +35,7 @@ function Profile({
       nameInput: currentUser.name,
       emailInput: currentUser.email
     });
+    setIsDisableEdit(true);
   }
 
   function onClick() {
@@ -43,7 +44,7 @@ function Profile({
 
   useEffect(() => {
     resetForm();
-    setIsBtnEnabled(true);
+    setIsBtnEnabled(false);
     setValues({
       nameInput: currentUser.name,
       emailInput: currentUser.email
@@ -103,7 +104,7 @@ function Profile({
           <button
             className={
               isDisableEdit
-                ? 'submit-btn profile__submit-btn profile__submit-btn_hidden'
+                ? 'submit-btn submit-btn_inactive profile__submit-btn profile__submit-btn_hidden'
                 : isValid && isBtnEnabled
                   ? 'submit-btn profile__submit-btn'
                   : 'submit-btn submit-btn_inactive profile__submit-btn'

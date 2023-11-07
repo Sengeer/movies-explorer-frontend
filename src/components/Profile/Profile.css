@@ -73,7 +73,8 @@
 }
 
 .profile__btn {
-  display: block;
+  visibility: visible;
+  opacity: 1;
   margin: 0 auto;
   color: #000;
   text-align: center;
@@ -84,7 +85,8 @@
 }
 
 .profile__btn_hidden {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 @media (min-width: 425px) {
@@ -116,27 +118,12 @@
   line-height: normal;
   grid-column: span 2;
   align-self: flex-end;
+  transition: all ease-in-out 0.2s;
 }
 
 .profile__text-error_hidden {
   visibility: hidden;
   opacity: 0;
-}
-
-.profile__btn_type_submit {
-  margin: 0 30px;
-  padding: 0;
-  border: 0;
-  width: calc(100% - 60px);
-  height: 45px;
-  color: #fff;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: normal;
-  border-radius: 3px;
-  background-color: rgba(0, 0, 0, 1);
-  transition: background-color ease-in-out 0.2s;
 }
 
 .profile__submit-btn {
@@ -147,6 +134,7 @@
 }
 
 .profile__submit-btn_hidden {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
