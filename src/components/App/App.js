@@ -39,7 +39,7 @@ import {
 
 function App() {
   const [appSize, setAppSize] = useState('desktop');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(getWrite('query') || '');
   const [isSearchRunning, setIsSearchRunning] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
   const [isRegisterErr, setIsRegisterErr] = useState(false);
@@ -65,7 +65,8 @@ function App() {
     deauthorizeUser().catch(console.error);
     setLoggedIn(false);
     removeWrite('loggedIn');
-    removeWrite('search');
+    removeWrite('query');
+    removeWrite('isShort');
     navigate('/', { replace: true });
   }
 
@@ -125,11 +126,6 @@ function App() {
       }
     });
     setFoundMovies(nextMovies);
-    setWrite('search', {
-      query: searchQuery,
-      isShort: isShortMovies,
-      foundMovies: nextMovies
-    });
   }
 
   function handleUserIdentification() {
@@ -150,6 +146,7 @@ function App() {
       .then(res => {
         if ((res.statusCode !== 400) && (res.statusCode !== 401)) {
           handleUserIdentification();
+          setLoggedIn(true);
           setWrite('loggedIn', true);
           navigate('/movies', { replace: true });
           refreshPage();
@@ -180,7 +177,7 @@ function App() {
       });
   }
 
-  function handleFindAndSavedQuery(allMovies, savedMovies) {
+  function handleFindAndSavedQuery(savedMovies, allMovies) {
     if (savedMovies.length) {
       allMovies.map(item => {
         if (savedMovies.some(itemSaved => itemSaved.movieId === item.id)) {
@@ -197,13 +194,20 @@ function App() {
       return isFound.some(b => b);
     });
     if (foundMovies.length) {
-      setWrite('search', {
-        query: searchQuery,
-        isShort: isShortMovies,
-        foundMovies: foundMovies
-      });
+      setWrite('query', searchQuery);
+      setWrite('isShort', isShortMovies);
     };
     return foundMovies;
+  }
+
+  function handleGetSavedMoviesForSearch(allMovies) {
+    getUserMovies()
+      .then(savedMoviesData => {
+        setFoundMovies(handleFindAndSavedQuery(savedMoviesData, allMovies));
+        setIsSearchErr(false);
+      })
+      .catch(() => setIsSearchErr(true))
+      .finally(() => checkSize());
   }
 
   function handleMore() {
@@ -215,21 +219,23 @@ function App() {
   }
 
   function handleSearch() {
-    setIsPreloader(true);
-    setIsSearchRunning(true);
-    Promise.all([
-      getAllMovies(),
-      getUserMovies()
-    ])
-      .then(([allMovies, savedMovies]) => {
-        setFoundMovies(handleFindAndSavedQuery(allMovies, savedMovies));
-        setIsSearchErr(false);
-      })
-      .catch(() => setIsSearchErr(true))
-      .finally(() => {
-        checkSize();
-        setIsPreloader(false);
-      });
+    if (searchQuery) {
+      setIsSearchRunning(true);
+      const allMovies = getWrite('allMovies');
+      if (allMovies) {
+        handleGetSavedMoviesForSearch(allMovies);
+      } else {
+        setIsPreloader(true);
+        getAllMovies()
+          .then(allMoviesData => {
+            setWrite('allMovies', allMoviesData);
+            handleGetSavedMoviesForSearch(allMoviesData);
+            setIsSearchErr(false);
+          })
+          .catch(() => setIsSearchErr(true))
+          .finally(() => setIsPreloader(false));
+      };
+    };
   }
 
   function checkSize() {
@@ -241,15 +247,6 @@ function App() {
     };
     if (appSize === 'desktop') {
       setIndex(12);
-    };
-  }
-
-  function сheckUserSearch() {
-    const userSearch = getWrite('search');
-    if (userSearch) {
-      setSearchQuery(userSearch.query);
-      setIsShortMovies(userSearch.iSshort);
-      setFoundMovies(userSearch.foundMovies);
     };
   }
 
@@ -284,7 +281,7 @@ function App() {
 
   useEffect(() => {
     handleUserIdentification();
-    сheckUserSearch();
+    handleSearch();
   }, [])
 
   if ((currentUser.name === '') && ((loggedIn === undefined) || loggedIn)) {
@@ -310,7 +307,6 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
           <ProtectedRouteElement element={Header}
             appSize={appSize}
-            isPresentation={false}
             isAuthorized={loggedIn}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Movies}
@@ -333,7 +329,6 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
           <ProtectedRouteElement element={Header}
             appSize={appSize}
-            isPresentation={false}
             isAuthorized={loggedIn}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={SavedMovies}
@@ -346,7 +341,6 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
           <ProtectedRouteElement element={Header}
             appSize={appSize}
-            isPresentation={false}
             isAuthorized={loggedIn}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Profile}
