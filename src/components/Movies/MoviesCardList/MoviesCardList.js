@@ -6,28 +6,32 @@ function MoviesCardList({
   initialCards,
   onMore,
   isCompletedMore,
-  handleClick
+  handleClick,
+  handleClickDelete,
+  isSavedMovies
 }) {
   return (
     <section className='movies__place' >
       <ul className='movies__cards' >
         {initialCards.map(card => (
           <MoviesCard
-            key={card.id}
+            key={isSavedMovies ? card.movieId : card.id}
             card={card}
-            handleClick={handleClick} />
+            handleClick={handleClick}
+            handleClickDelete={handleClickDelete}
+            isSavedMovies={isSavedMovies} />
         ))}
       </ul>
       <div
         className={
-          false
+          isSavedMovies
             ? 'movies__more movies__more_page_saved-movies'
             : 'movies__more movies__more_page_movies'
         }>
         <button
           type='button'
           className={
-            isCompletedMore
+            isCompletedMore || isSavedMovies
               ? 'button movies__more-btn movies__more-btn_hidden'
               : 'button movies__more-btn'
           }

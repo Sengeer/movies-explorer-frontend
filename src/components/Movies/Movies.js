@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import SearchForm from './SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
@@ -14,15 +14,22 @@ function Movies({
   isPreloader,
   onMore,
   isCompletedMore,
-  handleClick
+  handleClick,
+  handleSearch
 }) {
+
+  useEffect(() => {
+    handleSearch()
+  }, [])
+
   return (
     <main
       className='movies' >
       <SearchForm
         handleSubmit={handleSubmit}
         onChange={onChange}
-        searchValue={searchValue} />
+        searchValue={searchValue}
+        isSavedMovies={false} />
       <p
         className={
           !isPreloader && (!Array.isArray(initialCards) || !initialCards.length) && isSearchRunning
@@ -44,7 +51,8 @@ function Movies({
               initialCards={initialCards}
               onMore={onMore}
               isCompletedMore={isCompletedMore}
-              handleClick={handleClick} />
+              handleClick={handleClick}
+              isSavedMovies={false} />
           ) : null
       }
       <Preloader

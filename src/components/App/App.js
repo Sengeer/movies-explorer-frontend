@@ -34,12 +34,14 @@ import {
 import {
   setWrite,
   getWrite,
-  removeWrite
+  removeWrite,
+  clearAll
 } from '../../utils/ControlLocalStorage';
 
 function App() {
   const [appSize, setAppSize] = useState('desktop');
   const [searchQuery, setSearchQuery] = useState(getWrite('query') || '');
+  const [searchQuerySaved, setSearchQuerySaved] = useState(getWrite('querySaved') || '');
   const [isSearchRunning, setIsSearchRunning] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
   const [isRegisterErr, setIsRegisterErr] = useState(false);
@@ -47,7 +49,8 @@ function App() {
   const [isEditErr, setIsEditErr] = useState(false);
   const [foundMovies, setFoundMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
-  const [isShortMovies, setIsShortMovies] = useState(false);
+  const [isShort, setIsShort] = useState(false);
+  const [isShortSaved, setIsShortSaved] = useState(false);
   const [index, setIndex] = useState(12);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
   const [loggedIn, setLoggedIn] = useState(getWrite('loggedIn'));
@@ -61,12 +64,18 @@ function App() {
     navigate(0);
   }
 
+  function handleCardDelete(movie) {
+    removeUserMovie(movie._id)
+      .then(() => {
+        setFoundMovies(foundMovies.filter(i => i._id !== movie._id));
+      })
+      .catch(console.error);
+  }
+
   function handleExit() {
     deauthorizeUser().catch(console.error);
     setLoggedIn(false);
-    removeWrite('loggedIn');
-    removeWrite('query');
-    removeWrite('isShort');
+    clearAll();
     navigate('/', { replace: true });
   }
 
@@ -177,8 +186,15 @@ function App() {
       });
   }
 
+  function handleFindMovies(array, query) {
+    return array.filter(i => {
+      const isFound = searchKeys.map(n => i[n].toLowerCase().indexOf(query.toLowerCase()) !== -1);
+      return isFound.some(b => b);
+    });
+  }
+
   function handleFindAndSavedQuery(savedMovies, allMovies) {
-    if (savedMovies.length) {
+    if (savedMovies.length && allMovies) {
       allMovies.map(item => {
         if (savedMovies.some(itemSaved => itemSaved.movieId === item.id)) {
           item.isLiked = true;
@@ -189,18 +205,22 @@ function App() {
         }
       });
     };
-    const foundMovies = allMovies.filter(i => {
-      const isFound = searchKeys.map(n => i[n].toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1);
-      return isFound.some(b => b);
-    });
-    if (foundMovies.length) {
-      setWrite('query', searchQuery);
-      setWrite('isShort', isShortMovies);
+    if (allMovies) {
+      const foundMovies = handleFindMovies(allMovies, searchQuery);
+      if (foundMovies.length) {
+        setWrite('query', searchQuery);
+        setWrite('isShort', isShort);
+      };
+      return foundMovies;
+    } else {
+      const foundMovies = handleFindMovies(savedMovies, searchQuerySaved);
+      setWrite('querySaved', searchQuerySaved);
+      setWrite('isShortSaved', isShort);
+      return foundMovies;
     };
-    return foundMovies;
   }
 
-  function handleGetSavedMoviesForSearch(allMovies) {
+  function handleSavedMoviesForSearch(allMovies) {
     getUserMovies()
       .then(savedMoviesData => {
         setFoundMovies(handleFindAndSavedQuery(savedMoviesData, allMovies));
@@ -223,13 +243,13 @@ function App() {
       setIsSearchRunning(true);
       const allMovies = getWrite('allMovies');
       if (allMovies) {
-        handleGetSavedMoviesForSearch(allMovies);
+        handleSavedMoviesForSearch(allMovies);
       } else {
         setIsPreloader(true);
         getAllMovies()
           .then(allMoviesData => {
             setWrite('allMovies', allMoviesData);
-            handleGetSavedMoviesForSearch(allMoviesData);
+            handleSavedMoviesForSearch(allMoviesData);
             setIsSearchErr(false);
           })
           .catch(() => setIsSearchErr(true))
@@ -281,7 +301,6 @@ function App() {
 
   useEffect(() => {
     handleUserIdentification();
-    handleSearch();
   }, [])
 
   if ((currentUser.name === '') && ((loggedIn === undefined) || loggedIn)) {
@@ -320,6 +339,7 @@ function App() {
             onMore={handleMore}
             handleClick={handleCardClick}
             isCompletedMore={isCompletedMore}
+            handleSearch={handleSearch}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Footer}
             loggedIn={loggedIn} />
@@ -332,6 +352,12 @@ function App() {
             isAuthorized={loggedIn}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={SavedMovies}
+            handleSubmit={handleSavedMoviesForSearch}
+            onChange={setSearchQuerySaved}
+            searchValue={searchQuerySaved}
+            initialCards={initialCards}
+            handleClickDelete={handleCardDelete}
+            handleSearch={handleSavedMoviesForSearch}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Footer}
             loggedIn={loggedIn} />

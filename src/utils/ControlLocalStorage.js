@@ -12,4 +12,8 @@ export function getWrite(name) {
 
 export function setWrite(name, data) {
     localStorage.setItem(name, JSON.stringify(data));
-  }
+}
+
+export function clearAll() {
+  localStorage.clear();
+}

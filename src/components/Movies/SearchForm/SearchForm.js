@@ -4,7 +4,8 @@ import './SearchForm.css'
 function SearchForm({
   handleSubmit,
   onChange,
-  searchValue
+  searchValue,
+  isSavedMovies
 }) {
   const [isSubmit, setIsSubmit] = useState(false);
   const [isValid, setIsValid] = useState(false);
@@ -13,8 +14,8 @@ function SearchForm({
     e.preventDefault();
     setIsSubmit(true);
 
-    if (isValid) {
-      handleSubmit(searchValue);
+    if (isValid || isSavedMovies) {
+      handleSubmit();
       setIsSubmit(false);
     };
   }
