@@ -15,7 +15,9 @@ function Movies({
   onMore,
   isCompletedMore,
   handleClick,
-  handleSearch
+  handleSearch,
+  isShort,
+  handleClickShort
 }) {
 
   useEffect(() => {
@@ -29,7 +31,9 @@ function Movies({
         handleSubmit={handleSubmit}
         onChange={onChange}
         searchValue={searchValue}
-        isSavedMovies={false} />
+        isSavedMovies={false}
+        isShort={isShort}
+        handleClickShort={handleClickShort} />
       <p
         className={
           !isPreloader && (!Array.isArray(initialCards) || !initialCards.length) && isSearchRunning

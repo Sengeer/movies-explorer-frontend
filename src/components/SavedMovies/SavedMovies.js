@@ -8,7 +8,9 @@ function SavedMovies({
   searchValue,
   initialCards,
   handleClickDelete,
-  handleSearch
+  handleSearch,
+  isShort,
+  handleClickShort
 }) {
 
   useEffect(() => {
@@ -21,7 +23,9 @@ function SavedMovies({
         handleSubmit={handleSubmit}
         onChange={onChange}
         searchValue={searchValue}
-        isSavedMovies={true} />
+        isSavedMovies={true}
+        isShort={isShort}
+        handleClickShort={handleClickShort} />
       <MoviesCardList
         initialCards={initialCards}
         handleClickDelete={handleClickDelete}

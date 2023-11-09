@@ -5,7 +5,9 @@ function SearchForm({
   handleSubmit,
   onChange,
   searchValue,
-  isSavedMovies
+  isSavedMovies,
+  isShort,
+  handleClickShort
 }) {
   const [isSubmit, setIsSubmit] = useState(false);
   const [isValid, setIsValid] = useState(false);
@@ -57,7 +59,12 @@ function SearchForm({
         </form>
         <button
           type='button'
-          className='button search__filter-btn search__filter-btn_active' >
+          className={
+            isShort
+              ? 'button search__filter-btn search__filter-btn_active'
+              : 'button search__filter-btn'
+          }
+          onClick={handleClickShort}>
             Короткометражки
         </button>
       </div>

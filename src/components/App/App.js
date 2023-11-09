@@ -48,8 +48,8 @@ function App() {
   const [isEditErr, setIsEditErr] = useState(false);
   const [foundMovies, setFoundMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
-  const [isShort, setIsShort] = useState(false);
-  const [isShortSaved, setIsShortSaved] = useState(false);
+  const [isShortMain, setIsShortMain] = useState(getWrite('isShortMain') || Boolean());
+  const [isShortSaved, setIsShortSaved] = useState(getWrite('isShortSaved') || Boolean());
   const [index, setIndex] = useState(0);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
   const [loggedIn, setLoggedIn] = useState(getWrite('loggedIn'));
@@ -184,14 +184,22 @@ function App() {
       });
   }
 
-  function handleFindMovies(array, query) {
-    return array.filter(i => {
-      const isFound = searchKeys.map(
-        n => i[n].toLowerCase().indexOf(query.toLowerCase()) !== -1
-      );
-      return isFound.some(b => b);
+  function handleFindMovies(array, query, isShort) {
+    return array.filter(item => {
+      let isFound = [];
+      if (isShort && (item.duration <= 40)) {
+        isFound = searchKeys.map(
+          key => item[key].toLowerCase().indexOf(query.toLowerCase()) !== -1
+        );
+      } else if (!isShort) {
+        isFound = searchKeys.map(
+          key => item[key].toLowerCase().indexOf(query.toLowerCase()) !== -1
+        );
+      };
+      return isFound.some(boolean => boolean);
     });
   }
+
 
   function handleFindAndSavedQuery(savedMovies, allMovies) {
     if (savedMovies.length && allMovies) {
@@ -206,17 +214,17 @@ function App() {
       });
     };
     if (allMovies) {
-      const foundMovies = handleFindMovies(allMovies, query);
+      const isShort = getWrite('isShortMain');
+      const foundMovies = handleFindMovies(allMovies, query, isShort);
       if (foundMovies.length) {
         setWrite('query', query);
-        setWrite('isShort', isShort);
       };
       return foundMovies;
     } else {
-      const foundMovies = handleFindMovies(savedMovies, querySaved);
+      const isShort = getWrite('isShortSaved');
+      const foundMovies = handleFindMovies(savedMovies, querySaved, isShort);
       setIndex(foundMovies.length);
       setWrite('querySaved', querySaved);
-      setWrite('isShortSaved', isShort);
       return foundMovies;
     };
   }
@@ -264,7 +272,6 @@ function App() {
   }
 
   function checkSize() {
-    console.log('sda')
     if (appSize === 'mobile') {
       setIndex(5);
     };
@@ -346,6 +353,12 @@ function App() {
             handleClick={handleCardClick}
             isCompletedMore={isCompletedMore}
             handleSearch={handleSearch}
+            isShort={isShortMain}
+            handleClickShort={() => {
+              setWrite('isShortMain', !isShortMain);
+              setIsShortMain(!isShortMain);
+              handleSearch();
+            }}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Footer}
             loggedIn={loggedIn} />
@@ -366,6 +379,12 @@ function App() {
             initialCards={initialCards}
             handleClickDelete={handleCardDelete}
             handleSearch={handleSavedMoviesForSearch}
+            isShort={isShortSaved}
+            handleClickShort={() => {
+              setWrite('isShortSaved', !isShortSaved);
+              setIsShortSaved(!isShortSaved);
+              setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')));
+            }}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Footer}
             loggedIn={loggedIn} />
