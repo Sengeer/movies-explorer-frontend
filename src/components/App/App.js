@@ -34,14 +34,13 @@ import {
 import {
   setWrite,
   getWrite,
-  removeWrite,
   clearAll
 } from '../../utils/ControlLocalStorage';
 
 function App() {
   const [appSize, setAppSize] = useState('desktop');
-  const [searchQuery, setSearchQuery] = useState(getWrite('query') || '');
-  const [searchQuerySaved, setSearchQuerySaved] = useState(getWrite('querySaved') || '');
+  const [query, setQuery] = useState(getWrite('query') || '');
+  const [querySaved, setQuerySaved] = useState(getWrite('querySaved') || '');
   const [isSearchRunning, setIsSearchRunning] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
   const [isRegisterErr, setIsRegisterErr] = useState(false);
@@ -51,7 +50,7 @@ function App() {
   const [isPreloader, setIsPreloader] = useState(false);
   const [isShort, setIsShort] = useState(false);
   const [isShortSaved, setIsShortSaved] = useState(false);
-  const [index, setIndex] = useState(12);
+  const [index, setIndex] = useState(0);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
   const [loggedIn, setLoggedIn] = useState(getWrite('loggedIn'));
   const [currentUser, setCurrentUser] = useState({ _id: '', email: '', name: '' });
@@ -117,7 +116,6 @@ function App() {
       nameRU: movie.nameRU,
       nameEN: movie.nameEN
     })
-      .then()
       .catch(console.error);
   }
 
@@ -188,7 +186,9 @@ function App() {
 
   function handleFindMovies(array, query) {
     return array.filter(i => {
-      const isFound = searchKeys.map(n => i[n].toLowerCase().indexOf(query.toLowerCase()) !== -1);
+      const isFound = searchKeys.map(
+        n => i[n].toLowerCase().indexOf(query.toLowerCase()) !== -1
+      );
       return isFound.some(b => b);
     });
   }
@@ -206,15 +206,16 @@ function App() {
       });
     };
     if (allMovies) {
-      const foundMovies = handleFindMovies(allMovies, searchQuery);
+      const foundMovies = handleFindMovies(allMovies, query);
       if (foundMovies.length) {
-        setWrite('query', searchQuery);
+        setWrite('query', query);
         setWrite('isShort', isShort);
       };
       return foundMovies;
     } else {
-      const foundMovies = handleFindMovies(savedMovies, searchQuerySaved);
-      setWrite('querySaved', searchQuerySaved);
+      const foundMovies = handleFindMovies(savedMovies, querySaved);
+      setIndex(foundMovies.length);
+      setWrite('querySaved', querySaved);
       setWrite('isShortSaved', isShort);
       return foundMovies;
     };
@@ -223,11 +224,11 @@ function App() {
   function handleSavedMoviesForSearch(allMovies) {
     getUserMovies()
       .then(savedMoviesData => {
+        setWrite('savedMovies', savedMoviesData);
         setFoundMovies(handleFindAndSavedQuery(savedMoviesData, allMovies));
         setIsSearchErr(false);
       })
-      .catch(() => setIsSearchErr(true))
-      .finally(() => checkSize());
+      .catch(() => setIsSearchErr(true));
   }
 
   function handleMore() {
@@ -239,11 +240,12 @@ function App() {
   }
 
   function handleSearch() {
-    if (searchQuery) {
+    if (query) {
       setIsSearchRunning(true);
       const allMovies = getWrite('allMovies');
       if (allMovies) {
         handleSavedMoviesForSearch(allMovies);
+        checkSize();
       } else {
         setIsPreloader(true);
         getAllMovies()
@@ -253,12 +255,16 @@ function App() {
             setIsSearchErr(false);
           })
           .catch(() => setIsSearchErr(true))
-          .finally(() => setIsPreloader(false));
+          .finally(() => {
+            setIsPreloader(false);
+            checkSize();
+          });
       };
     };
   }
 
   function checkSize() {
+    console.log('sda')
     if (appSize === 'mobile') {
       setIndex(5);
     };
@@ -330,8 +336,8 @@ function App() {
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Movies}
             handleSubmit={handleSearch}
-            onChange={setSearchQuery}
-            searchValue={searchQuery}
+            onChange={setQuery}
+            searchValue={query}
             isSearchRunning={isSearchRunning}
             isSearchErr={isSearchErr}
             initialCards={initialCards}
@@ -352,9 +358,11 @@ function App() {
             isAuthorized={loggedIn}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={SavedMovies}
-            handleSubmit={handleSavedMoviesForSearch}
-            onChange={setSearchQuerySaved}
-            searchValue={searchQuerySaved}
+            handleSubmit={
+              () => setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')))
+            }
+            onChange={setQuerySaved}
+            searchValue={querySaved}
             initialCards={initialCards}
             handleClickDelete={handleCardDelete}
             handleSearch={handleSavedMoviesForSearch}
