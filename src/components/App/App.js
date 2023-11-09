@@ -336,8 +336,8 @@ function App() {
         <>
           <Header
             appSize={appSize}
-            isPresentation={true}
-            isAuthorized={loggedIn} />
+            isAuthorized={loggedIn}
+            pageName={'main'} />
           <Main />
           <Footer />
         </>
@@ -347,6 +347,7 @@ function App() {
           <ProtectedRouteElement element={Header}
             appSize={appSize}
             isAuthorized={loggedIn}
+            pageName={'movies'}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Movies}
             handleSubmit={handleSearch}
@@ -376,6 +377,7 @@ function App() {
           <ProtectedRouteElement element={Header}
             appSize={appSize}
             isAuthorized={loggedIn}
+            pageName={'saved'}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={SavedMovies}
             handleSubmit={
@@ -402,6 +404,7 @@ function App() {
           <ProtectedRouteElement element={Header}
             appSize={appSize}
             isAuthorized={loggedIn}
+            pageName={'profile'}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Profile}
             handleSubmit={handleChangeUserInfo}

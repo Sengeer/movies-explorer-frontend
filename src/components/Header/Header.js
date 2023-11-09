@@ -5,12 +5,12 @@ import Navigation from '../Navigation/Navigation';
 
 function Header({
   appSize,
-  isPresentation,
+  pageName,
   isAuthorized,
 }) {
   const [isOpenNav, setIsOpenNav] = useState(false);
 
-  function onClickNav() {
+  function handleClickNav() {
     setIsOpenNav(!isOpenNav);
   }
 
@@ -21,7 +21,7 @@ function Header({
   return (
     <header
       className={
-        isPresentation
+        pageName === 'main'
           ? 'header header_color_pink'
           : 'header header_color_white'
       } >
@@ -42,11 +42,11 @@ function Header({
           }
           type='button'
           aria-label='Меню навигации'
-          onClick={onClickNav} />
+          onClick={handleClickNav} />
         <a
           href='../signup'
           className={
-            isPresentation && !isAuthorized
+            (pageName === 'main') && !isAuthorized
               ? 'link header__link header__link_type_signup'
               : 'link header__link header__link_type_signup header__link_hidden'
           } >
@@ -55,7 +55,7 @@ function Header({
         <a
           href='../signin'
           className={
-            isPresentation && !isAuthorized
+            (pageName === 'main') && !isAuthorized
               ? 'link header__link header__link_type_signin'
               : 'link header__link header__link_type_signin header__link_hidden'
           } >
@@ -65,7 +65,9 @@ function Header({
           href='../movies'
           className={
             isAuthorized && !(appSize === 'tablet' || appSize === 'mobile')
-              ? 'link header__link header__link_type_movies header__link_active'
+              ? pageName === 'movies'
+                ? 'link header__link header__link_type_movies header__link_active'
+                : 'link header__link header__link_type_movies'
               : 'link header__link header__link_type_movies header__link_hidden'
           } >
             Фильмы
@@ -74,7 +76,9 @@ function Header({
           href='../saved-movies'
           className={
             isAuthorized && !(appSize === 'tablet' || appSize === 'mobile')
-              ? 'link header__link header__link_type_saved-movies'
+              ? pageName === 'saved'
+                ? 'link header__link header__link_type_saved-movies header__link_active'
+                : 'link header__link header__link_type_saved-movies'
               : 'link header__link header__link_type_saved-movies header__link_hidden'
           } >
             Сохранённые фильмы
@@ -83,7 +87,7 @@ function Header({
           href='../profile'
           className={
             isAuthorized && !(appSize === 'tablet' || appSize === 'mobile')
-              ? isPresentation
+              ? (pageName === 'main')
                   ? 'link account-link account-link_style_dark'
                   : 'link account-link account-link_style_light'
               : 'link account-link account-link_style_dark account-link_hidden'
@@ -93,7 +97,8 @@ function Header({
       </nav>
       <Navigation
         isOpenNav={isOpenNav}
-        handleCloseNav={handleCloseNav} />
+        handleCloseNav={handleCloseNav}
+        pageName={pageName} />
     </header>
   );
 }
