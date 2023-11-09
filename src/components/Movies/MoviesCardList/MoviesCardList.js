@@ -6,7 +6,7 @@ function MoviesCardList({
   initialCards,
   onMore,
   isCompletedMore,
-  handleClick,
+  handleClickAdd,
   handleClickDelete,
   isSavedMovies
 }) {
@@ -17,7 +17,7 @@ function MoviesCardList({
           <MoviesCard
             key={isSavedMovies ? card.movieId : card.id}
             card={card}
-            handleClick={handleClick}
+            handleClickAdd={handleClickAdd}
             handleClickDelete={handleClickDelete}
             isSavedMovies={isSavedMovies} />
         ))}

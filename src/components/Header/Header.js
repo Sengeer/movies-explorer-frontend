@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import './Header.css';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
@@ -8,6 +8,16 @@ function Header({
   isPresentation,
   isAuthorized,
 }) {
+  const [isOpenNav, setIsOpenNav] = useState(false);
+
+  function onClickNav() {
+    setIsOpenNav(!isOpenNav);
+  }
+
+  function handleCloseNav() {
+    setIsOpenNav(!isOpenNav);
+  }
+
   return (
     <header
       className={
@@ -31,7 +41,8 @@ function Header({
               : 'button header__navigation-btn header__navigation-btn_hidden'
           }
           type='button'
-          aria-label='Навигация' />
+          aria-label='Меню навигации'
+          onClick={onClickNav} />
         <a
           href='../signup'
           className={
@@ -80,7 +91,9 @@ function Header({
             Аккаунт
         </a>
       </nav>
-      <Navigation />
+      <Navigation
+        isOpenNav={isOpenNav}
+        handleCloseNav={handleCloseNav} />
     </header>
   );
 }

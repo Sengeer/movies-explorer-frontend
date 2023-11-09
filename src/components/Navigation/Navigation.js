@@ -1,10 +1,17 @@
 import React from 'react';
 import './Navigation.css';
 
-function Navigation() {
+function Navigation({
+  isOpenNav,
+  handleCloseNav
+}) {
   return (
     <div
-      className='navigation ' >
+      className={
+        isOpenNav
+          ? 'navigation navigation_open'
+          : 'navigation'
+      } >
       <nav
         className='navigation__container' >
         <a
@@ -31,7 +38,8 @@ function Navigation() {
       <button
         className='button navigation__close-btn'
         type='button'
-        aria-label='Закрыть' />
+        aria-label='Закрыть'
+        onClick={handleCloseNav} />
     </div>
   );
 }

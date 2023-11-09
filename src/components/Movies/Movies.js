@@ -14,7 +14,7 @@ function Movies({
   isPreloader,
   onMore,
   isCompletedMore,
-  handleClick,
+  handleClickAdd,
   handleSearch,
   isShort,
   handleClickShort
@@ -55,7 +55,7 @@ function Movies({
               initialCards={initialCards}
               onMore={onMore}
               isCompletedMore={isCompletedMore}
-              handleClick={handleClick}
+              handleClickAdd={handleClickAdd}
               isSavedMovies={false} />
           ) : null
       }

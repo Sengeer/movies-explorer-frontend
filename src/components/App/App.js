@@ -66,7 +66,9 @@ function App() {
   function handleCardDelete(movie) {
     removeUserMovie(movie._id)
       .then(() => {
-        setFoundMovies(foundMovies.filter(i => i._id !== movie._id));
+        const nextMovies = foundMovies.filter(i => i._id !== movie._id);
+        setWrite('savedMovies', nextMovies);
+        setFoundMovies(nextMovies);
       })
       .catch(console.error);
   }
@@ -283,24 +285,28 @@ function App() {
     };
   }
 
+  function handleAppSize(width) {
+    if (width < 738) {
+      setAppSize('mobile');
+    };
+    if (width >= 738) {
+      setAppSize('tablet');
+    };
+    if (width >= 1200) {
+      setAppSize('desktop');
+    };
+  }
+
   useEffect(() => {
-    const handleAppWidth = (e) => {
+    const handleWidth = (e) => {
       setTimeout(function () {
-        if (e.target.innerWidth < 738) {
-          setAppSize('mobile');
-        };
-        if (e.target.innerWidth >= 738) {
-          setAppSize('tablet');
-        };
-        if (e.target.innerWidth >= 1200) {
-          setAppSize('desktop');
-        };
+        handleAppSize(e.target.innerWidth);
       }, 500);
     };
 
-    window.addEventListener('resize', handleAppWidth);
+    window.addEventListener('resize', handleWidth);
     return () => {
-      window.addEventListener('resize', handleAppWidth);
+      window.addEventListener('resize', handleWidth);
     };
   }, [])
 
@@ -314,6 +320,7 @@ function App() {
 
   useEffect(() => {
     handleUserIdentification();
+    handleAppSize(window.screen.width);
   }, [])
 
   if ((currentUser.name === '') && ((loggedIn === undefined) || loggedIn)) {

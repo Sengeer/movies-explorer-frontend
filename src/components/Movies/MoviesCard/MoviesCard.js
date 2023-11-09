@@ -3,7 +3,7 @@ import './MoviesCard.css'
 
 function MoviesCard({
   card,
-  handleClick,
+  handleClickAdd,
   handleClickDelete,
   isSavedMovies
 }) {
@@ -15,13 +15,13 @@ function MoviesCard({
     return `${hours ? `${hours.toString()}ч ` : ''}${minutes ? `${minutes.toString()}м` : ''}`;
   }
 
-  function onClick() {
+  function onClickAdd() {
     if (!card.isLiked) {
       card.isLiked = true;
-      handleClick(card);
+      handleClickAdd(card);
     } else {
       card.isLiked = false;
-      handleClick(card);
+      handleClickAdd(card);
     };
   }
 
@@ -69,7 +69,7 @@ function MoviesCard({
               }
               type='button'
               aria-label='Добавить или удалить фильм'
-              onClick={onClick} >
+              onClick={onClickAdd} >
                 Сохранить
             </button>
       }
