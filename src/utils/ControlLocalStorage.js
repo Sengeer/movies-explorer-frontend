@@ -1,7 +1,3 @@
-export function removeWrite(name) {
-    localStorage.removeItem(name);
-  }
-
 export function getWrite(name) {
     try {
       return JSON.parse(localStorage.getItem(name));
