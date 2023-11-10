@@ -2,6 +2,7 @@ import {
   useState,
   useEffect
 } from 'react';
+import { Navigate } from 'react-router-dom';
 import './App.css';
 import '../../index.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -417,14 +418,18 @@ function App() {
         </CurrentUserContext.Provider>
       } />
       <Route path='/signin' element={
-        <Login
-          handleLogin={handleLogin}
-          isLoginErr={isLoginErr} />
+        loggedIn
+          ? <Navigate to='/' replace/>
+          : <Login
+              handleLogin={handleLogin}
+              isLoginErr={isLoginErr} />
       } />
       <Route path='/signup' element={
-        <Register
-          handleRegister={handleRegister}
-          isRegisterErr={isRegisterErr} />
+        loggedIn
+          ? <Navigate to='/' replace/>
+          : <Register
+              handleRegister={handleRegister}
+              isRegisterErr={isRegisterErr} />
       } />
     </Routes>
   );
