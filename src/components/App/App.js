@@ -292,12 +292,15 @@ function App() {
   function handleAppSize(width) {
     if (width < 738) {
       setAppSize('mobile');
+      setRowIndex(5);
     };
     if (width >= 738) {
       setAppSize('tablet');
+      setRowIndex(8);
     };
     if (width >= 1200) {
       setAppSize('desktop');
+      setRowIndex(12);
     };
   }
 
