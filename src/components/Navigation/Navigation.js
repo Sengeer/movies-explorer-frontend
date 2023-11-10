@@ -10,15 +10,15 @@ function Navigation({
   const navigate = useNavigate();
 
   function handleClickMain() {
-    navigate('/', { replace: true });
+    navigate('/', { replace: false });
   }
 
   function handleClickMovies() {
-    navigate('/movies', { replace: true });
+    navigate('/movies', { replace: false });
   }
 
   function handleClickSaved() {
-    navigate('/saved-movies', { replace: true });
+    navigate('/saved-movies', { replace: false });
   }
 
   return (

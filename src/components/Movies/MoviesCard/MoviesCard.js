@@ -29,6 +29,7 @@ function MoviesCard({
     handleClickDelete(card);
   }
 
+
   return (
     <li className='movies__card' >
       <a
@@ -39,7 +40,7 @@ function MoviesCard({
         <div
           className='movies__card-image'
           style={
-            isSavedMovies
+            card.image.url === undefined
               ? { backgroundImage: `url(${card.image})` }
               : { backgroundImage: `url(https://api.nomoreparties.co/${card.image.url})` }
           } />
