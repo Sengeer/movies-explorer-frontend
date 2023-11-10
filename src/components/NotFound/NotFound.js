@@ -5,7 +5,7 @@ import './NotFound.css'
 function NotFound() {
   const navigate = useNavigate();
 
-  function onClickBack() {
+  function handleClickBack() {
     navigate(-1);
   }
 
@@ -23,7 +23,7 @@ function NotFound() {
       <button
         type='button'
         className='button not-found__back-btn'
-        onClick={onClickBack}>
+        onClick={handleClickBack}>
           Назад
       </button>
     </section>

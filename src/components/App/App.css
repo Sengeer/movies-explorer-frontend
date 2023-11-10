@@ -22,32 +22,6 @@
   opacity: 0.7;
 }
 
-.account-link {
-  padding: 7px 0;
-  width: 100px;
-  color: #000;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
-  background-position: 70px 0px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  align-self: center;
-  cursor: pointer;
-}
-
-.account-link_hidden {
-  display: none;
-}
-
-.account-link_style_dark {
-  background-image: url(../../images/icons/account-link-dark.svg);
-}
-
-.account-link_style_light {
-  background-image: url(../../images/icons/account-link-light.svg);
-}
-
 .button {
   all: unset;
   opacity: 1;
@@ -94,6 +68,32 @@
   background-color: rgba(248, 248, 248, 1);
   color: rgba(194, 194, 194, 1);
   pointer-events: none;
+}
+
+.account-btn {
+  padding: 7px 0;
+  width: 100px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  background-position: 70px 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: center;
+  cursor: pointer;
+}
+
+.account-btn_hidden {
+  display: none;
+}
+
+.account-btn_style_dark {
+  background-image: url(../../images/icons/account-btn-dark.svg);
+}
+
+.account-btn_style_light {
+  background-image: url(../../images/icons/account-btn-light.svg);
 }
 
 .title {

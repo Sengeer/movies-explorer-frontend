@@ -43,7 +43,7 @@
   line-height: normal;
 }
 
-.auth__link-text {
+.auth__btn-text {
   margin: 14px 0 30px 0;
   color: #a0a0a0;
   text-align: center;
@@ -54,14 +54,14 @@
 }
 
 @media (min-width: 425px) {
-  .auth__link-text {
+  .auth__btn-text {
     margin: 16px 0 30px 0;
     font-size: 14px;
     letter-spacing: 0px;
   }
 }
 
-.auth__link {
+.auth__btn {
   color: #000;
 }
 

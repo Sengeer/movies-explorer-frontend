@@ -1,14 +1,15 @@
 import React from 'react';
 import './AuthForm.css'
 import logo from '../../images/logo.svg';
+import { useNavigate } from 'react-router-dom';
 
 function AuthForm({
   title,
   name,
-  buttonText,
-  link,
-  linkHref,
-  linkText,
+  btnSubmit,
+  btnTransit,
+  handleTransitClick,
+  btnTransitText,
   isValid,
   isBtnEnabled,
   onSubmit,
@@ -16,16 +17,24 @@ function AuthForm({
   children
 })
 {
+  const navigate = useNavigate();
+
+  function handleClickMain() {
+    navigate('/', { replace: false });
+  }
+
   return (
     <main
       className={`auth auth_type_${name}`} >
-      <a
-        href='../'
-        className='logo auth__logo' >
+      <button
+        type='button'
+        className='button logo auth__logo'
+        aria-label='Презентация'
+        onClick={handleClickMain} >
         <img
           src={logo}
           alt='Лого' />
-      </a>
+      </button>
       <h2
         className='title auth__title' >
           {title}
@@ -55,17 +64,19 @@ function AuthForm({
           }
           type='submit'
           disabled={!isBtnEnabled} >
-            {buttonText}
+            {btnSubmit}
         </button>
       </form>
       <p
-        className={`auth__link-text auth__link-text_type_${name}`} >
-          {linkText}
-        <a
-          href={`../${linkHref}`}
-          className={`link auth__link auth__link_type_${name}`} >
-            {link}
-        </a>
+        className={`auth__btn-text auth__btn-text_type_${name}`} >
+          {btnTransitText}
+        <button
+          type='button'
+          className={`button auth__btn auth__btn_type_${name}`}
+          aria-label={btnTransit}
+          onClick={handleTransitClick} >
+            {btnTransit}
+        </button>
       </p>
     </main>
   );

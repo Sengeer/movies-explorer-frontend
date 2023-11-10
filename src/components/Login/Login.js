@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import AuthForm from '../AuthForm/AuthForm';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { useNavigate } from 'react-router-dom';
 
 function Login({
   handleLogin,
@@ -15,6 +16,12 @@ function Login({
     isBtnEnabled,
     setIsBtnEnabled
   } = useFormAndValidation();
+
+  const navigate = useNavigate();
+
+  function handleTransitClick() {
+    navigate('/signup', { replace: false });
+  }
 
   function onSubmit(e) {
     e.preventDefault();
@@ -35,10 +42,10 @@ function Login({
     <AuthForm
       title='Рады видеть!'
       name='sign-in'
-      buttonText='Войти'
-      link='Регистрация'
-      linkHref='signup'
-      linkText='Ещё не зарегистрированы?&nbsp;'
+      btnSubmit='Войти'
+      btnTransit='Регистрация'
+      handleTransitClick={handleTransitClick}
+      btnTransitText='Ещё не зарегистрированы?&nbsp;'
       isValid={isValid}
       isBtnEnabled={isBtnEnabled}
       onSubmit={onSubmit}

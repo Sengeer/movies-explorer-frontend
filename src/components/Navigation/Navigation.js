@@ -9,6 +9,10 @@ function Navigation({
 }) {
   const navigate = useNavigate();
 
+  function handleClickProfile() {
+    navigate('/profile', { replace: false });
+  }
+
   function handleClickMain() {
     navigate('/', { replace: false });
   }
@@ -60,11 +64,13 @@ function Navigation({
           onClick={handleClickSaved} >
             Сохранённые фильмы
         </button>
-        <a
-          href='../profile'
-          className='link account-link account-link_style_light' >
+        <button
+          type='button'
+          className='button account-btn account-btn_style_light'
+          aria-label='Профиль'
+          onClick={handleClickProfile} >
             Аккаунт
-        </a>
+        </button>
       </nav>
       <button
         className='button navigation__close-btn'
