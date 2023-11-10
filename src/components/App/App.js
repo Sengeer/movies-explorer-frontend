@@ -37,6 +37,7 @@ import {
   getWrite,
   clearAll
 } from '../../utils/ControlLocalStorage';
+import { SearchKeys } from '../../utils/Constants'
 
 function App() {
   const [appSize, setAppSize] = useState('desktop');
@@ -56,7 +57,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(getWrite('loggedIn'));
   const [currentUser, setCurrentUser] = useState({ _id: '', email: '', name: '' });
   const initialCards = foundMovies.slice(0, index);
-  const searchKeys = ['nameRU', 'nameEN'];
 
   const navigate = useNavigate();
 
@@ -191,11 +191,11 @@ function App() {
     return array.filter(item => {
       let isFound = [];
       if (isShort && (item.duration <= 40)) {
-        isFound = searchKeys.map(
+        isFound = SearchKeys.map(
           key => item[key].toLowerCase().indexOf(query.toLowerCase()) !== -1
         );
       } else if (!isShort) {
-        isFound = searchKeys.map(
+        isFound = SearchKeys.map(
           key => item[key].toLowerCase().indexOf(query.toLowerCase()) !== -1
         );
       };
