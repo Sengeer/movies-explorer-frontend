@@ -6,8 +6,8 @@ function Footer({ isPreloader }) {
     <footer
       className={
         isPreloader
-          ? 'footer'
-          : 'footer footer_hidden'
+          ? 'footer footer_hidden'
+          : 'footer'
       } >
       <h2
         className='footer__info footer__info_content_project' >
