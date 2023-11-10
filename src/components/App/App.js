@@ -52,11 +52,11 @@ function App() {
   const [isPreloader, setIsPreloader] = useState(false);
   const [isShortMain, setIsShortMain] = useState(getWrite('isShortMain') || Boolean());
   const [isShortSaved, setIsShortSaved] = useState(getWrite('isShortSaved') || Boolean());
-  const [index, setIndex] = useState(0);
+  const [rowIndex, setRowIndex] = useState(0);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
   const [loggedIn, setLoggedIn] = useState(getWrite('loggedIn'));
   const [currentUser, setCurrentUser] = useState({ _id: '', email: '', name: '' });
-  const initialCards = foundMovies.slice(0, index);
+  const initialCards = foundMovies.slice(0, rowIndex);
 
   const navigate = useNavigate();
 
@@ -227,7 +227,7 @@ function App() {
     } else {
       const isShort = getWrite('isShortSaved');
       const foundMovies = handleFindMovies(savedMovies, querySaved, isShort);
-      setIndex(foundMovies.length);
+      setRowIndex(foundMovies.length);
       setWrite('querySaved', querySaved);
       setIsPreloader(false);
       return foundMovies;
@@ -247,9 +247,9 @@ function App() {
 
   function handleMore() {
     if (appSize === 'desktop') {
-      setIndex(index + 3);
+      setRowIndex(rowIndex + 3);
     } else {
-      setIndex(index + 2);
+      setRowIndex(rowIndex + 2);
     };
   }
 
@@ -279,13 +279,13 @@ function App() {
 
   function checkSize() {
     if (appSize === 'mobile') {
-      setIndex(5);
+      setRowIndex(5);
     };
     if (appSize === 'tablet') {
-      setIndex(8);
+      setRowIndex(8);
     };
     if (appSize === 'desktop') {
-      setIndex(12);
+      setRowIndex(12);
     };
   }
 
@@ -315,12 +315,12 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (index >= foundMovies.length) {
+    if (rowIndex >= foundMovies.length) {
       setIsCompletedMore(true);
     } else {
       setIsCompletedMore(false);
     };
-  }, [index, foundMovies])
+  }, [rowIndex, foundMovies])
 
   useEffect(() => {
     handleUserIdentification();
