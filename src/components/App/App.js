@@ -19,7 +19,7 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
-import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 import { getAllMovies } from '../../utils/MoviesApi';
 import {
   createUser,
@@ -221,17 +221,20 @@ function App() {
       if (foundMovies.length) {
         setWrite('query', query);
       };
+      setIsPreloader(false);
       return foundMovies;
     } else {
       const isShort = getWrite('isShortSaved');
       const foundMovies = handleFindMovies(savedMovies, querySaved, isShort);
       setIndex(foundMovies.length);
       setWrite('querySaved', querySaved);
+      setIsPreloader(false);
       return foundMovies;
     };
   }
 
   function handleSavedMoviesForSearch(allMovies) {
+    setIsPreloader(true);
     getUserMovies()
       .then(savedMoviesData => {
         setWrite('savedMovies', savedMoviesData);
@@ -323,7 +326,7 @@ function App() {
     handleAppSize(window.screen.width);
   }, [])
 
-  if ((currentUser.name === '') && ((loggedIn === undefined) || loggedIn)) {
+  if (((currentUser.name === '') && (loggedIn === undefined))) {
     return
   }
 
@@ -358,7 +361,7 @@ function App() {
             initialCards={initialCards}
             isPreloader={isPreloader}
             onMore={handleMore}
-            handleClick={handleCardClick}
+            handleClickAdd={handleCardClick}
             isCompletedMore={isCompletedMore}
             handleSearch={handleSearch}
             isShort={isShortMain}
@@ -369,6 +372,7 @@ function App() {
             }}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Footer}
+            isPreloader={isPreloader}
             loggedIn={loggedIn} />
         </CurrentUserContext.Provider>
       } />
@@ -386,6 +390,7 @@ function App() {
             onChange={setQuerySaved}
             searchValue={querySaved}
             initialCards={initialCards}
+            isPreloader={isPreloader}
             handleClickDelete={handleCardDelete}
             handleSearch={handleSavedMoviesForSearch}
             isShort={isShortSaved}
@@ -394,8 +399,6 @@ function App() {
               setIsShortSaved(!isShortSaved);
               setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')));
             }}
-            loggedIn={loggedIn} />
-          <ProtectedRouteElement element={Footer}
             loggedIn={loggedIn} />
         </CurrentUserContext.Provider>
       } />

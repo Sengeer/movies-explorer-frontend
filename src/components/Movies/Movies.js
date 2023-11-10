@@ -19,7 +19,6 @@ function Movies({
   isShort,
   handleClickShort
 }) {
-
   useEffect(() => {
     handleSearch()
   }, [])
@@ -34,6 +33,19 @@ function Movies({
         isSavedMovies={false}
         isShort={isShort}
         handleClickShort={handleClickShort} />
+      {
+        isPreloader
+          ? <Preloader />
+          : !isPreloader && initialCards.length
+              ? (
+                <MoviesCardList
+                  initialCards={initialCards}
+                  onMore={onMore}
+                  isCompletedMore={isCompletedMore}
+                  handleClickAdd={handleClickAdd}
+                  isSavedMovies={false} />
+              ) : null
+      }
       <p
         className={
           !isPreloader && (!Array.isArray(initialCards) || !initialCards.length) && isSearchRunning
@@ -48,19 +60,6 @@ function Movies({
             : 'Ничего не найдено'
         }
       </p>
-      {
-        !isPreloader && initialCards.length
-          ? (
-            <MoviesCardList
-              initialCards={initialCards}
-              onMore={onMore}
-              isCompletedMore={isCompletedMore}
-              handleClickAdd={handleClickAdd}
-              isSavedMovies={false} />
-          ) : null
-      }
-      <Preloader
-        isPreloader={isPreloader} />
     </main>
   );
 }

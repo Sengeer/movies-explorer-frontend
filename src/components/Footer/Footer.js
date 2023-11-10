@@ -1,10 +1,14 @@
 import React from 'react';
 import './Footer.css'
 
-function Footer() {
+function Footer({ isPreloader }) {
   return (
     <footer
-      className='footer' >
+      className={
+        isPreloader
+          ? 'footer'
+          : 'footer footer_hidden'
+      } >
       <h2
         className='footer__info footer__info_content_project' >
           Учебный проект Яндекс.Практикум х BeatFilm.

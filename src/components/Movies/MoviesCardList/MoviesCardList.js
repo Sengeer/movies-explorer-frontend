@@ -15,7 +15,7 @@ function MoviesCardList({
       <ul className='movies__cards' >
         {initialCards.map(card => (
           <MoviesCard
-            key={isSavedMovies ? card.movieId : card.id}
+            key={card.movieId || card.id}
             card={card}
             handleClickAdd={handleClickAdd}
             handleClickDelete={handleClickDelete}
