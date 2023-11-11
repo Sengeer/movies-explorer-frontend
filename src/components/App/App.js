@@ -263,7 +263,6 @@ function App() {
   }
 
   function handleSavedMoviesForSearch(allMovies) {
-    console.log(isSearchRunning)
     setIsPreloader(true);
     getUserMovies()
       .then(savedMoviesData => {

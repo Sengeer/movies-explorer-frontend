@@ -40,7 +40,7 @@ function Profile({
     setIsDisableEdit(true);
   }
 
-  function onClick() {
+  function onClickEdit() {
       setIsDisableEdit(false);
   }
 
@@ -129,7 +129,7 @@ function Profile({
               : 'button profile__btn profile__btn_hidden profile__btn_type_edit'
           }
           type='button'
-          onClick={onClick} >
+          onClick={onClickEdit} >
             Редактировать
         </button>
         <button
