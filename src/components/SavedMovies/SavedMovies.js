@@ -35,9 +35,22 @@ function SavedMovies({
           isSavedMovies={true}
           isShort={isShort}
           handleClickShort={handleClickShort} />
+        {
+          !isPreloader
+            && initialCards.length
+            ? (
+              <MoviesCardList
+                initialCards={initialCards}
+                handleClickDelete={handleClickDelete}
+                isSavedMovies={true} />
+            )
+            : null
+        }
         <p
           className={
-            !isPreloader && (!Array.isArray(initialCards) || !initialCards.length) && isSearchRunningSaved
+            !isPreloader
+              && (!Array.isArray(initialCards) || !initialCards.length)
+              && isSearchRunningSaved
               ? isSearchErr
                 ? 'saved-movies__message saved-movies__message_active saved-movies__message_type_error'
                 : 'saved-movies__message saved-movies__message_active'
@@ -49,10 +62,6 @@ function SavedMovies({
               : 'Ничего не найдено'
           }
         </p>
-        <MoviesCardList
-          initialCards={initialCards}
-          handleClickDelete={handleClickDelete}
-          isSavedMovies={true} />
       </main>
       <Footer />
     </>

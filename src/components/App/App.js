@@ -257,7 +257,9 @@ function App() {
       const isShort = getWrite('isShortSaved');
       const foundMovies = handleFindMovies(savedMovies, querySaved, isShort);
       setRowIndex(foundMovies.length);
-      setWrite('querySaved', querySaved);
+      if (foundMovies.length) {
+        setWrite('querySaved', querySaved);
+      };
       setIsPreloader(false);
       return foundMovies;
     };
@@ -265,7 +267,6 @@ function App() {
 
   function handleSavedMoviesForSearch(allMovies) {
     setIsPreloader(true);
-    setIsSearchRunningSaved(true);
     getUserMovies()
       .then(savedMoviesData => {
         setWrite('savedMovies', savedMoviesData);
@@ -432,7 +433,10 @@ function App() {
             onClose={handleCloseErrTooltip} />
           <ProtectedRouteElement element={SavedMovies}
             handleSubmit={
-              () => setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')))
+              () => {
+                setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')));
+                setIsSearchRunningSaved(true);
+              }
             }
             onChange={setQuerySaved}
             searchValue={querySaved}

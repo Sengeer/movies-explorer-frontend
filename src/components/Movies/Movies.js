@@ -36,19 +36,23 @@ function Movies({
       {
         isPreloader
           ? <Preloader />
-          : !isPreloader && initialCards.length && isSearchRunning
-              ? (
-                <MoviesCardList
-                  initialCards={initialCards}
-                  onMore={onMore}
-                  isCompletedMore={isCompletedMore}
-                  handleClickAdd={handleClickAdd}
-                  isSavedMovies={false} />
+          : !isPreloader
+            && initialCards.length
+            && isSearchRunning
+            ? (
+              <MoviesCardList
+                initialCards={initialCards}
+                onMore={onMore}
+                isCompletedMore={isCompletedMore}
+                handleClickAdd={handleClickAdd}
+                isSavedMovies={false} />
               ) : null
-      }
+        }
       <p
         className={
-          !isPreloader && (!Array.isArray(initialCards) || !initialCards.length) && isSearchRunning
+          !isPreloader
+            && (!Array.isArray(initialCards) || !initialCards.length)
+            && isSearchRunning
             ? isSearchErr
               ? 'movies__message movies__message_active movies__message_type_error'
               : 'movies__message movies__message_active'
