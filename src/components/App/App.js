@@ -134,7 +134,7 @@ function App() {
       .then(savedMovies => {
         savedMovies.forEach(item => {
           if (item.movieId === movie.id) {
-            return removeUserMovie(item._id);
+            return removeUserMovie(item._id).catch(console.error);
           };
         });
       })
@@ -272,7 +272,10 @@ function App() {
         setFoundMovies(handleFindAndSavedQuery(savedMoviesData, allMovies));
         setIsSearchErr(false);
       })
-      .catch(() => setIsSearchErr(true));
+      .catch((e) => {
+        setIsSearchErr(true);
+        console.error(e)
+      });
   }
 
   function handleMore() {
