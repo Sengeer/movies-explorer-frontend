@@ -3,13 +3,11 @@ import AuthForm from '../AuthForm/AuthForm';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { useNavigate } from 'react-router-dom';
 
-function Register({
-  handleRegister,
-  isRegisterErr
-}) {
+function Register(handleRegister) {
   const {
     values,
     handleChange,
+    errors,
     isValid,
     resetForm,
     setValues,
@@ -49,8 +47,7 @@ function Register({
       btnTransitText='Уже зарегистрированы?&nbsp;'
       isValid={isValid}
       isBtnEnabled={isBtnEnabled}
-      onSubmit={onSubmit}
-      isErr={isRegisterErr} >
+      onSubmit={onSubmit} >
       <label
         className='auth__label auth__label_type_name'
         htmlFor='nameInput'>
@@ -59,12 +56,24 @@ function Register({
       <input
         type='text'
         pattern='[a-zA-Zа-яА-Я\- ]{2,30}'
-        className='auth__input auth__input_type_name'
+        className={
+          errors.nameInput
+            ? 'auth__input auth__input_type_name auth__input_type_error'
+            : 'auth__input auth__input_type_name'
+        }
         id='nameInput'
         name='nameInput'
         required
         value={values.nameInput || ''}
         onChange={handleChange} />
+      <p
+        className={
+          isValid
+            ? `auth__text-error auth__text-error_type_sign-up`
+            : `auth__text-error auth__text-error_type_sign-up auth__text-error_active`
+        } >
+          {errors.nameInput}
+      </p>
       <label
         className='auth__label auth__label_type_email'
         htmlFor='emailInput'>
@@ -72,12 +81,24 @@ function Register({
       </label>
       <input
         type='email'
-        className='auth__input auth__input_type_email'
+        className={
+          errors.emailInput
+            ? 'auth__input auth__input_type_email auth__input_type_error'
+            : 'auth__input auth__input_type_email'
+        }
         id='emailInput'
         name='emailInput'
         required
         value={values.emailInput || ''}
         onChange={handleChange} />
+      <p
+        className={
+          isValid
+            ? `auth__text-error auth__text-error_type_sign-up`
+            : `auth__text-error auth__text-error_type_sign-up auth__text-error_active`
+        } >
+          {errors.emailInput}
+      </p>
       <label
         className='auth__label auth__label_type_password'
         htmlFor='passwordInput'>
@@ -86,7 +107,7 @@ function Register({
       <input
         type='password'
         className={
-          isRegisterErr
+          errors.passwordInput
             ? 'auth__input auth__input_type_password auth__input_type_error'
             : 'auth__input auth__input_type_password'
         }
@@ -95,6 +116,14 @@ function Register({
         required
         value={values.passwordInput || ''}
         onChange={handleChange} />
+      <p
+        className={
+          isValid
+            ? `auth__text-error auth__text-error_type_sign-up`
+            : `auth__text-error auth__text-error_type_sign-up auth__text-error_active`
+        } >
+          {errors.passwordInput}
+      </p>
     </AuthForm>
   );
 }

@@ -13,7 +13,6 @@ function AuthForm({
   isValid,
   isBtnEnabled,
   onSubmit,
-  isErr,
   children
 })
 {
@@ -44,18 +43,6 @@ function AuthForm({
         name={`${name}Form`}
         onSubmit={onSubmit} >
           {children}
-        <p
-          className={
-            isErr
-              ? `auth__text-error auth__text-error_type_${name} auth__text-error_active`
-              : `auth__text-error auth__text-error_type_${name}`
-          } >
-          {
-            name === 'sign-up'
-              ? 'При регистрации пользователя произошла ошибка.'
-              : 'Вы ввели неправильный логин или пароль.'
-          }
-        </p>
         <button
           className={
             isValid && isBtnEnabled

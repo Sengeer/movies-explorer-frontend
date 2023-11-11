@@ -3,13 +3,11 @@ import AuthForm from '../AuthForm/AuthForm';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { useNavigate } from 'react-router-dom';
 
-function Login({
-  handleLogin,
-  isLoginErr
-}) {
+function Login({ handleLogin }) {
   const {
     values,
     handleChange,
+    errors,
     isValid,
     resetForm,
     setValues,
@@ -48,8 +46,7 @@ function Login({
       btnTransitText='Ещё не зарегистрированы?&nbsp;'
       isValid={isValid}
       isBtnEnabled={isBtnEnabled}
-      onSubmit={onSubmit}
-      isErr={isLoginErr} >
+      onSubmit={onSubmit} >
       <label
         className='auth__label auth__label_type_email'
         htmlFor='emailInput'>
@@ -57,12 +54,24 @@ function Login({
       </label>
       <input
         type='email'
-        className='auth__input auth__input_type_email'
+        className={
+          errors.emailInput
+            ? 'auth__input auth__input_type_email auth__input_type_error'
+            : 'auth__input auth__input_type_email'
+        }
         id='emailInput'
         name='emailInput'
         required
         value={values.emailInput || ''}
         onChange={handleChange} />
+      <p
+        className={
+          isValid
+            ? `auth__text-error auth__text-error_type_sign-in`
+            : `auth__text-error auth__text-error_type_sign-in auth__text-error_active`
+        } >
+          {errors.emailInput}
+      </p>
       <label
         className='auth__label auth__label_type_password'
         htmlFor='passwordInput'>
@@ -71,7 +80,7 @@ function Login({
       <input
         type='password'
         className={
-          isLoginErr
+          errors.passwordInput
             ? 'auth__input auth__input_type_password auth__input_type_error'
             : 'auth__input auth__input_type_password'
         }
@@ -80,6 +89,14 @@ function Login({
         required
         value={values.passwordInput || ''}
         onChange={handleChange} />
+      <p
+        className={
+          isValid
+            ? `auth__text-error auth__text-error_type_sign-in`
+            : `auth__text-error auth__text-error_type_sign-in auth__text-error_active`
+        } >
+          {errors.passwordInput}
+    </p>
     </AuthForm>
   );
 }

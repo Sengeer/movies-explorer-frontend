@@ -9,7 +9,7 @@ import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
 function Profile({
   handleSubmit,
-  isEditErr,
+  isProfileErr,
   handleExit
 }) {
   const {
@@ -95,7 +95,7 @@ function Profile({
             onChange={handleChange} />
           <p
             className={
-              isEditErr
+              isProfileErr
                 ? 'profile__text-error'
                 : 'profile__text-error profile__text-error_hidden'
             } >

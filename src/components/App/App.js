@@ -21,6 +21,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
+import ErrorTooltip from '../ErrorTooltip/ErrorTooltip';
 import { getAllMovies } from '../../utils/MoviesApi';
 import {
   createUser,
@@ -37,7 +38,16 @@ import {
   getWrite,
   clearAll
 } from '../../utils/ControlLocalStorage';
-import { SearchKeys } from '../../utils/Constants'
+import {
+  SearchKeys,
+  UnauthorizedTextForAuth,
+  UnauthorizedTextForIdentification,
+  ConflictTextForRegister,
+  BadRequestTextForRegister,
+  ConflictTextForChangeUser,
+  BadRequestTextForChangeUser,
+  BadRequestTextForCommon
+} from '../../utils/Constants'
 
 function App() {
   const [appSize, setAppSize] = useState('desktop');
@@ -45,20 +55,49 @@ function App() {
   const [querySaved, setQuerySaved] = useState(getWrite('querySaved') || '');
   const [isSearchRunning, setIsSearchRunning] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
-  const [isRegisterErr, setIsRegisterErr] = useState(false);
-  const [isLoginErr, setIsLoginErr] = useState(false);
-  const [isEditErr, setIsEditErr] = useState(false);
+  const [isProfileErr, setIsProfileErr] = useState(false);
   const [foundMovies, setFoundMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
   const [isShortMain, setIsShortMain] = useState(getWrite('isShortMain') || Boolean());
   const [isShortSaved, setIsShortSaved] = useState(getWrite('isShortSaved') || Boolean());
+  const [errTooltipText, setErrTooltipText] = useState('');
   const [rowIndex, setRowIndex] = useState(0);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
   const [loggedIn, setLoggedIn] = useState(getWrite('loggedIn'));
   const [currentUser, setCurrentUser] = useState({ _id: '', email: '', name: '' });
   const initialCards = foundMovies.slice(0, rowIndex);
 
+  const MODE = process.env.REACT_APP_MODE;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const baseUrl = MODE === 'production'
+  ? BASE_URL
+  : 'http://localhost:3000'
+
   const navigate = useNavigate();
+
+  function handleCloseErrTooltip() {
+    setErrTooltipText('');
+  }
+
+  function handleError(err) {
+    if ((err.status === 401) && (err.url === `${baseUrl}/signin`)) {
+      setErrTooltipText(UnauthorizedTextForAuth);
+    } else if ((err.status === 401) && (err.url === `${baseUrl}/users/me`)) {
+      setErrTooltipText(UnauthorizedTextForIdentification);
+    } else if ((err.status === 409) && (err.url === `${baseUrl}/signup`)) {
+      setErrTooltipText(ConflictTextForRegister);
+    } else if ((err.status === 400) && (err.url === `${baseUrl}/signup`)) {
+      setErrTooltipText(BadRequestTextForRegister);
+    } else if ((err.status === 409) && (err.url === `${baseUrl}/users/me`)) {
+      setErrTooltipText(ConflictTextForChangeUser);
+    } else if ((err.status === 400) && (err.url === `${baseUrl}/users/me`)) {
+      setErrTooltipText(BadRequestTextForChangeUser);
+      setIsProfileErr(true);
+    } else {
+      setErrTooltipText(BadRequestTextForCommon);
+    };
+    console.error(err);
+  }
 
   function refreshPage() {
     navigate(0);
@@ -85,12 +124,9 @@ function App() {
     changeUserInfo(newUserData)
       .then(userData => {
         setCurrentUser(userData);
-        setIsEditErr(false);
+        setIsProfileErr(false);
       })
-      .catch(e => {
-        setIsEditErr(true);
-        console.error(e);
-      });
+      .catch(handleError);
   }
 
   function handleRemoveMovie(movie) {
@@ -144,7 +180,7 @@ function App() {
         .then(userData => {
           setCurrentUser(userData);
         })
-        .catch(console.error);
+        .catch(handleError);
     };
   };
 
@@ -160,15 +196,11 @@ function App() {
           setWrite('loggedIn', true);
           navigate('/movies', { replace: true });
           refreshPage();
-          setIsLoginErr(false);
         } else {
-          setIsLoginErr(true);
+          return;
         };
       })
-      .catch(e => {
-        setIsLoginErr(true);
-        console.error(e);
-      });
+      .catch(handleError);
   }
 
   function handleRegister(registerData) {
@@ -178,13 +210,10 @@ function App() {
           handleLogin(registerData);
           setLoggedIn(true);
         } else {
-          setIsRegisterErr(true);
+          return;
         };
       })
-      .catch(e => {
-        setIsRegisterErr(true);
-        console.error(e);
-      });
+      .catch(handleError);
   }
 
   function handleFindMovies(array, query, isShort) {
@@ -345,17 +374,24 @@ function App() {
             appSize={appSize}
             isAuthorized={loggedIn}
             pageName={'main'} />
+          <ErrorTooltip
+            errTooltipText={errTooltipText}
+            onClose={handleCloseErrTooltip} />
           <Main />
           <Footer />
         </>
       } />
       <Route path='/movies' element={
         <CurrentUserContext.Provider value={currentUser}>
+          <ErrorTooltip />
           <ProtectedRouteElement element={Header}
             appSize={appSize}
             isAuthorized={loggedIn}
             pageName={'movies'}
             loggedIn={loggedIn} />
+          <ErrorTooltip
+            errTooltipText={errTooltipText}
+            onClose={handleCloseErrTooltip} />
           <ProtectedRouteElement element={Movies}
             handleSubmit={handleSearch}
             onChange={setQuery}
@@ -387,6 +423,9 @@ function App() {
             isAuthorized={loggedIn}
             pageName={'saved'}
             loggedIn={loggedIn} />
+          <ErrorTooltip
+            errTooltipText={errTooltipText}
+            onClose={handleCloseErrTooltip} />
           <ProtectedRouteElement element={SavedMovies}
             handleSubmit={
               () => setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')))
@@ -413,26 +452,37 @@ function App() {
             isAuthorized={loggedIn}
             pageName={'profile'}
             loggedIn={loggedIn} />
+          <ErrorTooltip
+            errTooltipText={errTooltipText}
+            onClose={handleCloseErrTooltip} />
           <ProtectedRouteElement element={Profile}
             handleSubmit={handleChangeUserInfo}
-            isEditErr={isEditErr}
+            isProfileErr={isProfileErr}
             handleExit={handleExit}
             loggedIn={loggedIn} />
         </CurrentUserContext.Provider>
       } />
       <Route path='/signin' element={
         loggedIn
-          ? <Navigate to='/' replace/>
-          : <Login
-              handleLogin={handleLogin}
-              isLoginErr={isLoginErr} />
+          ? <Navigate to='/' replace />
+          : <>
+              <ErrorTooltip
+                errTooltipText={errTooltipText}
+                onClose={handleCloseErrTooltip} />
+              <Login
+                handleLogin={handleLogin} />
+            </>
       } />
       <Route path='/signup' element={
         loggedIn
           ? <Navigate to='/' replace/>
-          : <Register
-              handleRegister={handleRegister}
-              isRegisterErr={isRegisterErr} />
+          : <>
+              <ErrorTooltip
+                errTooltipText={errTooltipText}
+                onClose={handleCloseErrTooltip} />
+              <Register
+                handleRegister={handleRegister} />
+            </>
       } />
     </Routes>
   );

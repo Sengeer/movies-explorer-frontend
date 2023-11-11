@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Navigation.css';
+import Popup from '../Popup/Popup';
 
 function Navigation({
   isOpenNav,
@@ -26,20 +26,16 @@ function Navigation({
   }
 
   return (
-    <div
-      className={
-        isOpenNav
-          ? 'navigation navigation_open'
-          : 'navigation'
-      } >
-      <nav
-        className='navigation__container' >
+    <Popup
+      isOpen={isOpenNav}
+      name='nav'
+      onClose={handleCloseNav} >
         <button
           type='button'
           className={
             pageName === 'main'
-              ? 'button navigation__btn navigation__btn_type_presentation navigation__btn_active'
-              : 'button navigation__btn navigation__btn_type_presentation'
+              ? 'button popup__btn popup__btn_active'
+              : 'button popup__btn'
           }
           onClick={handleClickMain} >
             Главная
@@ -48,8 +44,8 @@ function Navigation({
           type='button'
           className={
             pageName === 'movies'
-              ? 'button navigation__btn navigation__btn_type_movies navigation__btn_active'
-              : 'button navigation__btn navigation__btn_type_movies'
+              ? 'button popup__btn popup__btn_active'
+              : 'button popup__btn'
           }
           onClick={handleClickMovies} >
             Фильмы
@@ -58,8 +54,8 @@ function Navigation({
           type='button'
           className={
             pageName === 'saved'
-              ? 'button navigation__btn navigation__btn_type_saved-movies navigation__btn_active'
-              : 'button navigation__btn navigation__btn_type_saved-movies'
+              ? 'button popup__btn popup__btn_active'
+              : 'button popup__btn'
           }
           onClick={handleClickSaved} >
             Сохранённые фильмы
@@ -71,13 +67,7 @@ function Navigation({
           onClick={handleClickProfile} >
             Аккаунт
         </button>
-      </nav>
-      <button
-        className='button navigation__close-btn'
-        type='button'
-        aria-label='Закрыть'
-        onClick={handleCloseNav} />
-    </div>
+    </Popup>
   );
 }
 
