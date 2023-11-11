@@ -111,12 +111,12 @@
   color: #ff4062;
 }
 
-.profile__text-error {
+.profile__text {
   margin: 0;
   padding: 0 0 20px 0;
   visibility: visible;
   opacity: 1;
-  color: #ff004c;
+  color: #2be080;
   text-align: center;
   font-size: 11px;
   font-weight: 400;
@@ -126,7 +126,7 @@
   transition: all ease-in-out 0.2s;
 }
 
-.profile__text-error_hidden {
+.profile__text_hidden {
   visibility: hidden;
   opacity: 0;
 }

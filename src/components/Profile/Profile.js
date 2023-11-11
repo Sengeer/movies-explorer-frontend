@@ -9,7 +9,8 @@ import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
 function Profile({
   handleSubmit,
-  isProfileErr,
+  isProfileSaved,
+  handleProfileSaved,
   handleExit
 }) {
   const {
@@ -22,6 +23,7 @@ function Profile({
     setIsBtnEnabled
   } = useFormAndValidation()
   const [isDisableEdit, setIsDisableEdit] = useState(true);
+  const [isShowText, setIsShowText] = useState(true);
 
   const currentUser = useContext(CurrentUserContext);
 
@@ -50,6 +52,14 @@ function Profile({
       emailInput: currentUser.email
     });
   }, [currentUser, resetForm, setValues, setIsBtnEnabled])
+
+  useEffect(() => {
+    setIsShowText(true);
+    setTimeout(function() {
+      setIsShowText(false);
+      handleProfileSaved();
+    }, 3000);
+  }, [handleSubmit])
 
   return (
     <main>
@@ -94,11 +104,11 @@ function Profile({
             onChange={handleChange} />
           <p
             className={
-              isProfileErr
-                ? 'profile__text-error'
-                : 'profile__text-error profile__text-error_hidden'
+              isProfileSaved && isShowText
+                ? 'profile__text'
+                : 'profile__text profile__text_hidden'
             } >
-              При обновлении профиля произошла ошибка.
+              Данные успешно сохранены
           </p>
           <button
             className={

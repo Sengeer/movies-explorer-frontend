@@ -55,7 +55,7 @@ function App() {
   const [querySaved, setQuerySaved] = useState(getWrite('querySaved') || '');
   const [isSearchRunning, setIsSearchRunning] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
-  const [isProfileErr, setIsProfileErr] = useState(false);
+  const [isProfileSaved, setIsProfileSaved] = useState(false);
   const [foundMovies, setFoundMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
   const [isShortMain, setIsShortMain] = useState(getWrite('isShortMain') || Boolean());
@@ -92,7 +92,6 @@ function App() {
       setErrTooltipText(ConflictTextForChangeUser);
     } else if ((err.status === 400) && (err.url === `${baseUrl}/users/me`)) {
       setErrTooltipText(BadRequestTextForChangeUser);
-      setIsProfileErr(true);
     } else {
       setErrTooltipText(BadRequestTextForCommon);
     };
@@ -124,7 +123,7 @@ function App() {
     changeUserInfo(newUserData)
       .then(userData => {
         setCurrentUser(userData);
-        setIsProfileErr(false);
+        setIsProfileSaved(true);
       })
       .catch(handleError);
   }
@@ -458,7 +457,8 @@ function App() {
             onClose={handleCloseErrTooltip} />
           <ProtectedRouteElement element={Profile}
             handleSubmit={handleChangeUserInfo}
-            isProfileErr={isProfileErr}
+            isProfileSaved={isProfileSaved}
+            handleProfileSaved={() => setIsProfileSaved(false)}
             handleExit={handleExit}
             loggedIn={loggedIn} />
         </CurrentUserContext.Provider>
