@@ -36,7 +36,7 @@ function Movies({
       {
         isPreloader
           ? <Preloader />
-          : !isPreloader && initialCards.length
+          : !isPreloader && initialCards.length && isSearchRunning
               ? (
                 <MoviesCardList
                   initialCards={initialCards}

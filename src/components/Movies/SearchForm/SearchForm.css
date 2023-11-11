@@ -112,7 +112,7 @@
   background-image: url(../../../images/icons/filter-btn.svg);
   background-size: contain;
   background-repeat: no-repeat;
-  transition: all cubic-bezier(.8,0,1,.2) 0.1s;
+  transition: all cubic-bezier(.8,0,1,.2) 0.15s;
 }
 
 @media (min-width: 664px) {

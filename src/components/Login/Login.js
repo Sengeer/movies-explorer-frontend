@@ -86,6 +86,7 @@ function Login({ handleLogin }) {
         }
         id='passwordInput'
         name='passwordInput'
+        minLength='8'
         required
         value={values.passwordInput || ''}
         onChange={handleChange} />

@@ -70,11 +70,10 @@ function Profile({
           </label>
           <input
             type='text'
+            pattern='[a-zA-Zа-яА-Я\- ]{2,30}'
             className='profile__input'
             id='nameInput'
             name='nameInput'
-            minLength='2'
-            maxLength='30'
             required
             disabled={isDisableEdit}
             value={values.nameInput || ''}

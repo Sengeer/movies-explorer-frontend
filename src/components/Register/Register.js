@@ -3,7 +3,7 @@ import AuthForm from '../AuthForm/AuthForm';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { useNavigate } from 'react-router-dom';
 
-function Register(handleRegister) {
+function Register({ handleRegister }) {
   const {
     values,
     handleChange,
@@ -113,6 +113,7 @@ function Register(handleRegister) {
         }
         id='passwordInput'
         name='passwordInput'
+        minLength='8'
         required
         value={values.passwordInput || ''}
         onChange={handleChange} />
