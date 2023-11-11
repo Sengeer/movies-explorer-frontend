@@ -54,6 +54,7 @@ function App() {
   const [query, setQuery] = useState(getWrite('query') || '');
   const [querySaved, setQuerySaved] = useState(getWrite('querySaved') || '');
   const [isSearchRunning, setIsSearchRunning] = useState(false);
+  const [isSearchRunningSaved, setIsSearchRunningSaved] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
   const [isProfileSaved, setIsProfileSaved] = useState(false);
   const [foundMovies, setFoundMovies] = useState([]);
@@ -264,6 +265,7 @@ function App() {
 
   function handleSavedMoviesForSearch(allMovies) {
     setIsPreloader(true);
+    setIsSearchRunningSaved(true);
     getUserMovies()
       .then(savedMoviesData => {
         setWrite('savedMovies', savedMoviesData);
@@ -431,6 +433,8 @@ function App() {
             }
             onChange={setQuerySaved}
             searchValue={querySaved}
+            isSearchRunningSaved={isSearchRunningSaved}
+            isSearchErr={isSearchErr}
             initialCards={initialCards}
             isPreloader={isPreloader}
             handleClickDelete={handleCardDelete}
