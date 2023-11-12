@@ -27,6 +27,12 @@ function Profile({
 
   const currentUser = useContext(CurrentUserContext);
 
+  function handleDisableBtn(e) {
+    if ((e.target.value === currentUser.name) || (e.target.value === currentUser.email)) {
+      setIsBtnEnabled(false);
+    }
+  }
+
   function onSubmit(e) {
     e.preventDefault();
     handleSubmit({
@@ -87,22 +93,27 @@ function Profile({
             required
             disabled={isDisableEdit}
             value={values.nameInput || ''}
-            onChange={handleChange} />
+            onChange={(e) => {
+              handleChange(e);
+              handleDisableBtn(e);
+            }} />
           <label
             className='profile__label'
             htmlFor='emailInput'>
               E-mail
           </label>
           <input
-            type='text'
-            pattern='^\S+@\S+\.\S+$'
+            type='email'
             className='profile__input'
             id='emailInput'
             name='emailInput'
             required
             disabled={isDisableEdit}
             value={values.emailInput || ''}
-            onChange={handleChange} />
+            onChange={(e) => {
+              handleChange(e);
+              handleDisableBtn(e);
+            }} />
           <p
             className={
               isProfileSaved && isShowText
@@ -130,7 +141,8 @@ function Profile({
               : 'button profile__btn profile__btn_hidden profile__btn_type_edit'
           }
           type='button'
-          onClick={onClickEdit} >
+          onClick={onClickEdit}
+          disabled={isBtnEnabled} >
             Редактировать
         </button>
         <button
