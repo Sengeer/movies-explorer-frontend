@@ -57,6 +57,7 @@ function App() {
   const [isSearchRunningSaved, setIsSearchRunningSaved] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
   const [isProfileSaved, setIsProfileSaved] = useState(false);
+  const [savedMovies, setIsSavedMovies] = useState(getWrite('savedMovies') || [])
   const [foundMovies, setFoundMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
   const [isShortMain, setIsShortMain] = useState(getWrite('isShortMain') || Boolean());
@@ -159,19 +160,19 @@ function App() {
   }
 
   function handleCardClick(movie) {
-    if (movie.isLiked) {
-      handleAddMovie(movie);
-    } else {
+    const isLiked = savedMovies.some(item => (item.movieId || item.id) === movie.id);
+
+    if (isLiked) {
+      const nextMovies = savedMovies.filter(item => (item.movieId || item.id) !== movie.id);
       handleRemoveMovie(movie);
+      setIsSavedMovies(nextMovies);
+      setWrite('savedMovies', nextMovies)
+    } else {
+      const nextMovies = [...savedMovies, movie];
+      handleAddMovie(movie);
+      setIsSavedMovies(nextMovies);
+      setWrite('savedMovies', nextMovies)
     };
-    const nextMovies = foundMovies.map((item, index) => {
-      if (index++ === movie._id) {
-        return movie;
-      } else {
-        return item;
-      }
-    });
-    setFoundMovies(nextMovies);
   }
 
   function handleUserIdentification() {
@@ -415,6 +416,7 @@ function App() {
               setIsShortMain(!isShortMain);
               handleSearch();
             }}
+            savedMovies={savedMovies}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Footer}
             isPreloader={isPreloader}
@@ -456,8 +458,10 @@ function App() {
             handleClickShort={() => {
               setWrite('isShortSaved', !isShortSaved);
               setIsShortSaved(!isShortSaved);
+              setIsSearchRunningSaved(true);
               setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')));
             }}
+            savedMovies={savedMovies}
             loggedIn={loggedIn} />
         </CurrentUserContext.Provider>
       } />

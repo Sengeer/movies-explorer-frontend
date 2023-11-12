@@ -15,13 +15,11 @@ function SavedMovies({
   handleClickDelete,
   handleSearch,
   isShort,
-  handleClickShort
+  handleClickShort,
+  savedMovies
 }) {
   useEffect(() => {
     handleSearch()
-    return () => {
-      handleSearch();
-    }
   }, [])
 
   if (isPreloader) {
@@ -45,7 +43,8 @@ function SavedMovies({
               <MoviesCardList
                 initialCards={initialCards}
                 handleClickDelete={handleClickDelete}
-                isSavedMovies={true} />
+                isSavedMovies={true}
+                savedMovies={savedMovies} />
             )
             : null
         }

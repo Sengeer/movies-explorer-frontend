@@ -8,7 +8,8 @@ function MoviesCardList({
   isCompletedMore,
   handleClickAdd,
   handleClickDelete,
-  isSavedMovies
+  isSavedMovies,
+  savedMovies
 }) {
   return (
     <section className='movies__place' >
@@ -19,7 +20,8 @@ function MoviesCardList({
             card={card}
             handleClickAdd={handleClickAdd}
             handleClickDelete={handleClickDelete}
-            isSavedMovies={isSavedMovies} />
+            isSavedMovies={isSavedMovies}
+            savedMovies={savedMovies} />
         ))}
       </ul>
       <div

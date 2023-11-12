@@ -17,7 +17,8 @@ function Movies({
   handleClickAdd,
   handleSearch,
   isShort,
-  handleClickShort
+  handleClickShort,
+  savedMovies
 }) {
   useEffect(() => {
     handleSearch()
@@ -45,7 +46,8 @@ function Movies({
                 onMore={onMore}
                 isCompletedMore={isCompletedMore}
                 handleClickAdd={handleClickAdd}
-                isSavedMovies={false} />
+                isSavedMovies={false}
+                savedMovies={savedMovies} />
               ) : null
         }
       <p

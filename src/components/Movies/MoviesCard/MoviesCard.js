@@ -5,9 +5,9 @@ function MoviesCard({
   card,
   handleClickAdd,
   handleClickDelete,
-  isSavedMovies
+  isSavedMovies,
+  savedMovies
 }) {
-
   function toHoursAndMinutes(totalMinutes) {
     const minutes = totalMinutes % 60;
     const hours = Math.floor(totalMinutes / 60);
@@ -15,20 +15,15 @@ function MoviesCard({
     return `${hours ? `${hours.toString()}ч ` : ''}${minutes ? `${minutes.toString()}м` : ''}`;
   }
 
+  const isLiked = savedMovies.some(item => (item.movieId || item.id) === card.id);
+
   function onClickAdd() {
-    if (!card.isLiked) {
-      card.isLiked = true;
-      handleClickAdd(card);
-    } else {
-      card.isLiked = false;
-      handleClickAdd(card);
-    };
+    handleClickAdd(card);
   }
 
   function onClickDelete() {
     handleClickDelete(card);
   }
-
 
   return (
     <li className='movies__card' >
@@ -64,7 +59,7 @@ function MoviesCard({
           :
             <button
               className={
-                card.isLiked
+                isLiked
                   ? 'movies__card-btn movies__card-btn_active movies__card-btn_type_saved'
                   : 'movies__card-btn movies__card-btn_active movies__card-btn_type_save'
               }
