@@ -53,7 +53,8 @@ function Login({ handleLogin }) {
           E-mail
       </label>
       <input
-        type='email'
+        type='text'
+        pattern='^\S+@\S+\.\S+$'
         className={
           errors.emailInput
             ? 'auth__input auth__input_type_email auth__input_type_error'
