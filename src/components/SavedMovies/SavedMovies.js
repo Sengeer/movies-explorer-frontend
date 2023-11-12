@@ -19,6 +19,9 @@ function SavedMovies({
 }) {
   useEffect(() => {
     handleSearch()
+    return () => {
+      handleSearch();
+    }
   }, [])
 
   if (isPreloader) {

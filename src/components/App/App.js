@@ -408,13 +408,7 @@ function App() {
             onMore={handleMore}
             handleClickAdd={handleCardClick}
             isCompletedMore={isCompletedMore}
-            handleSearch={() => {
-              setWrite('querySaved', '');
-              setQuerySaved('');
-              setWrite('isShortSaved', false);
-              setIsShortSaved(false);
-              handleSavedMoviesForSearch();
-            }}
+            handleSearch={handleSearch}
             isShort={isShortMain}
             handleClickShort={() => {
               setWrite('isShortMain', !isShortMain);
@@ -451,7 +445,13 @@ function App() {
             initialCards={initialCards}
             isPreloader={isPreloader}
             handleClickDelete={handleCardDelete}
-            handleSearch={handleSavedMoviesForSearch}
+            handleSearch={() => {
+              setWrite('querySaved', '');
+              setQuerySaved('');
+              setWrite('isShortSaved', false);
+              setIsShortSaved(false);
+              handleSavedMoviesForSearch();
+            }}
             isShort={isShortSaved}
             handleClickShort={() => {
               setWrite('isShortSaved', !isShortSaved);
