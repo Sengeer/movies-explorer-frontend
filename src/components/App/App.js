@@ -408,7 +408,13 @@ function App() {
             onMore={handleMore}
             handleClickAdd={handleCardClick}
             isCompletedMore={isCompletedMore}
-            handleSearch={handleSearch}
+            handleSearch={() => {
+              setWrite('querySaved', '');
+              setQuerySaved('');
+              setWrite('isShortSaved', false);
+              setIsShortSaved(false);
+              handleSavedMoviesForSearch();
+            }}
             isShort={isShortMain}
             handleClickShort={() => {
               setWrite('isShortMain', !isShortMain);
