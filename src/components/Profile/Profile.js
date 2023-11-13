@@ -104,7 +104,8 @@ function Profile({
               E-mail
           </label>
           <input
-            type='email'
+            type='text'
+            pattern='^\S+@\S+\.\S+$'
             className='profile__input'
             id='emailInput'
             name='emailInput'
