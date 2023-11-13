@@ -39,14 +39,15 @@ import {
   clearAll
 } from '../../utils/ControlLocalStorage';
 import {
-  SearchKeys,
-  UnauthorizedTextForAuth,
-  UnauthorizedTextForIdentification,
-  ConflictTextForRegister,
-  BadRequestTextForRegister,
-  ConflictTextForChangeUser,
-  BadRequestTextForChangeUser,
-  BadRequestTextForCommon
+  BASE_URL,
+  SEARCH_KEYS,
+  UNAUTHORIZED_TEXT_FOR_AUTH,
+  UNAUTHORIZED_TEXT_FOR_IDENTIFICATION,
+  CONFLICT_TEXT_FOR_REGISTER,
+  BAD_REQUEST_TEXT_FOR_REGISTER,
+  CONFLICT_TEXT_FOR_CHANGE_USER,
+  BAD_REQUEST_TEXT_FOR_CHANGE_USER,
+  BAD_REQUEST_TEXT_FOR_COMMON
 } from '../../utils/Constants'
 
 function App() {
@@ -70,12 +71,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ _id: '', email: '', name: '' });
   const initialCards = foundMovies.slice(0, cardsIndex);
 
-  const MODE = process.env.REACT_APP_MODE;
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const baseUrl = MODE === 'production'
-  ? BASE_URL
-  : 'http://localhost:3000'
-
   const navigate = useNavigate();
 
   function handleCloseErrTooltip() {
@@ -83,20 +78,20 @@ function App() {
   }
 
   function handleError(err) {
-    if ((err.status === 401) && (err.url === `${baseUrl}/signin`)) {
-      setErrTooltipText(UnauthorizedTextForAuth);
-    } else if ((err.status === 401) && (err.url === `${baseUrl}/users/me`)) {
-      setErrTooltipText(UnauthorizedTextForIdentification);
-    } else if ((err.status === 409) && (err.url === `${baseUrl}/signup`)) {
-      setErrTooltipText(ConflictTextForRegister);
-    } else if ((err.status === 400) && (err.url === `${baseUrl}/signup`)) {
-      setErrTooltipText(BadRequestTextForRegister);
-    } else if ((err.status === 409) && (err.url === `${baseUrl}/users/me`)) {
-      setErrTooltipText(ConflictTextForChangeUser);
-    } else if ((err.status === 400) && (err.url === `${baseUrl}/users/me`)) {
-      setErrTooltipText(BadRequestTextForChangeUser);
+    if ((err.status === 401) && (err.url === `${BASE_URL}/signin`)) {
+      setErrTooltipText(UNAUTHORIZED_TEXT_FOR_AUTH);
+    } else if ((err.status === 401) && (err.url === `${BASE_URL}/users/me`)) {
+      setErrTooltipText(UNAUTHORIZED_TEXT_FOR_IDENTIFICATION);
+    } else if ((err.status === 409) && (err.url === `${BASE_URL}/signup`)) {
+      setErrTooltipText(CONFLICT_TEXT_FOR_REGISTER);
+    } else if ((err.status === 400) && (err.url === `${BASE_URL}/signup`)) {
+      setErrTooltipText(BAD_REQUEST_TEXT_FOR_REGISTER);
+    } else if ((err.status === 409) && (err.url === `${BASE_URL}/users/me`)) {
+      setErrTooltipText(CONFLICT_TEXT_FOR_CHANGE_USER);
+    } else if ((err.status === 400) && (err.url === `${BASE_URL}/users/me`)) {
+      setErrTooltipText(BAD_REQUEST_TEXT_FOR_CHANGE_USER);
     } else {
-      setErrTooltipText(BadRequestTextForCommon);
+      setErrTooltipText(BAD_REQUEST_TEXT_FOR_COMMON);
     };
     console.error(err);
   }
@@ -229,11 +224,11 @@ function App() {
     return array.filter(item => {
       let isFound = [];
       if (isShort && (item.duration <= 40)) {
-        isFound = SearchKeys.map(
+        isFound = SEARCH_KEYS.map(
           key => item[key].toLowerCase().indexOf(query.toLowerCase()) !== -1
         );
       } else if (!isShort) {
-        isFound = SearchKeys.map(
+        isFound = SEARCH_KEYS.map(
           key => item[key].toLowerCase().indexOf(query.toLowerCase()) !== -1
         );
       };

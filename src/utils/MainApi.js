@@ -1,13 +1,8 @@
-const MODE = process.env.REACT_APP_MODE;
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+import { BASE_URL } from '../utils/Constants';
 
 export const header = {
   'Content-Type': 'application/json'
 }
-
-const baseUrl = MODE === 'production'
-  ? BASE_URL
-  : 'http://localhost:3000'
 
 const checkResponse = (res) => {
   if (res.ok) {
@@ -22,7 +17,7 @@ export const request = (url, options) => {
 }
 
 export function createUser(registerData) {
-  return request(`${baseUrl}/signup`, {
+  return request(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: header,
     body: JSON.stringify(registerData)
@@ -30,7 +25,7 @@ export function createUser(registerData) {
 }
 
 export function authorizeUser(authData) {
-  return request(`${baseUrl}/signin`, {
+  return request(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: header,
     body: JSON.stringify(authData),
@@ -39,7 +34,7 @@ export function authorizeUser(authData) {
 }
 
 export function deauthorizeUser() {
-  return request(`${baseUrl}/signout`, {
+  return request(`${BASE_URL}/signout`, {
     method: 'POST',
     headers: header,
     credentials: 'include'
@@ -47,7 +42,7 @@ export function deauthorizeUser() {
 }
 
 export function identification() {
-  return request(`${baseUrl}/users/me`, {
+  return request(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: header,
     credentials: 'include'
@@ -55,7 +50,7 @@ export function identification() {
 }
 
 export function changeUserInfo(userData) {
-  return request(`${baseUrl}/users/me`, {
+  return request(`${BASE_URL}/users/me`, {
     method: 'PATCH',
     headers: header,
     body: JSON.stringify(userData),
@@ -64,7 +59,7 @@ export function changeUserInfo(userData) {
 }
 
 export function getUserMovies() {
-  return request(`${baseUrl}/movies`, {
+  return request(`${BASE_URL}/movies`, {
     method: 'GET',
     headers: header,
     credentials: 'include'
@@ -72,7 +67,7 @@ export function getUserMovies() {
 }
 
 export function addUserMovie(movieData) {
-  return request(`${baseUrl}/movies`, {
+  return request(`${BASE_URL}/movies`, {
     method: 'POST',
     headers: header,
     body: JSON.stringify(movieData),
@@ -81,7 +76,7 @@ export function addUserMovie(movieData) {
 }
 
 export function removeUserMovie(movieId) {
-  return request(`${baseUrl}/movies/${movieId}`, {
+  return request(`${BASE_URL}/movies/${movieId}`, {
     method: 'DELETE',
     headers: header,
     credentials: 'include'
