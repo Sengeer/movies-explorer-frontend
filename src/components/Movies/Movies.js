@@ -15,13 +15,13 @@ function Movies({
   onMore,
   isCompletedMore,
   handleClickAdd,
-  handleSearch,
+  handleTransition,
   isShort,
   handleClickShort,
   savedMovies
 }) {
   useEffect(() => {
-    handleSearch()
+    handleTransition()
   }, [])
 
   return (

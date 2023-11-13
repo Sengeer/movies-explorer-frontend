@@ -13,13 +13,13 @@ function SavedMovies({
   initialCards,
   isPreloader,
   handleClickDelete,
-  handleSearch,
+  handleTransition,
   isShort,
   handleClickShort,
   savedMovies
 }) {
   useEffect(() => {
-    handleSearch()
+    handleTransition()
   }, [])
 
   if (isPreloader) {

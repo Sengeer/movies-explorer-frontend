@@ -57,18 +57,18 @@ function App() {
   const [isSearchRunningSaved, setIsSearchRunningSaved] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
   const [isProfileSaved, setIsProfileSaved] = useState(false);
-  const [savedMovies, setIsSavedMovies] = useState(getWrite('savedMovies') || [])
+  const [savedMovies, setSavedMovies] = useState(getWrite('savedMovies') || [])
   const [foundMovies, setFoundMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isShortMain, setIsShortMain] = useState(getWrite('isShortMain') || Boolean());
   const [isShortSaved, setIsShortSaved] = useState(getWrite('isShortSaved') || Boolean());
   const [errTooltipText, setErrTooltipText] = useState('');
-  const [rowIndex, setRowIndex] = useState(0);
+  const [cardsIndex, setCardsIndex] = useState(0);
   const [isCompletedMore, setIsCompletedMore] = useState(false);
   const [loggedIn, setLoggedIn] = useState(getWrite('loggedIn'));
   const [currentUser, setCurrentUser] = useState({ _id: '', email: '', name: '' });
-  const initialCards = foundMovies.slice(0, rowIndex);
+  const initialCards = foundMovies.slice(0, cardsIndex);
 
   const MODE = process.env.REACT_APP_MODE;
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -116,6 +116,7 @@ function App() {
   }
 
   function handleExit() {
+    setFoundMovies('');
     deauthorizeUser().catch(console.error);
     setLoggedIn(false);
     clearAll();
@@ -168,12 +169,12 @@ function App() {
     if (isLiked) {
       const nextMovies = savedMovies.filter(item => (item.movieId || item.id) !== movie.id);
       handleRemoveMovie(movie);
-      setIsSavedMovies(nextMovies);
+      setSavedMovies(nextMovies);
       setWrite('savedMovies', nextMovies)
     } else {
       const nextMovies = [...savedMovies, movie];
       handleAddMovie(movie);
-      setIsSavedMovies(nextMovies);
+      setSavedMovies(nextMovies);
       setWrite('savedMovies', nextMovies)
     };
   }
@@ -264,7 +265,7 @@ function App() {
     } else {
       const isShort = getWrite('isShortSaved');
       const foundMovies = handleFindMovies(savedMovies, querySaved, isShort);
-      setRowIndex(foundMovies.length);
+      setCardsIndex(foundMovies.length);
       if (foundMovies.length) {
         setWrite('querySaved', querySaved);
       };
@@ -278,6 +279,7 @@ function App() {
     getUserMovies()
       .then(savedMoviesData => {
         setWrite('savedMovies', savedMoviesData);
+        setSavedMovies(savedMoviesData);
         setFoundMovies(handleFindAndSavedQuery(savedMoviesData, allMovies));
         setIsSearchErr(false);
       })
@@ -289,9 +291,9 @@ function App() {
 
   function handleMore() {
     if (appSize === 'desktop') {
-      setRowIndex(rowIndex + 3);
+      setCardsIndex(cardsIndex + 3);
     } else {
-      setRowIndex(rowIndex + 2);
+      setCardsIndex(cardsIndex + 2);
     };
   }
 
@@ -321,28 +323,28 @@ function App() {
 
   function checkSize() {
     if (appSize === 'mobile') {
-      setRowIndex(5);
+      setCardsIndex(5);
     };
     if (appSize === 'tablet') {
-      setRowIndex(8);
+      setCardsIndex(8);
     };
     if (appSize === 'desktop') {
-      setRowIndex(12);
+      setCardsIndex(12);
     };
   }
 
   function handleAppSize(width) {
     if (width < 738) {
       setAppSize('mobile');
-      setRowIndex(5);
+      setCardsIndex(5);
     };
     if (width >= 738) {
       setAppSize('tablet');
-      setRowIndex(8);
+      setCardsIndex(8);
     };
     if (width >= 1200) {
       setAppSize('desktop');
-      setRowIndex(12);
+      setCardsIndex(12);
     };
   }
 
@@ -360,12 +362,12 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (rowIndex >= foundMovies.length) {
+    if (cardsIndex >= foundMovies.length) {
       setIsCompletedMore(true);
     } else {
       setIsCompletedMore(false);
     };
-  }, [rowIndex, foundMovies])
+  }, [cardsIndex, foundMovies])
 
   useEffect(() => {
     handleUserIdentification();
@@ -416,7 +418,7 @@ function App() {
             onMore={handleMore}
             handleClickAdd={handleCardClick}
             isCompletedMore={isCompletedMore}
-            handleSearch={handleSearch}
+            handleTransition={handleSearch}
             isShort={isShortMain}
             handleClickShort={() => {
               setWrite('isShortMain', !isShortMain);
@@ -454,7 +456,7 @@ function App() {
             initialCards={initialCards}
             isPreloader={isPreloader}
             handleClickDelete={handleCardDelete}
-            handleSearch={() => {
+            handleTransition={() => {
               setWrite('querySaved', '');
               setQuerySaved('');
               setWrite('isShortSaved', false);
