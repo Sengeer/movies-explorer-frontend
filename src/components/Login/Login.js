@@ -3,7 +3,10 @@ import AuthForm from '../AuthForm/AuthForm';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { useNavigate } from 'react-router-dom';
 
-function Login({ handleLogin }) {
+function Login({
+  handleLogin,
+  isLoading
+}) {
   const {
     values,
     handleChange,
@@ -12,7 +15,7 @@ function Login({ handleLogin }) {
     resetForm,
     setValues,
     isBtnEnabled,
-    setIsBtnEnabled
+    setIsBtnEnabled,
   } = useFormAndValidation();
 
   const navigate = useNavigate();
@@ -46,7 +49,8 @@ function Login({ handleLogin }) {
       btnTransitText='Ещё не зарегистрированы?&nbsp;'
       isValid={isValid}
       isBtnEnabled={isBtnEnabled}
-      onSubmit={onSubmit} >
+      onSubmit={onSubmit}
+      isLoading={isLoading} >
       <label
         className='auth__label auth__label_type_email'
         htmlFor='emailInput'>

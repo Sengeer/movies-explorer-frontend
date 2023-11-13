@@ -3,7 +3,10 @@ import AuthForm from '../AuthForm/AuthForm';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { useNavigate } from 'react-router-dom';
 
-function Register({ handleRegister }) {
+function Register({
+  handleRegister,
+  isLoading
+}) {
   const {
     values,
     handleChange,
@@ -47,7 +50,8 @@ function Register({ handleRegister }) {
       btnTransitText='Уже зарегистрированы?&nbsp;'
       isValid={isValid}
       isBtnEnabled={isBtnEnabled}
-      onSubmit={onSubmit} >
+      onSubmit={onSubmit}
+      isLoading={isLoading} >
       <label
         className='auth__label auth__label_type_name'
         htmlFor='nameInput'>

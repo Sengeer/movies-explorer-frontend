@@ -13,7 +13,8 @@ function AuthForm({
   isValid,
   isBtnEnabled,
   onSubmit,
-  children
+  children,
+  isLoading
 })
 {
   const navigate = useNavigate();
@@ -41,16 +42,17 @@ function AuthForm({
       <form
         className={`auth__form auth__form_type_${name}`}
         name={`${name}Form`}
-        onSubmit={onSubmit} >
+        onSubmit={onSubmit}
+        noValidate >
           {children}
         <button
           className={
-            isValid && isBtnEnabled
+            isValid && isBtnEnabled && !isLoading
               ? `submit-btn auth__submit-btn auth__submit-btn_type_${name}`
               : `submit-btn submit-btn_inactive auth__submit-btn auth__submit-btn_type_${name}`
           }
           type='submit'
-          disabled={!isBtnEnabled} >
+          disabled={!isBtnEnabled && isLoading} >
             {btnSubmit}
         </button>
       </form>

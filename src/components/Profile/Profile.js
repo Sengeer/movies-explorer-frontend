@@ -11,7 +11,8 @@ function Profile({
   handleSubmit,
   isProfileSaved,
   handleProfileSaved,
-  handleExit
+  handleExit,
+  isLoading
 }) {
   const {
     values,
@@ -126,11 +127,12 @@ function Profile({
             className={
               isDisableEdit
                 ? 'submit-btn submit-btn_inactive profile__submit-btn profile__submit-btn_hidden'
-                : isValid && isBtnEnabled
+                : isValid && isBtnEnabled && !isLoading
                   ? 'submit-btn profile__submit-btn'
                   : 'submit-btn submit-btn_inactive profile__submit-btn'
             }
-            type='submit' >
+            type='submit'
+            disabled={isLoading} >
               Сохранить
           </button>
         </form>

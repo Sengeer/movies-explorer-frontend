@@ -60,6 +60,7 @@ function App() {
   const [savedMovies, setIsSavedMovies] = useState(getWrite('savedMovies') || [])
   const [foundMovies, setFoundMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isShortMain, setIsShortMain] = useState(getWrite('isShortMain') || Boolean());
   const [isShortSaved, setIsShortSaved] = useState(getWrite('isShortSaved') || Boolean());
   const [errTooltipText, setErrTooltipText] = useState('');
@@ -122,12 +123,14 @@ function App() {
   }
 
   function handleChangeUserInfo(newUserData) {
+    setIsLoading(true);
     changeUserInfo(newUserData)
       .then(userData => {
         setCurrentUser(userData);
         setIsProfileSaved(true);
       })
-      .catch(handleError);
+      .catch(handleError)
+      .finally(() => setIsLoading(false))
   }
 
   function handleRemoveMovie(movie) {
@@ -186,6 +189,7 @@ function App() {
   };
 
   function handleLogin(authData) {
+    setIsLoading(true);
     authorizeUser({
       email: authData.email,
       password: authData.password
@@ -201,10 +205,12 @@ function App() {
           return;
         };
       })
-      .catch(handleError);
+      .catch(handleError)
+      .finally(() => setIsLoading(false))
   }
 
   function handleRegister(registerData) {
+    setIsLoading(true);
     createUser(registerData)
       .then(res => {
         if (res.statusCode !== 400) {
@@ -214,7 +220,8 @@ function App() {
           return;
         };
       })
-      .catch(handleError);
+      .catch(handleError)
+      .finally(() => setIsLoading(false))
   }
 
   function handleFindMovies(array, query, isShort) {
@@ -480,6 +487,7 @@ function App() {
             isProfileSaved={isProfileSaved}
             handleProfileSaved={() => setIsProfileSaved(false)}
             handleExit={handleExit}
+            isLoading={isLoading}
             loggedIn={loggedIn} />
         </CurrentUserContext.Provider>
       } />
@@ -491,7 +499,8 @@ function App() {
                 errTooltipText={errTooltipText}
                 onClose={handleCloseErrTooltip} />
               <Login
-                handleLogin={handleLogin} />
+                handleLogin={handleLogin}
+                isLoading={isLoading} />
             </>
       } />
       <Route path='/signup' element={
@@ -502,7 +511,8 @@ function App() {
                 errTooltipText={errTooltipText}
                 onClose={handleCloseErrTooltip} />
               <Register
-                handleRegister={handleRegister} />
+                handleRegister={handleRegister}
+                isLoading={isLoading} />
             </>
       } />
     </Routes>
