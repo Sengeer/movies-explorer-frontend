@@ -236,7 +236,6 @@ function App() {
     });
   }
 
-
   function handleFindAndSavedQuery(savedMovies, allMovies) {
     if (savedMovies.length && allMovies) {
       allMovies.map(item => {
