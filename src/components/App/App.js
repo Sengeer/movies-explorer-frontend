@@ -131,24 +131,11 @@ function App() {
   }
 
   function handleRemoveMovie(movie) {
-    getUserMovies()
-      .then(savedMovies => {
-        savedMovies.forEach(item => {
-          if (item.movieId === movie.id) {
-            return removeUserMovie(item._id).catch(console.error);
-          };
-        });
-      })
-      .catch(console.error);
-  }
-
-  function handleSavedMoviesForAdd() {
-    getUserMovies()
-      .then(savedMoviesData => {
-        setWrite('savedMovies', savedMoviesData);
-        setSavedMovies(savedMoviesData);
-      })
-      .catch(console.error);
+    savedMovies.forEach(item => {
+      if (item.movieId === movie.id) {
+        return removeUserMovie(item._id).catch(console.error);
+      };
+    });
   }
 
   function handleAddMovie(movie) {
@@ -165,7 +152,11 @@ function App() {
       nameRU: movie.nameRU,
       nameEN: movie.nameEN
     })
-      .then(handleSavedMoviesForAdd)
+      .then(newMovie=> {
+        const nextMovies = [...savedMovies, newMovie]
+        setWrite('savedMovies', nextMovies);
+        setSavedMovies(nextMovies);
+      })
       .catch(console.error);
   }
 
@@ -467,14 +458,14 @@ function App() {
               setQuerySaved('');
               setWrite('isShortSaved', false);
               setIsShortSaved(false);
-              handleSavedMoviesForSearch();
+              setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')));
             }}
             isShort={isShortSaved}
             handleClickShort={() => {
               setWrite('isShortSaved', !isShortSaved);
               setIsShortSaved(!isShortSaved);
               setIsSearchRunningSaved(true);
-              handleSavedMoviesForSearch();
+              setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')));
             }}
             savedMovies={savedMovies}
             loggedIn={loggedIn} />
