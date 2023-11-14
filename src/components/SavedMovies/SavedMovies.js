@@ -20,6 +20,9 @@ function SavedMovies({
 }) {
   useEffect(() => {
     handleTransition()
+    return () => {
+      handleTransition()
+    };
   }, [])
 
   if (isPreloader) {
