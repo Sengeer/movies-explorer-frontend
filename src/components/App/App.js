@@ -454,7 +454,7 @@ function App() {
           <ProtectedRouteElement element={SavedMovies}
             handleSubmit={
               () => {
-                setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')));
+                handleSavedMoviesForSearch();
                 setIsSearchRunningSaved(true);
               }
             }
@@ -477,7 +477,7 @@ function App() {
               setWrite('isShortSaved', !isShortSaved);
               setIsShortSaved(!isShortSaved);
               setIsSearchRunningSaved(true);
-              setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')));
+              handleSavedMoviesForSearch();
             }}
             savedMovies={savedMovies}
             loggedIn={loggedIn} />
