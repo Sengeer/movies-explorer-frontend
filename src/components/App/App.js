@@ -103,8 +103,9 @@ function App() {
   function handleCardDelete(movie) {
     removeUserMovie(movie._id)
       .then(() => {
-        const nextMovies = foundMovies.filter(i => i._id !== movie._id);
+        const nextMovies = savedMovies.filter(item => item._id !== movie._id);
         setWrite('savedMovies', nextMovies);
+        setSavedMovies(nextMovies);
         setFoundMovies(nextMovies);
       })
       .catch(console.error);
@@ -141,6 +142,15 @@ function App() {
       .catch(console.error);
   }
 
+  function handleSavedMoviesForAdd() {
+    getUserMovies()
+      .then(savedMoviesData => {
+        setWrite('savedMovies', savedMoviesData);
+        setSavedMovies(savedMoviesData);
+      })
+      .catch(console.error);
+  }
+
   function handleAddMovie(movie) {
     addUserMovie({
       country: movie.country,
@@ -155,6 +165,7 @@ function App() {
       nameRU: movie.nameRU,
       nameEN: movie.nameEN
     })
+      .then(handleSavedMoviesForAdd)
       .catch(console.error);
   }
 
@@ -167,10 +178,7 @@ function App() {
       setSavedMovies(nextMovies);
       setWrite('savedMovies', nextMovies)
     } else {
-      const nextMovies = [...savedMovies, movie];
       handleAddMovie(movie);
-      setSavedMovies(nextMovies);
-      setWrite('savedMovies', nextMovies)
     };
   }
 
@@ -270,18 +278,24 @@ function App() {
   }
 
   function handleSavedMoviesForSearch(allMovies) {
-    setIsPreloader(true);
-    getUserMovies()
-      .then(savedMoviesData => {
-        setWrite('savedMovies', savedMoviesData);
-        setSavedMovies(savedMoviesData);
-        setFoundMovies(handleFindAndSavedQuery(savedMoviesData, allMovies));
-        setIsSearchErr(false);
-      })
-      .catch((e) => {
-        setIsSearchErr(true);
-        console.error(e)
-      });
+    const savedMovies = getWrite('savedMovies');
+    if (savedMovies) {
+      setFoundMovies(handleFindAndSavedQuery(savedMovies, allMovies));
+      checkSize();
+    } else {
+      setIsPreloader(true);
+      getUserMovies()
+        .then(savedMoviesData => {
+          setWrite('savedMovies', savedMoviesData);
+          setSavedMovies(savedMoviesData);
+          setFoundMovies(handleFindAndSavedQuery(savedMoviesData, allMovies));
+          setIsSearchErr(false);
+        })
+        .catch((e) => {
+          setIsSearchErr(true);
+          console.error(e)
+        });
+    }
   }
 
   function handleMore() {
