@@ -53,7 +53,7 @@ import {
 function App() {
   const [appSize, setAppSize] = useState('desktop');
   const [query, setQuery] = useState(getWrite('query') || '');
-  const [querySaved, setQuerySaved] = useState(getWrite('querySaved') || '');
+  const [querySaved, setQuerySaved] = useState('');
   const [isSearchRunning, setIsSearchRunning] = useState(false);
   const [isSearchRunningSaved, setIsSearchRunningSaved] = useState(false);
   const [isSearchErr, setIsSearchErr] = useState(false);
@@ -270,9 +270,6 @@ function App() {
       const isShort = getWrite('isShortSaved');
       const foundMovies = handleFindMovies(savedMovies, querySaved, isShort);
       setCardsIndex(foundMovies.length);
-      if (foundMovies.length) {
-        setWrite('querySaved', querySaved);
-      };
       setIsPreloader(false);
       return foundMovies;
     };
@@ -467,7 +464,6 @@ function App() {
             isPreloader={isPreloader}
             handleClickDelete={handleCardDelete}
             handleTransition={() => {
-              setWrite('querySaved', '');
               setQuerySaved('');
               setWrite('isShortSaved', false);
               setIsShortSaved(false);
