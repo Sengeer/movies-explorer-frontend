@@ -220,6 +220,7 @@ function App() {
         if (res.statusCode !== 400) {
           handleLogin(registerData);
           setLoggedIn(true);
+          navigate('/movies', { replace: true });
         } else {
           return;
         };
