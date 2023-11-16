@@ -20,6 +20,8 @@ function Register({
 
   const navigate = useNavigate();
 
+  const handleEnter = (e) => (e.key === 'Enter' && !isValid) && e.preventDefault();
+
   function handleTransitClick() {
     navigate('/signin', { replace: false });
   }
@@ -68,6 +70,7 @@ function Register({
         id='nameInput'
         name='nameInput'
         required
+        onKeyDown={handleEnter}
         value={values.nameInput || ''}
         onChange={handleChange} />
       <p
@@ -94,6 +97,7 @@ function Register({
         id='emailInput'
         name='emailInput'
         required
+        onKeyDown={handleEnter}
         value={values.emailInput || ''}
         onChange={handleChange} />
       <p

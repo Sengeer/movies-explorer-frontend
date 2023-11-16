@@ -20,6 +20,8 @@ function Login({
 
   const navigate = useNavigate();
 
+  const handleEnter = (e) => (e.key === 'Enter' && !isValid) && e.preventDefault();
+
   function handleTransitClick() {
     navigate('/signup', { replace: false });
   }
@@ -67,6 +69,7 @@ function Login({
         id='emailInput'
         name='emailInput'
         required
+        onKeyDown={handleEnter}
         value={values.emailInput || ''}
         onChange={handleChange} />
       <p
@@ -93,6 +96,7 @@ function Login({
         name='passwordInput'
         minLength='8'
         required
+        onKeyDown={handleEnter}
         value={values.passwordInput || ''}
         onChange={handleChange} />
       <p

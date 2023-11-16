@@ -29,7 +29,7 @@ function Profile({
 
   const currentUser = useContext(CurrentUserContext);
 
-  const handleEnter = (e) => e.key === 'Enter' && e.preventDefault();
+  const handleEnter = (e) => (e.key === 'Enter' && !isBtnEnabled) && e.preventDefault();
 
   function handleDisableBtn(e) {
     if ((e.target.value === currentUser.name) || (e.target.value === currentUser.email)) {
