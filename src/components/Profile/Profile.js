@@ -17,6 +17,7 @@ function Profile({
   const {
     values,
     handleChange,
+    errors,
     isValid,
     setValues,
     resetForm,
@@ -28,6 +29,8 @@ function Profile({
 
   const currentUser = useContext(CurrentUserContext);
 
+  const handleEnter = (e) => e.key === 'Enter' && e.preventDefault();
+
   function handleDisableBtn(e) {
     if ((e.target.value === currentUser.name) || (e.target.value === currentUser.email)) {
       setIsBtnEnabled(false);
@@ -36,6 +39,7 @@ function Profile({
 
   function onSubmit(e) {
     e.preventDefault();
+
     handleSubmit({
       email: values.emailInput,
       name: values.nameInput
@@ -88,16 +92,29 @@ function Profile({
           <input
             type='text'
             pattern='[a-zA-Zа-яА-Я\- ]{2,30}'
-            className='profile__input'
+            className={
+              errors.nameInput
+                ? 'profile__input profile__input_type_error'
+                : 'profile__input'
+            }
             id='nameInput'
             name='nameInput'
             required
+            onKeyDown={handleEnter}
             disabled={isDisableEdit}
             value={values.nameInput || ''}
             onChange={(e) => {
               handleChange(e);
               handleDisableBtn(e);
             }} />
+          <p
+            className={
+              isValid
+                ? `profile__text-error`
+                : `profile__text-error profile__text-error_active`
+            } >
+              {errors.nameInput}
+          </p>
           <label
             className='profile__label'
             htmlFor='emailInput'>
@@ -106,16 +123,29 @@ function Profile({
           <input
             type='text'
             pattern='^\S+@\S+\.\S+$'
-            className='profile__input'
+            className={
+              errors.emailInput
+                ? 'profile__input profile__input_type_error'
+                : 'profile__input'
+            }
             id='emailInput'
             name='emailInput'
             required
+            onKeyDown={handleEnter}
             disabled={isDisableEdit}
             value={values.emailInput || ''}
             onChange={(e) => {
               handleChange(e);
               handleDisableBtn(e);
             }} />
+          <p
+            className={
+              isValid
+                ? `profile__text-error`
+                : `profile__text-error profile__text-error_active`
+            } >
+              {errors.emailInput}
+          </p>
           <p
             className={
               isProfileSaved && isShowText
