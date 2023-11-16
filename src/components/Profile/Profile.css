@@ -92,6 +92,7 @@
 }
 
 .profile__text-error:nth-last-child(3) {
+  padding: 1px 0 3.51px 0;
   border-bottom: none;
 }
 
