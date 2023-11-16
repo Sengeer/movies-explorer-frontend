@@ -101,6 +101,7 @@ function App() {
   }
 
   function handleCardDelete(movie) {
+    setIsLoading(true);
     removeUserMovie(movie._id)
       .then(() => {
         const nextMovies = savedMovies.filter(item => item._id !== movie._id);
@@ -108,7 +109,8 @@ function App() {
         setSavedMovies(nextMovies);
         setFoundMovies(nextMovies);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }
 
   function handleExit() {
@@ -127,13 +129,20 @@ function App() {
         setIsProfileSaved(true);
       })
       .catch(handleError)
-      .finally(() => setIsLoading(false))
+      .finally(() => setIsLoading(false));
   }
 
   function handleRemoveMovie(movie) {
     savedMovies.forEach(item => {
       if (item.movieId === movie.id) {
-        return removeUserMovie(item._id).catch(console.error);
+        return removeUserMovie(item._id)
+          .then(() => {
+            const nextMovies = savedMovies.filter(item => (item.movieId || item.id) !== movie.id);
+            setSavedMovies(nextMovies);
+            setWrite('savedMovies', nextMovies)
+          })
+          .catch(console.error)
+          .finally(() => setIsLoading(false));
       };
     });
   }
@@ -157,17 +166,16 @@ function App() {
         setWrite('savedMovies', nextMovies);
         setSavedMovies(nextMovies);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false))
   }
 
   function handleCardClick(movie) {
     const isLiked = savedMovies.some(item => (item.movieId || item.id) === movie.id);
+    setIsLoading(true);
 
     if (isLiked) {
-      const nextMovies = savedMovies.filter(item => (item.movieId || item.id) !== movie.id);
       handleRemoveMovie(movie);
-      setSavedMovies(nextMovies);
-      setWrite('savedMovies', nextMovies)
     } else {
       handleAddMovie(movie);
     };
@@ -423,6 +431,7 @@ function App() {
               handleSearch();
             }}
             savedMovies={savedMovies}
+            isLoading={isLoading}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Footer}
             isPreloader={isPreloader}

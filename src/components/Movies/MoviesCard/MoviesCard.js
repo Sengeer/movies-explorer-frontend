@@ -6,7 +6,8 @@ function MoviesCard({
   handleClickAdd,
   handleClickDelete,
   isSavedMovies,
-  savedMovies
+  savedMovies,
+  isLoading
 }) {
   function toHoursAndMinutes(totalMinutes) {
     const minutes = totalMinutes % 60;
@@ -59,7 +60,7 @@ function MoviesCard({
           :
             <button
               className={
-                isLiked
+                isLiked && !isLoading
                   ? 'movies__card-btn movies__card-btn_active movies__card-btn_type_saved'
                   : 'movies__card-btn movies__card-btn_active movies__card-btn_type_save'
               }
