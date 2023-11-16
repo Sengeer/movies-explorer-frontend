@@ -101,7 +101,6 @@ function App() {
   }
 
   function handleCardDelete(movie) {
-    setIsLoading(true);
     removeUserMovie(movie._id)
       .then(() => {
         const nextMovies = savedMovies.filter(item => item._id !== movie._id);
@@ -109,8 +108,7 @@ function App() {
         setSavedMovies(nextMovies);
         setFoundMovies(nextMovies);
       })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
+      .catch(console.error);
   }
 
   function handleExit() {
@@ -141,8 +139,7 @@ function App() {
             setSavedMovies(nextMovies);
             setWrite('savedMovies', nextMovies)
           })
-          .catch(console.error)
-          .finally(() => setIsLoading(false));
+          .catch(console.error);
       };
     });
   }
@@ -161,19 +158,16 @@ function App() {
       nameRU: movie.nameRU,
       nameEN: movie.nameEN
     })
-      .then(newMovie=> {
+      .then(newMovie => {
         const nextMovies = [...savedMovies, newMovie]
         setWrite('savedMovies', nextMovies);
         setSavedMovies(nextMovies);
       })
-      .catch(console.error)
-      .finally(() => setIsLoading(false))
+      .catch(console.error);
   }
 
   function handleCardClick(movie) {
     const isLiked = savedMovies.some(item => (item.movieId || item.id) === movie.id);
-    setIsLoading(true);
-
     if (isLiked) {
       handleRemoveMovie(movie);
     } else {
@@ -431,7 +425,6 @@ function App() {
               handleSearch();
             }}
             savedMovies={savedMovies}
-            isLoading={isLoading}
             loggedIn={loggedIn} />
           <ProtectedRouteElement element={Footer}
             isPreloader={isPreloader}

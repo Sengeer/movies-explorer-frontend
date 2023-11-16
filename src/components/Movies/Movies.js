@@ -18,8 +18,7 @@ function Movies({
   handleTransition,
   isShort,
   handleClickShort,
-  savedMovies,
-  isLoading
+  savedMovies
 }) {
   useEffect(() => {
     handleTransition()
@@ -48,8 +47,7 @@ function Movies({
                 isCompletedMore={isCompletedMore}
                 handleClickAdd={handleClickAdd}
                 isSavedMovies={false}
-                savedMovies={savedMovies}
-                isLoading={isLoading} />
+                savedMovies={savedMovies} />
               ) : null
         }
       <p
