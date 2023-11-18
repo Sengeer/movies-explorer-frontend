@@ -22,7 +22,55 @@
   opacity: 0.7;
 }
 
-.account-link {
+.button {
+  all: unset;
+  opacity: 1;
+  cursor: pointer;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.submit-btn {
+  all: unset;
+  visibility: visible;
+  margin: 0 30px;
+  padding: 0;
+  border: 0;
+  width: calc(100% - 60px);
+  height: 45px;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 1);
+  opacity: 1;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+
+.submit-btn:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 425px) {
+  .submit-btn {
+    font-size: 14px;
+    letter-spacing: -0.25px;
+  }
+}
+
+.submit-btn_inactive {
+  background-color: rgba(248, 248, 248, 1);
+  color: rgba(194, 194, 194, 1);
+  pointer-events: none;
+}
+
+.account-btn {
   padding: 7px 0;
   width: 100px;
   color: #000;
@@ -36,27 +84,16 @@
   cursor: pointer;
 }
 
-.account-link_inactive {
+.account-btn_hidden {
   display: none;
 }
 
-.account-link_style_dark {
-  background-image: url(../../images/icons/account-link-dark.svg);
+.account-btn_style_dark {
+  background-image: url(../../images/icons/account-btn-dark.svg);
 }
 
-.account-link_style_light {
-  background-image: url(../../images/icons/account-link-light.svg);
-}
-
-.button {
-  all: unset;
-  opacity: 1;
-  cursor: pointer;
-  transition: opacity ease-in-out 0.2s;
-}
-
-.button:hover {
-  opacity: 0.8;
+.account-btn_style_light {
+  background-image: url(../../images/icons/account-btn-light.svg);
 }
 
 .title {

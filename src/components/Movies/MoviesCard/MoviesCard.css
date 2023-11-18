@@ -57,6 +57,7 @@
 .movies__card-title {
   margin: 0 0 10px 0;
   max-width: 248px;
+  color: #000;
   font-size: 12px;
   font-weight: 500;
   line-height: normal;
@@ -127,7 +128,6 @@
   top: 10px;
   right: 10px;
   cursor: pointer;
-  transition: all 0.3s linear;
 }
 
 @media (min-width: 738px) {
@@ -147,12 +147,15 @@
   color: #000;
   background-color: #f9f9f9;
   border-radius: 30px;
+  transition: all ease-in 0.2s, color ease-in-out 0.5s;
 }
 
 .movies__card-btn_type_saved {
   background-image: url(../../../images/icons/card-saved-btn.svg);
   visibility: visible;
   opacity: 1;
+  color: transparent;
+  transition: all ease-in 0.2s, color 0s;
 }
 
 .movies__card-btn_type_delete {

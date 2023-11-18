@@ -1,7 +1,27 @@
-import React from 'react';
+import { useState } from 'react';
 import './SearchForm.css'
 
-function SearchForm() {
+function SearchForm({
+  handleSubmit,
+  onChange,
+  searchValue,
+  isSavedMovies,
+  isShort,
+  handleClickShort
+}) {
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [isValid, setIsValid] = useState(false);
+
+  function onSubmit(e) {
+    e.preventDefault();
+    setIsSubmit(true);
+
+    if (isValid || isSavedMovies) {
+      handleSubmit();
+      setIsSubmit(false);
+    };
+  }
+
   return (
     <section
       className='search' >
@@ -9,13 +29,28 @@ function SearchForm() {
         className='search__container' >
         <form
           className='search__form'
-          name='searchForm' >
+          name='searchForm'
+          onSubmit={onSubmit}
+          noValidate >
           <input
             type='search'
-            className='search__input'
-            name='searchInput'
-            placeholder='Фильм'
-            required />
+            className={
+              !isValid && isSubmit
+                ? 'search__input search__input_error'
+                : 'search__input'
+            }
+            placeholder={
+              !isValid && isSubmit
+                ? 'Нужно ввести ключевое слово'
+                : 'Фильм'
+            }
+            required
+            autoComplete='off'
+            value={searchValue}
+            onChange={e => {
+              onChange(e.target.value);
+              setIsValid(e.target.checkValidity());
+            }} />
           <button
             type='submit'
             className='button search__submit-btn' >
@@ -24,7 +59,12 @@ function SearchForm() {
         </form>
         <button
           type='button'
-          className='button search__filter-btn search__filter-btn_active' >
+          className={
+            isShort
+              ? 'button search__filter-btn search__filter-btn_active'
+              : 'button search__filter-btn'
+          }
+          onClick={handleClickShort}>
             Короткометражки
         </button>
       </div>

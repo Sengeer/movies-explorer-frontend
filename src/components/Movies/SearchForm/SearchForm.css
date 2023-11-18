@@ -66,6 +66,7 @@
   height: 25px;
   font-weight: 400;
   font-size: 14px;
+  background-color: #fff;
   line-height: 20px;
   align-self: center;
   box-sizing: border-box;
@@ -81,6 +82,10 @@
     background-repeat: no-repeat;
     padding-left: 44px;
   }
+}
+
+.search__input_error::placeholder {
+  color: #ff4062;
 }
 
 .search__submit-btn {
@@ -107,6 +112,7 @@
   background-image: url(../../../images/icons/filter-btn.svg);
   background-size: contain;
   background-repeat: no-repeat;
+  transition: all cubic-bezier(.8,0,1,.2) 0.15s;
 }
 
 @media (min-width: 664px) {

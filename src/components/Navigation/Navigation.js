@@ -1,38 +1,73 @@
 import React from 'react';
-import './Navigation.css';
+import { useNavigate } from 'react-router-dom';
+import Popup from '../Popup/Popup';
 
-function Navigation() {
+function Navigation({
+  isOpenNav,
+  handleCloseNav,
+  pageName
+}) {
+  const navigate = useNavigate();
+
+  function handleClickProfile() {
+    navigate('/profile', { replace: false });
+  }
+
+  function handleClickMain() {
+    navigate('/', { replace: false });
+  }
+
+  function handleClickMovies() {
+    navigate('/movies', { replace: false });
+  }
+
+  function handleClickSaved() {
+    navigate('/saved-movies', { replace: false });
+  }
+
   return (
-    <div
-      className='navigation ' >
-      <nav
-        className='navigation__container' >
-        <a
-          href='../'
-          className='link navigation__link navigation__link_type_presentation' >
+    <Popup
+      isOpen={isOpenNav}
+      name='nav'
+      onClose={handleCloseNav} >
+        <button
+          type='button'
+          className={
+            pageName === 'main'
+              ? 'button popup__btn popup__btn_active'
+              : 'button popup__btn'
+          }
+          onClick={handleClickMain} >
             Главная
-        </a>
-        <a
-          href='../movies'
-          className='link navigation__link navigation__link_type_movies navigation__link_active' >
+        </button>
+        <button
+          type='button'
+          className={
+            pageName === 'movies'
+              ? 'button popup__btn popup__btn_active'
+              : 'button popup__btn'
+          }
+          onClick={handleClickMovies} >
             Фильмы
-        </a>
-        <a
-          href='../saved-movies'
-          className='link navigation__link navigation__link_type_saved-movies' >
+        </button>
+        <button
+          type='button'
+          className={
+            pageName === 'saved'
+              ? 'button popup__btn popup__btn_active'
+              : 'button popup__btn'
+          }
+          onClick={handleClickSaved} >
             Сохранённые фильмы
-        </a>
-        <a
-          href='../profile'
-          className='link account-link account-link_style_light' >
+        </button>
+        <button
+          type='button'
+          className='button account-btn account-btn_style_light'
+          aria-label='Профиль'
+          onClick={handleClickProfile} >
             Аккаунт
-        </a>
-      </nav>
-      <button
-        className='button navigation__close-btn'
-        type='button'
-        aria-label='Закрыть' />
-    </div>
+        </button>
+    </Popup>
   );
 }
 

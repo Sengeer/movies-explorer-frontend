@@ -1,86 +1,143 @@
-import React from 'react';
+import { useState } from 'react';
 import './Header.css';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
+import { useNavigate } from 'react-router-dom';
 
 function Header({
-  isMobile,
-  isPresentation,
+  appSize,
+  pageName,
   isAuthorized,
 }) {
+  const navigate = useNavigate();
+
+  const [isOpenNav, setIsOpenNav] = useState(false);
+
+  function handleClickMain() {
+    navigate('/', { replace: false });
+  }
+
+  function handleClickProfile() {
+    navigate('/profile', { replace: false });
+  }
+
+  function handleClickRegister() {
+    navigate('/signup', { replace: false });
+  }
+
+  function handleClickLogin() {
+    navigate('/signin', { replace: false });
+  }
+
+  function handleClickMovies() {
+    navigate('/movies', { replace: false });
+  }
+
+  function handleClickSaved() {
+    navigate('/saved-movies', { replace: false });
+  }
+
+  function handleClickNav() {
+    setIsOpenNav(!isOpenNav);
+  }
+
+  function handleCloseNav() {
+    setIsOpenNav(!isOpenNav);
+  }
+
   return (
     <header
       className={
-        isPresentation
+        pageName === 'main'
           ? 'header header_color_pink'
           : 'header header_color_white'
       } >
-      <a
-        href='../'
-        className='logo header__logo' >
+      <button
+        type='button'
+        className='button logo header__logo'
+        aria-label='Презентация'
+        onClick={handleClickMain} >
         <img
           src={logo}
           alt='Лого' />
-      </a>
+      </button>
       <nav
         className='header__container' >
         <button
-          className={
-            isAuthorized && isMobile
-              ? 'button header__navigation-btn'
-              : 'button header__navigation-btn header__navigation-btn_inactive'
-          }
           type='button'
-          aria-label='Навигация' />
-        <a
-          href='../signup'
           className={
-            isPresentation && !isAuthorized
-              ? 'link header__link header__link_type_signup'
-              : 'link header__link header__link_type_signup header__link_inactive'
-          } >
+            isAuthorized && (appSize === 'tablet' || appSize === 'mobile')
+              ? 'button header__navigation-btn'
+              : 'button header__navigation-btn header__navigation-btn_hidden'
+          }
+          aria-label='Меню навигации'
+          onClick={handleClickNav} />
+        <button
+          type='button'
+          className={
+            (pageName === 'main') && !isAuthorized
+              ? 'button header__btn header__btn_type_signup'
+              : 'button header__btn header__btn_type_signup header__btn_hidden'
+          }
+          aria-label='Регистрация'
+          onClick={handleClickRegister} >
             Регистрация
-        </a>
-        <a
-          href='../signin'
+        </button>
+        <button
+          type='button'
           className={
-            isPresentation && !isAuthorized
-              ? 'link header__link header__link_type_signin'
-              : 'link header__link header__link_type_signin header__link_inactive'
-          } >
+            (pageName === 'main') && !isAuthorized
+              ? 'button header__btn header__btn_type_signin'
+              : 'button header__btn header__btn_type_signin header__btn_hidden'
+          }
+          aria-label='Авторизация'
+          onClick={handleClickLogin} >
             Войти
-        </a>
-        <a
-          href='../movies'
+        </button>
+        <button
+          type='button'
           className={
-            isAuthorized && !isMobile
-              ? 'link header__link header__link_type_movies header__link_active'
-              : 'link header__link header__link_type_movies header__link_inactive'
-          } >
+            isAuthorized && !(appSize === 'tablet' || appSize === 'mobile')
+              ? pageName === 'movies'
+                ? 'button header__btn header__btn_type_movies header__btn_active'
+                : 'button header__btn header__btn_type_movies'
+              : 'button header__btn header__btn_type_movies header__btn_hidden'
+          }
+          aria-label='Фильмы'
+          onClick={handleClickMovies} >
             Фильмы
-        </a>
-        <a
-          href='../saved-movies'
+        </button>
+        <button
+          type='button'
           className={
-            isAuthorized && !isMobile
-              ? 'link header__link header__link_type_saved-movies'
-              : 'link header__link header__link_type_saved-movies header__link_inactive'
-          } >
+            isAuthorized && !(appSize === 'tablet' || appSize === 'mobile')
+              ? pageName === 'saved'
+                ? 'button header__btn header__btn_type_saved-movies header__btn_active'
+                : 'button header__btn header__btn_type_saved-movies'
+              : 'button header__btn header__btn_type_saved-movies header__btn_hidden'
+          }
+          aria-label='Сохранённые фильмы'
+          onClick={handleClickSaved} >
             Сохранённые фильмы
-        </a>
-        <a
-          href='../profile'
+        </button>
+        <button
+          type='button'
           className={
-            isAuthorized && !isMobile
-              ? isPresentation
-                  ? 'link account-link account-link_style_dark'
-                  : 'link account-link account-link_style_light'
-              : 'link account-link account-link_style_dark account-link_inactive'
-          } >
+            isAuthorized && !(appSize === 'tablet' || appSize === 'mobile')
+              ? (pageName === 'main')
+                  ? 'button account-btn account-btn_style_dark'
+                  : 'button account-btn account-btn_style_light'
+              : 'button account-btn account-btn_style_dark account-btn_hidden'
+          }
+          aria-label='Профиль'
+          onClick={handleClickProfile}>
             Аккаунт
-        </a>
+        </button>
       </nav>
-      <Navigation />
+      <Navigation
+        isOpenNav={isOpenNav}
+        handleCloseNav={handleCloseNav}
+        pageName={pageName} />
     </header>
   );
 }

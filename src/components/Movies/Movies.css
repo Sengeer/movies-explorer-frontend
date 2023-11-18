@@ -1,0 +1,27 @@
+.movies__message {
+  display: none;
+  margin: 0 10px;
+  padding: 10px 0 235px 0;
+  text-align: center;
+  justify-self: center;
+}
+
+@media (min-width: 425px) {
+  .movies__message {
+    margin: 0 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .movies__message {
+    margin: 0 70px;
+  }
+}
+
+.movies__message_active {
+  display: block;
+}
+
+.movies__message_type_error {
+  color: #ff4062;
+}

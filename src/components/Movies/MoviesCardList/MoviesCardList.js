@@ -1,22 +1,27 @@
 import React from 'react';
 import './MoviesCardList.css'
 import MoviesCard from '../MoviesCard/MoviesCard';
-import cards from '../../../utils/staticCardData'
 
 function MoviesCardList({
-  isSavedMovies
+  initialCards,
+  onMore,
+  isCompletedMore,
+  handleClickAdd,
+  handleClickDelete,
+  isSavedMovies,
+  savedMovies
 }) {
   return (
-    <section className='movies' >
+    <section className='movies__place' >
       <ul className='movies__cards' >
-        {cards.map(card => (
+        {initialCards.map(card => (
           <MoviesCard
-            key={card.id}
-            imageUrl={card.image.url}
-            nameRu={card.nameRU}
-            duration={card.duration}
+            key={card.movieId || card.id}
             card={card}
-            isSavedMovies={isSavedMovies} />
+            handleClickAdd={handleClickAdd}
+            handleClickDelete={handleClickDelete}
+            isSavedMovies={isSavedMovies}
+            savedMovies={savedMovies} />
         ))}
       </ul>
       <div
@@ -28,10 +33,12 @@ function MoviesCardList({
         <button
           type='button'
           className={
-            isSavedMovies
-              ? 'button movies__more-btn movies__more-btn_page_saved-movies'
-              : 'button movies__more-btn movies__more-btn_page_movies'
-          } >
+            isCompletedMore || isSavedMovies
+              ? 'button movies__more-btn movies__more-btn_hidden'
+              : 'button movies__more-btn'
+          }
+          aria-label='Загрузить ещё'
+          onClick={onMore} >
             Ещё
         </button>
       </div>

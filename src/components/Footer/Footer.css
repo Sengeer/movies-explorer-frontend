@@ -9,6 +9,10 @@
     'copyright';
 }
 
+.footer_hidden {
+  display: none;
+}
+
 @media (min-width: 425px) {
   .footer {
     padding: 81px 0 20px 0;
