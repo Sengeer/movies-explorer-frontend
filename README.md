@@ -1,10 +1,10 @@
 <h1 align="center">Movies Explorer</h1>
 
-SPA сервис на React для поиска фильмов. Фронтед часть.
+SPA сервис на React для поиска фильмов. Фронтенд часть.
 
 ![Movies Explorer](https://github.com/Sengeer/movies-explorer-frontend/assets/63221404/baf7dac5-8d6e-404c-99f8-ccab7204079b)
 
-## Функциональность
+## Основная функциональность
 
 - Поиск с фильтрацией;
 - Авторизация и регистрация пользователей;

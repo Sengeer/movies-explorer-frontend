@@ -239,6 +239,7 @@ function App() {
   }
 
   function handleFindAndSavedQuery(savedMovies, allMovies) {
+    console.log(savedMovies);
     if (savedMovies.length && allMovies) {
       allMovies.map(item => {
         if (savedMovies.some(itemSaved => itemSaved.movieId === item.id)) {
