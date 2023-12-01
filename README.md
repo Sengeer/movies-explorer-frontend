@@ -31,7 +31,7 @@ SPA сервис на React для поиска фильмов. Фронтенд
 ## Технологический стек
 
 **Front-end:** HTML, CSS, JS, React, Webpack
-
+**Back-end:** Node.js, Express, API, Webpack
 
 
 ## Автор
