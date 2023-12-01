@@ -21,7 +21,7 @@ SPA сервис на React для поиска фильмов. Фронтенд
 ## Инструкция по развёртыванию
 
 1. Сохраните фронтенд и [бэкенд](https://github.com/Sengeer/movies-explorer-api) на компьютер
-<img src="https://github.com/Sengeer/movies-explorer-frontend/assets/63221404/837151e3-e555-4ba3-b84b-fab52244dad5" alt="Сохранить на компьютер" />
+<img src="https://github.com/Sengeer/movies-explorer-frontend/assets/63221404/837151e3-e555-4ba3-b84b-fab52244dad5" alt="Сохранить на компьютер" width="400" />
 
 3. Установите зависимости `npm i`
 4. Запустите поочерёдно, сначала бэкенд, потом фронтенд командой `npm run start`
