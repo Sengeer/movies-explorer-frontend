@@ -106,7 +106,7 @@ function App() {
         const nextMovies = savedMovies.filter(item => item._id !== movie._id);
         setWrite('savedMovies', nextMovies);
         setSavedMovies(nextMovies);
-        setFoundMovies(nextMovies);
+        setFoundMovies(handleFindAndSavedQuery(nextMovies));
       })
       .catch(console.error);
   }
@@ -239,7 +239,6 @@ function App() {
   }
 
   function handleFindAndSavedQuery(savedMovies, allMovies) {
-    console.log(savedMovies);
     if (savedMovies.length && allMovies) {
       allMovies.map(item => {
         if (savedMovies.some(itemSaved => itemSaved.movieId === item.id)) {
@@ -460,14 +459,14 @@ function App() {
               setQuerySaved('');
               setWrite('isShortSaved', false);
               setIsShortSaved(false);
-              setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')));
+              setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies') || []));
             }}
             isShort={isShortSaved}
             handleClickShort={() => {
               setWrite('isShortSaved', !isShortSaved);
               setIsShortSaved(!isShortSaved);
               setIsSearchRunningSaved(true);
-              setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies')));
+              setFoundMovies(handleFindAndSavedQuery(getWrite('savedMovies') || []));
             }}
             savedMovies={savedMovies}
             loggedIn={loggedIn} />
