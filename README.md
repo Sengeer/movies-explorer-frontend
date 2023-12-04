@@ -20,8 +20,11 @@ SPA сервис на React для поиска фильмов. Фронтенд
 **Проект собран с помощью webpack.** Он позволяет минифицировать код и добавить вендорные префиксы.
 ## Инструкция по развёртыванию
 
-1. Сохраните фронтенд и [бэкенд](https://github.com/Sengeer/movies-explorer-api) на компьютер\
-<img src="https://github.com/Sengeer/react-mesto-api-full-gha/assets/63221404/095944c8-a36e-4745-8530-3ef68b1b9a23" alt="Сохранить на компьютер" width="106" /><br />
+1. Откройте терминал и клонируйте фронтенд и [бэкенд](https://github.com/Sengeer/movies-explorer-api) на компьютер\
+  ```
+  git clone https://github.com/Sengeer/movies-explorer-frontend.git
+  git clone https://github.com/Sengeer/movies-explorer-api.git
+  ```
 2. Установите зависимости в обоих проектах командой `npm i`
 3. Запустите поочерёдно, сначала бэкенд, потом фронтенд командой `npm run start`
 4. Нажмите `Y` чтобы согласится запустить фронтенд на порту 3001
