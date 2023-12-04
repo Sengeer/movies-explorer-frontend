@@ -23,7 +23,8 @@ SPA сервис на React для поиска фильмов. Фронтенд
 1. Откройте терминал и клонируйте фронтенд и [бэкенд](https://github.com/Sengeer/movies-explorer-api) на компьютер
 ```
 git clone https://github.com/Sengeer/movies-explorer-frontend.git
-
+```
+```
 git clone https://github.com/Sengeer/movies-explorer-api.git
 ```
 2. Установите зависимости в обоих проектах командой `npm i`
