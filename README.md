@@ -34,9 +34,9 @@ git clone https://github.com/Sengeer/movies-explorer-api.git
 
 ## Технологический стек
 
-**Front-end:** HTML, CSS, JS, React, Webpack
+**Front-end:** HTML, CSS, JavaScript, React.js
 
-**Back-end:** Node.js, Express, API, Webpack
+**Back-end:** Node.js, Express, Webpack
 
 
 ## Автор
